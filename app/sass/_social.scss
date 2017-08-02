@@ -1,0 +1,42 @@
+.social {
+  cursor: default;
+
+  a {
+    @include inline-flex();
+    @include flex-direction();
+    @include justify-content(center);
+    @include align-items(center);
+    margin: 0 17px 0 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    border: 1px solid #777A75;
+    transition: border 0.3s ease-in-out;
+
+    svg {
+      width: 20px;
+      height: 17px;
+
+      path {
+        fill: #777A75;
+        transition: fill 0.3s ease-in-out;
+      }
+
+    }
+
+    &:hover {
+      border-color: #000;
+
+      svg {
+
+        path {
+          fill: #000;
+        }
+
+      }
+
+    }
+
+  }
+
+}

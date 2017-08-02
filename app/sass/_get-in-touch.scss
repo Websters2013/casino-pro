@@ -1,0 +1,79 @@
+.get-in-touch {
+  margin: 0 0 30px;
+
+  &__mail {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 0 19px;
+    padding: 0 0 0 26px;
+    font-size: 14px;
+    line-height: 18px;
+    color: #029C3E;
+    background: url("../img/email-open-outline.svg") no-repeat top left;
+    background-size: 17px;
+
+    &:after {
+      position: absolute;
+      left: 26px;
+      bottom: 0;
+      width: 0;
+      height: 1px;
+      background: #029C3E;
+      content: '';
+      transition: width 0.3s ease-in-out;
+    }
+
+    &:hover {
+
+      &:after {
+        width: calc(100% - 26px);
+      }
+
+    }
+
+  }
+
+}
+
+@media (min-width: $tablet-portrait) {
+
+  .get-in-touch {
+
+    .site__title {
+      margin: 0 0 26px;
+    }
+
+    &__mail {
+      margin: 0 0 24px;
+      padding: 1px 0 1px 30px;
+      background-size: 20px;
+
+      &:after {
+        left: 30px;
+      }
+
+      &:hover {
+
+        &:after {
+          width: calc(100% - 30px);
+        }
+
+      }
+
+    }
+
+  }
+
+}
+@media (min-width: $desktop) {
+
+  .get-in-touch {
+
+    &__mail {
+      font-size: 15px;
+    }
+
+  }
+
+}

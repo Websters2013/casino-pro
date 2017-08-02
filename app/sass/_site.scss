@@ -1,0 +1,303 @@
+.site {
+  @include flexbox();
+  @include flex-direction(column);
+  @include justify-content(space-between);
+  @include align-items();
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  min-width: 320px;
+  min-height: 100%;
+  background: #fff;
+  font-size: 14px;
+  line-height: 22px;
+  color: #777A75;
+  @include lato();
+
+  p {
+    margin-bottom: 15px;
+  }
+
+  &__header {
+    width: 100%;
+  }
+  &__footer {
+    width: 100%;
+  }
+  &__content {
+    position: relative;
+    width: 100%;
+    max-width: 1180px;
+    padding: 0 10px;
+    margin: 0 auto;
+
+    &-wrap {
+      @include flexbox();
+      @include flex-direction(column-reverse);
+      @include justify-content();
+      @include align-items(flex-start);
+      @include flex-wrap(wrap);
+      margin: 0 0 16px;
+
+      >div {
+        width: 100%;
+      }
+
+      p {
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+      }
+
+    }
+
+  }
+  &__title {
+    margin: 0 0 12px;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 32px;
+    color: #323232;
+
+    &_2 {
+      margin: 0 0 16px;
+      font-size: 18px;
+      line-height: 22px;
+    }
+
+  }
+  &__field {
+    margin: 0 0 15px;
+  }
+  &__main-title {
+    @include inline-flex();
+    @include flex-direction();
+    @include justify-content(center);
+    @include align-items(center);
+    position: relative;
+    margin-bottom: 19px;
+    padding: 15px 30px;
+    min-height: 98px;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 1px 0 2px rgba(0,0,0,0.6);
+    font-size: 26px;
+    line-height: 30px;
+    background: url("../img/africanian-flag.png") no-repeat top left/cover;
+    text-transform: uppercase;
+    text-align: center;
+
+    &:after {
+      position: absolute;
+      top: 10px;
+      left: 13px;
+      right: 13px;
+      bottom: 10px;
+      background: rgba(255,255,255,0.8);
+      content: '';
+    }
+
+    span {
+      position: relative;
+      z-index: 1;
+    }
+
+  }
+
+}
+
+input[type="text"].site__input,
+input[type="password"].site__input,
+textarea.site__input,
+input[type="email"].site__input,
+input[type="tel"].site__input,
+input[type="phone"].site__input,
+input[type="number"].site__input {
+  display: inline-block;
+  vertical-align: top;
+  width: 100%;
+  height: 40px;
+  padding: 11px 14px;
+  background: #fff;
+  border: 1px solid #DCE0DB;
+  border-radius: 3px;
+  color: #323232;
+  font-size: 13px;
+  line-height: 13px;
+  @include lato();
+  font-weight: 700;
+  transition: border 0.3s ease-in-out;
+
+  &::-webkit-input-placeholder {
+    color: #999D96;
+    font-size: 13px;
+    line-height: 13px;
+  }
+  &:-moz-placeholder {
+    color: #999D96;
+    font-size: 13px;
+    line-height: 13px;
+  }
+  &.placeholder {
+    color: #999D96;
+    font-size: 13px;
+    line-height: 13px;
+  }
+
+  &:focus {
+    border-color: #000;
+  }
+  &.not-valid {
+    border-color: #DE3831;
+    color: #DE3831;
+
+    &::-webkit-input-placeholder {
+      color: #DE3831;
+    }
+    &:-moz-placeholder {
+      color: #DE3831;
+    }
+    &.placeholder {
+      color: #DE3831;
+    }
+
+  }
+
+}
+textarea.site__input {
+  height: 200px;
+  padding: 13px 14px;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+@media (min-width: $tablet-portrait) {
+
+  .site {
+    line-height: 20px;
+
+    &__content {
+      padding: 0 20px;
+
+      &-wrap {
+        @include flex-direction(row);
+        @include justify-content(space-between);
+
+        >div {
+          width: 37.8%;
+
+          &:first-child {
+            width: 61%;
+          }
+
+        }
+
+      }
+
+    }
+    &__fields {
+      @include flexbox();
+      @include flex-direction();
+      @include justify-content(space-between);
+      @include align-items();
+
+      >.site__field {
+        width: 48.3%;
+      }
+
+    }
+    &__field {
+      margin: 0 0 25px;
+    }
+    &__main-title {
+      padding: 15px 50px;
+      font-size: 23px;
+      line-height: 28px;
+    }
+
+  }
+  input[type="text"].site__input,
+  input[type="password"].site__input,
+  textarea.site__input,
+  input[type="email"].site__input,
+  input[type="tel"].site__input,
+  input[type="phone"].site__input,
+  input[type="number"].site__input {
+    padding: 11px 9px;
+    font-size: 14px;
+    line-height: 14px;
+
+    &::-webkit-input-placeholder {
+      font-size: 14px;
+      line-height: 14px;
+    }
+    &:-moz-placeholder {
+      font-size: 14px;
+      line-height: 14px;
+    }
+    &.placeholder {
+      font-size: 14px;
+      line-height: 14px;
+    }
+
+  }
+  textarea.site__input {
+    height: 150px;
+  }
+
+}
+@media (min-width: $desktop) {
+
+  .site {
+    font-size: 15px;
+    line-height: 22px;
+
+    &__title {
+      margin-bottom: 14px;
+      font-size: 36px;
+      line-height: 42px;
+
+      &_2 {
+        margin: 0 0 12px;
+        font-size: 24px;
+        line-height: 29px;
+      }
+
+    }
+    &__content {
+
+      &-wrap {
+
+        >div {
+          width: 24%;
+
+          &:first-child {
+            width: 72%;
+          }
+
+        }
+
+      }
+
+    }
+    &__main-title {
+      min-height: 124px;
+      font-size: 28px;
+      line-height: 34px;
+
+      &:after {
+        top: 12px;
+        left: 14px;
+        right: 14px;
+        bottom: 12px;
+        border: 1px solid #fff;
+      }
+
+    }
+
+  }
+
+}
+

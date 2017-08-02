@@ -1,0 +1,28 @@
+.btn {
+  border: none;
+  height: 40px;
+  padding: 1px 25px 0;
+  color: #fff;
+  border-radius: 40px;
+  font-size: 12px;
+  line-height: 16px;
+  background: #029C3E;
+  text-align: center;
+  @include lato();
+  text-transform: uppercase;
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out, border 0.3s ease-in-out;
+
+  span {
+    width: 100%;
+    text-align: center;
+  }
+
+  &:hover {
+    background: #027532;
+  }
+
+  &:active {
+    background: #02c54f;
+  }
+
+}
