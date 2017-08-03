@@ -19,7 +19,10 @@
   }
 
   &__header {
+    height: 50px;
     width: 100%;
+    border-bottom: 1px solid #DCE0DB;
+    background-color: #F8F8F8;
   }
   &__footer {
     width: 100%;
