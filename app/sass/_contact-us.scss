@@ -1,4 +1,4 @@
-.contact-us {
+#contact-us {
   padding: 15px 0 40px;
 
   &__content {
@@ -54,7 +54,7 @@
 
 @media (min-width: $tablet-portrait) {
 
-  .contact-us {
+  #contact-us {
     padding: 31px 0 84px;
 
     &__content {
@@ -96,7 +96,7 @@
 }
 @media (min-width: $desktop) {
 
-  .contact-us {
+  #contact-us {
     padding: 47px 0 84px;
 
     &__content {

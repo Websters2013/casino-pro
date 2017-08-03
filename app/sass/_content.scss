@@ -83,7 +83,28 @@
   }
   a,
   a font {
+    position: relative;
     color: #029C3E;
+
+    &:after {
+      position: absolute;
+      left: 0;
+      bottom: -1px;
+      width: 0;
+      height: 1px;
+      background: #029C3E;
+      content: '';
+      transition: width 0.3s ease-in-out;
+    }
+
+    &:hover {
+
+      &:after {
+        width: 100%;
+      }
+
+    }
+
   }
   a:visited,
   a:visited font {
@@ -91,7 +112,7 @@
   }
   a:hover,
   a:hover font {
-    color: #777A75;
+    color: #029C3E;
     text-decoration: none;
   }
   a:active,

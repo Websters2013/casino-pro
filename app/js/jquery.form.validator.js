@@ -16,7 +16,7 @@
         var _self = this,
             _obj = obj,
             _valueFlag = false,
-            _note = _obj.find( '.contact-us__note' ),
+            _note = _obj.find( '#contact-us__note' ),
             _inputs = _obj.find( 'input, textarea' ),
             _fields = _obj.find( '[data-required]' );
 

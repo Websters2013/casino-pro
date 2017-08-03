@@ -1,4 +1,4 @@
-.get-in-touch {
+#get-in-touch {
   margin: 0 0 30px;
 
   &__mail {
@@ -38,7 +38,7 @@
 
 @media (min-width: $tablet-portrait) {
 
-  .get-in-touch {
+  #get-in-touch {
 
     .site__title {
       margin: 0 0 26px;
@@ -68,7 +68,7 @@
 }
 @media (min-width: $desktop) {
 
-  .get-in-touch {
+  #get-in-touch {
 
     &__mail {
       font-size: 15px;

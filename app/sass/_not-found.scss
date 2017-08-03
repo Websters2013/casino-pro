@@ -1,4 +1,4 @@
-.not-found {
+#not-found {
   padding: 50px 0;
   font-size: 15px;
   line-height: 22px;
@@ -61,7 +61,7 @@
 
 @media (min-width: $tablet-portrait) {
 
-  .not-found {
+  #not-found {
     font-size: 16px;
     line-height: 19px;
 
@@ -89,7 +89,7 @@
 
 @media (min-width: $desktop) {
 
-  .not-found {
+  #not-found {
     padding: 100px 0;
     font-size: 21px;
     line-height: 25px;
