@@ -1,14 +1,110 @@
 .not-found {
+  padding: 50px 0;
+  font-size: 15px;
+  line-height: 22px;
+  font-weight: 700;
+  color: #323232;
   text-align: center;
 
+
+  p {
+    margin: 0;
+
+    span {
+      display: block;
+    }
+  }
+  a {
+    position: relative;
+    color: #029C3E;
+
+    &:after {
+      position: absolute;
+      left: 0;
+      bottom: -1px;
+      width: 0;
+      height: 2px;
+      background: #029C3E;
+      content: '';
+      transition: width 0.3s ease-in-out;
+    }
+
+    &:hover {
+
+      &:after {
+        width: 100%;
+      }
+
+    }
+
+  }
+
+  &__pic {
+    max-width: 201px;
+    margin: 0 auto 14px;
+  }
   &__layout {
     position: relative;
     max-width: 960px;
     padding: 0 20px;
-
   }
 
   &__title {
+    margin: 0 0 13px;
+    font-size: 28px;
+    line-height: 34px;
+    font-weight: 400;
+    color: #323232;
+  }
+
+}
+
+@media (min-width: $tablet-portrait) {
+
+  .not-found {
+    font-size: 16px;
+    line-height: 19px;
+
+    p {
+
+      span {
+        display: inline;
+      }
+    }
+
+    &__pic {
+      max-width: 419px;
+      margin: 0 auto 41px;
+    }
+
+    &__title {
+      margin: 0 0 15px;
+      font-size: 35px;
+      line-height: 38px;
+    }
+
+  }
+
+}
+
+@media (min-width: $desktop) {
+
+  .not-found {
+    padding: 100px 0;
+    font-size: 21px;
+    line-height: 25px;
+
+    &__pic {
+      max-width: 746px;
+      margin: 0 auto 76px;
+    }
+
+    &__title {
+      margin: 0 0 20px;
+      font-size: 50px;
+      line-height: 60px;
+      font-weight: 700;
+    }
 
   }
 
