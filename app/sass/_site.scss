@@ -19,7 +19,13 @@
   }
 
   &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
     width: 100%;
+    border-bottom: 1px solid #DCE0DB;
+    background-color: #F8F8F8;
   }
   &__title {
     margin: 0 0 12px;

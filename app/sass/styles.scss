@@ -1,4 +1,19 @@
-@import "main";
+@import "colors";
+@import "variables";
+@import "functions";
+@import "mixins";
+@import "flexbox";
+@import "reset";
+@import "fonts/lato";
+
+@import "site";
+@import "logo";
+@import "search";
+@import "menu";
+@import "mobile-menu";
+
+@import "btn";
+
 @import "not-found";
 @import "social";
 @import "content";
