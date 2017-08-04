@@ -1,5 +1,9 @@
 #contact-us {
-  padding: 15px 0 40px;
+  position: relative;
+  width: 100%;
+  max-width: 1180px;
+  padding: 15px 10px 40px;
+  margin: 0 auto;
 
   &__content {
     @include flexbox();
@@ -55,7 +59,7 @@
 @media (min-width: $tablet-portrait) {
 
   #contact-us {
-    padding: 31px 0 84px;
+    padding: 31px 20px 84px;
 
     &__content {
       @include flex-direction(row);

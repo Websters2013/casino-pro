@@ -39,6 +39,11 @@
       font-size: 18px;
       line-height: 22px;
     }
+    &_3 {
+      margin: 0 0 21px;
+      font-size: 18px;
+      line-height: 22px;
+    }
 
   }
   &__field {
@@ -46,7 +51,6 @@
   }
 
 }
-
 #site {
 
   &__footer {
@@ -142,11 +146,11 @@
 
   }
   &__content {
-    position: relative;
-    width: 100%;
-    max-width: 1180px;
-    padding: 0 10px;
-    margin: 0 auto;
+    //position: relative;
+    //width: 100%;
+    //max-width: 1180px;
+    //padding: 0 10px;
+    //margin: 0 auto;
 
     &-wrap {
       @include flexbox();
@@ -278,7 +282,6 @@ textarea.site__input {
   .site {
     line-height: 20px;
 
-
     &__fields {
       @include flexbox();
       @include flex-direction();
@@ -293,12 +296,19 @@ textarea.site__input {
     &__field {
       margin: 0 0 25px;
     }
+    &__title {
+
+      &_3 {
+        margin: 0 0 15px;
+      }
+
+    }
 
   }
   #site {
 
     &__content {
-      padding: 0 20px;
+      //padding: 0 20px;
 
       &-wrap {
         @include flex-direction(row);
@@ -427,6 +437,11 @@ textarea.site__input {
         margin: 0 0 12px;
         font-size: 24px;
         line-height: 29px;
+      }
+      &_3 {
+        margin: 0 0 21px;
+        font-size: 36px;
+        line-height: 42px;
       }
 
     }

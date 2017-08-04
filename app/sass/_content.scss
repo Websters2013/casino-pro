@@ -1,6 +1,10 @@
 /* --------------- content --------------- */
 .content {
-  padding: 15px 0 40px;
+  position: relative;
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 15px 10px 40px;
   font-size: 14px;
   line-height: 22px;
   color: #777A75;
@@ -150,7 +154,7 @@
 @media (min-width: $tablet-portrait) {
 
   .content {
-    padding: 31px 0 84px;
+    padding: 31px 20px 84px;
     line-height: 20px;
 
     .site__content-wrap {
