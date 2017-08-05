@@ -1,3 +1,16 @@
 #logo {
-  height: 30px;
+  width: 120px;
+  margin-top: 1px;
+
+  img{
+    display: block;
+    max-width: 100%;
+  }
+
+}
+
+@media (min-width: $desktop) {
+  #logo {
+    width: 174px;
+  }
 }

@@ -1,14 +1,46 @@
 #mobile-menu {
 
   &-btn{
+    position: relative;
     width: 50px;
+    height: inherit;
     background-color: transparent;
 
     svg{
-      width: 20px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+      width: 22px;
       fill: #029C3E;
+
+      + svg{
+        opacity: 0;
+      }
+
     }
 
   }
 
+}
+
+@media (min-width: $tablet-portrait) {
+  #mobile-menu {
+
+    &-btn{
+      width: 70px;
+    }
+
+  }
+}
+
+@media (min-width: $desktop) {
+  #mobile-menu {
+
+    &-btn{
+      display: none;
+    }
+
+  }
 }

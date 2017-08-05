@@ -1,18 +1,21 @@
 #search {
-  position: absolute;
-  top: 0;
-  right: 41px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
   height: inherit;
+  position: relative;
 
   &__btn-open{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 37px;
-    height: inherit;
+    width: 30px;
+    height: 30px;
     padding: 0;
     border: none;
-    background-color: transparent;
+    border-radius: 50%;
+    background-color: #029C3E;
 
     svg{
       width: 14px;
@@ -30,20 +33,21 @@
     width: 0;
     visibility: hidden;
     opacity: 0;
-    padding: 7px 0 7px 10px;
+    padding: 7px 10px;
     overflow: hidden;
-    background-color: #45d1de;
+    background-color: #F8F8F8;
     -webkit-transition: all .3s ease;
     transition: all .3s ease;
 
     input{
       width: calc( 100% - 40px );
       height: 35px;
-      padding: 0 10px 1px 32px;
-      color: #fff;
+      padding: 2px 28px 0;
+      color: #323232;
+      @include lato;
       font-size: 14px;
-      background-color: #36a8b3;
-      border: none;
+      background-color: #E0E0E0;
+      border: 1px solid #E0E0E0;
       border-radius: 5px;
     }
 
@@ -60,17 +64,19 @@
     justify-content: center;
     align-items: center;
     position: absolute;
-    left: 8px;
-    top: 8px;
+    left: 50px;
+    top: 7px;
     height: 35px;
-    width: 35px;
+    width: 28px;
+    padding: 3px 0 0 3px;
     border: none;
     background-color: transparent;
     cursor: default;
 
     svg{
-      width: 11px;
-      fill: #fff;
+      width: 13px;
+      height: 13px;
+      fill: #323232;
     }
 
   }
@@ -78,34 +84,43 @@
   &__btn-cancel{
     display: block;
     position: relative;
-    width: 40px;
+    width: 39px;
     height: 35px;
-    padding: 0;
+    padding: 5px 12px 0 0;
     border: none;
     background-color: transparent;
 
-    &:before,
-    &:after{
-      position: absolute;
-      left: 12px;
-      width: 17px;
-      height: 2px;
-      background-color: #fff;
-      content: '';
+    svg{
+      width: 16px;
+      height: 17px;
+      fill: #029C3E;
     }
 
-    &:before{
-      top: 17px;
-      background-color: #fff;
-      transform: rotate(-45deg);
-      -webkit-transform: rotate(-45deg);
+  }
+
+  &__btn-update{
+    position: absolute;
+    top: 7px;
+    right: 10px;
+    width: 39px;
+    height: 35px;
+    padding: 4px 0 0 6px;
+    border: none;
+    background-color: transparent;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: opacity .3s ease, visibility .3s ease;
+    transition: opacity .3s ease, visibility .3s ease;
+
+    &.show{
+      opacity: 1;
+      visibility: visible;
     }
 
-    &:after{
-      bottom: 16px;
-      background-color: #fff;
-      transform: rotate(45deg);
-      -webkit-transform: rotate(45deg);
+    svg{
+      width: 12px;
+      height: 12px;
+      fill: #000;
     }
 
   }
@@ -115,10 +130,10 @@
     top: 100%;
     left: 0;
     margin-top: 10px;
-    padding: 29px 0 19px;
+    padding: 22px 15px 17px;
     border-radius: 3px;
     background-color: #fff;
-    font-size: 13px;
+    font-size: 12px;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
     opacity: 0;
     visibility: hidden;
@@ -130,30 +145,22 @@
       visibility: visible;
     }
 
-    &-update{
-      padding: 0;
-      border: none;
-      background-color: transparent;
-      color: #83868a;
-      font-size: 12px;
-      text-transform: uppercase;
-    }
-
     &-links{
       display: block;
-      margin-top: 18px;
-      padding: 18px 14px 4px;
+      margin-top: 10px;
+      padding-top: 18px;
       border-top: 1px solid #dce0db;
-      color: #02bfc5;
+      color: #029C3E;
       font-size: 14px;
-      letter-spacing: -0.9px;
-      text-transform: uppercase;
+      font-weight: 600;
+      text-align: center;
     }
 
     &-no-results{
+      padding-bottom: 7px;
       color: #283746;
-      font-size: 13px;
-      padding: 0 14px;
+      font-size: 14px;
+      text-align: center;
     }
 
   }
@@ -216,8 +223,8 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      margin: 15px 0 7px;
-      padding: 23px 14px 0;
+      margin: 12px 0 4px;
+      padding: 17px 0 0;
       border-top: 1px solid #dce0db;
       color: #83868a;
 
@@ -237,19 +244,23 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      padding: 8px 14px 7px 14px;
+      padding: 8px 0 9px;
       color: #283746;
       -webkit-transition: background-color .3s ease, color .3s ease;
       transition: background-color .3s ease, color .3s ease;
 
       i{
-        max-width: 70%;
+        max-width: 80%;
+        font-size: 14px;
         font-style: normal;
       }
 
       span{
-        color: #45d1de;
+        position: relative;
+        top: 2px;
+        color: #029C3E;
         font-size: 12px;
+        text-transform: uppercase;
       }
 
     }
@@ -264,61 +275,38 @@
 
 @media (min-width: $tablet-portrait) {
   #search {
-    right: 65px;
-
-    &__btn-open{
-      width: 60px;
-
-      svg{
-        width: 26px;
-      }
-
-    }
+    width: 70px;
 
     &__form{
-      padding: 18px 0 17px 20px;
 
       input{
-        width: calc( 100% - 60px);
-        height: 40px;
+        width: calc( 100% - 50px);
         padding-left: 51px;
-        font-size: 15px;
       }
 
     }
 
     &__btn-find{
-      left: 24px;
-      top: 18px;
-      height: 40px;
-      width: 40px;
+      justify-content: flex-end;
+      width: 42px;
+
+      svg{
+        width: 15px;
+        height: 15px;
+      }
+
     }
 
-    &__btn-cancel{
-
-      &:before,
-      &:after{
-        left: 20px;
-        width: 23px;
-        height: 3px;
-      }
-
-      &:before{
-        top: 15px;
-      }
-
-      &:after {
-        bottom: 17px;
-      }
-
+    &__btn-update{
+      right: 30px;
     }
 
     &__popup{
-      padding: 29px 29px 19px 33px;
+      padding: 23px 14px 12px 15px;
 
       &-links{
-        border-top: 0;
-        padding: 11px 19px 10px;
+        margin-top: 12px;
+        padding: 18px 19px 3px;
       }
 
       &-no-results{
@@ -334,12 +322,12 @@
     &__popup {
 
       &-title{
-        padding: 13px 19px 0;
-        border-top: 0;
+        margin-top: 11px;
+        padding-top: 17px;
       }
 
       &-item{
-        padding: 8px 19px 7px 19px;
+        padding: 8px 0 9px;
       }
 
     }
@@ -350,89 +338,42 @@
 
 @media (min-width: $desktop) {
   #search {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    right: 210px;
-
-    &__btn-open{
-      display: none;
-    }
 
     &__btn-find {
-      top: 0;
+      top: 17px;
       left: 0;
+      width: 47px;
     }
 
     &__btn-cancel{
-      position: absolute;
-      top: 3px;
-      right: 9px;
-      opacity: 0;
-      visibility: hidden;
-      -webkit-transition: opacity.1s ease, visibility .1s ease;
-      transition: opacity.1s ease, visibility .1s ease;
+      display: none;
+    }
+
+    &__btn-update {
+      top: 17px;
+      right: 10px;
     }
 
     &__form{
-      position: relative;
-      width: 245px;
-      padding: 0;
-      visibility: visible;
-      opacity: 1;
-
-      &.increase{
-        width: 613px;
-
-        #search__btn-cancel{
-          opacity: 1;
-          visibility: visible;
-          -webkit-transition: opacity.3s ease, visibility .3s ease;
-          transition: opacity.3s ease, visibility .3s ease;
-
-          &:before,
-          &:after {
-            left: 17px;
-            width: 14px;
-            height: 2px;
-          }
-
-          &:before {
-            top: 16px;
-          }
-
-        }
-
-        #search__btn-find{
-          width: 53px;
-
-          svg {
-            width: 11px;
-          }
-
-        }
-
-        input{
-          padding-left: 54px;
-        }
-
-      }
+      width: 915px;
+      right: 0;
+      padding: 15px 0;
 
       input{
         width: 100%!important;
-        padding: 1px 40px 0 33px;
-
-        &:focus{
-          padding-left: 54px;
-        }
-
+        height: 40px;
+        font-size: 15px;
+        padding: 0 40px 0 58px;
       }
 
     }
 
     &__popup{
-      width: 100%;
-      margin-top: -13px;
+      top: calc( 100% - 8px );
+      right: 0;
+      left: auto;
+      width: 915px;
+      margin-top: 0;
     }
 
   }
@@ -442,8 +383,8 @@
     &__popup {
 
       &-item{
-        -webkit-transition: background-color .3s ease, color .3s ease;
-        transition: background-color .3s ease, color .3s ease;
+        -webkit-transition: color .3s ease;
+        transition: color .3s ease;
 
         span{
           -webkit-transition: color .3s ease;

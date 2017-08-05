@@ -1,5 +1,5 @@
 #menu {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -9,4 +9,35 @@
   visibility: hidden;
   -webkti-transition: opacity .3s ease, visibility .3s ease;
   transition: opacity .3s ease, visibility .3s ease;
+}
+
+@media (min-width: $desktop) {
+  #menu {
+    position: relative;
+    height: inherit;
+    opacity: 1;
+    visibility: visible;
+    white-space: nowrap;
+
+    > ul{
+      display: flex;
+      height: inherit;
+
+      li{
+        position: relative;
+      }
+
+      a{
+        display: block;
+        height: 70px;
+      }
+
+      ul{
+        position: absolute;
+        left: 0;
+      }
+
+    }
+
+  }
 }

@@ -1,4 +1,26 @@
 .site {
+
+  &__title {
+    margin: 0 0 12px;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 32px;
+    color: #323232;
+
+    &_2 {
+      margin: 0 0 16px;
+      font-size: 18px;
+      line-height: 22px;
+    }
+
+  }
+  &__field {
+    margin: 0 0 15px;
+  }
+
+}
+
+#site {
   @include flexbox();
   @include flex-direction(column);
   @include justify-content(space-between);
@@ -24,30 +46,10 @@
     align-items: center;
     height: 50px;
     width: 100%;
+    margin-bottom: 15px;
     border-bottom: 1px solid #DCE0DB;
     background-color: #F8F8F8;
   }
-  &__title {
-    margin: 0 0 12px;
-    font-weight: 700;
-    font-size: 25px;
-    line-height: 32px;
-    color: #323232;
-
-    &_2 {
-      margin: 0 0 16px;
-      font-size: 18px;
-      line-height: 22px;
-    }
-
-  }
-  &__field {
-    margin: 0 0 15px;
-  }
-
-}
-
-#site {
 
   &__footer {
     width: 100%;
@@ -412,6 +414,7 @@ textarea.site__input {
   }
 
 }
+
 @media (min-width: $desktop) {
 
   .site {
@@ -432,7 +435,14 @@ textarea.site__input {
     }
 
   }
+
   #site {
+
+    &__header{
+      height: 70px;
+      padding: 0 calc( 50% - 570px );
+      box-shadow: 0 3px 9px rgba(0,0,0,.1);
+    }
 
     &__content {
 
