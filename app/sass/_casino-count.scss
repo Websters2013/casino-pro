@@ -1,0 +1,24 @@
+.casino-count {
+  @include inline-flex();
+  @include flex-direction();
+  @include justify-content(center);
+  @include align-items(center);
+  width: 50px;
+  height: 50px;
+  border-width: 4px;
+  border-style: solid;
+  border-radius: 100%;
+  font-size: 13px;
+  color: #323232;
+  font-weight: 700;
+}
+
+@media (min-width: $tablet-portrait) {
+
+  .casino-count {
+    width: 60px;
+    height: 60px;
+    font-size: 16px;
+  }
+
+}

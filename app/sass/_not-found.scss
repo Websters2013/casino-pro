@@ -47,6 +47,7 @@
     position: relative;
     max-width: 960px;
     padding: 0 20px;
+    margin: 0 auto;
   }
 
   &__title {
@@ -86,7 +87,6 @@
   }
 
 }
-
 @media (min-width: $desktop) {
 
   #not-found {

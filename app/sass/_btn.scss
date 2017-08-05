@@ -1,4 +1,8 @@
 .btn {
+  @include inline-flex();
+  @include flex-direction();
+  @include justify-content(center);
+  @include align-items(center);
   border: none;
   height: 40px;
   padding: 1px 25px 0;
@@ -23,6 +27,13 @@
 
   &:active {
     background: #02c54f;
+  }
+
+  &_2 {
+    border: 1px solid #DCE0DB;
+    color: #029C3E;
+    background: transparent;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
   }
 
 }
