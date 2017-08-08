@@ -1,16 +1,15 @@
 #online-casinos {
   background: #F8F8F8;
-  padding: 29px 0;
+  padding: 31px 10px;
 
-  &__layout {
-    position: relative;
-    width: 100%;
-    max-width: 1180px;
-    padding: 0 10px;
-    margin: 0 auto;
+  &__title{
+    margin-bottom: 20px;
+    font-size: 18px;
+    line-height: 22px;
   }
 
 }
+
 .online-casinos {
 
   &__items {
@@ -30,10 +29,15 @@
       margin-bottom: 16px;
     }
 
+    &_best{
+      border-top-color: #1C5DA6;
+    }
+
   }
+
   &__head {
     width: 100%;
-    margin: 0 0 22px;
+    margin-bottom: 23px;
 
     &-title {
       position: relative;
@@ -52,7 +56,12 @@
 
     }
 
+    p{
+      margin-bottom: 15px;
+    }
+
   }
+
   &__content {
     width: 100%;
 
@@ -66,7 +75,7 @@
       font-size: 13px;
       color: #323232;
 
-      >div {
+      > div {
         padding: 0 0 6px;
 
         &:nth-child(1) {
@@ -87,36 +96,74 @@
       }
 
     }
+
     &-body {
       font-weight: 700;
       font-size: 12px;
       line-height: 15px;
       color: #777A75;
 
-      >div {
-        @include flexbox();
-        @include flex-direction();
-        @include justify-content();
-        @include align-items();
-        @include flex-wrap(wrap);
-        padding: 5px 0;
+      li {
+        display: grid;
+        grid-template-areas:  "info score zar link"
+                              "bonus score zar link";
+        grid-template-columns: 1fr 15% 20% 9%;
+        padding: 8px 0 10px;
         border-bottom: 1px solid #DCE0DB;
 
-        >div {
+        > div {
           &:nth-child(1) {
-            width: 54%;
+            grid-area: info;
           }
           &:nth-child(2) {
-            width: 19%;
+            grid-area: score;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             text-align: center;
           }
           &:nth-child(3) {
-            width: 15%;
-            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            grid-area: zar;
+
+            svg{
+              position: relative;
+              top: -1px;
+              left: -3px;
+            }
+
           }
           &:nth-child(4) {
-            width: 100%;
+            grid-area: bonus;
+
+            span{
+              display: block;
+              font-weight: 400;
+            }
+
+            svg{
+              display: inline-block;
+              vertical-align: middle;
+              position: relative;
+              top: -1px;
+              fill: #029C3E;
+              width: 13px;
+              height: 13px;
+            }
+
           }
+          &:nth-child(5) {
+            grid-area: link;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+        }
+
+        &:last-child{
+          border-bottom: none;
         }
 
       }
@@ -128,9 +175,11 @@
     }
 
   }
+
   &__pic {
     display: none;
   }
+
   &__name {
     display: inline-block;
     margin: 0 0 7px;
@@ -140,24 +189,93 @@
     color: #029C3E;
   }
 
+  &__success{
+
+    svg{
+      fill: #029C3E;
+      width: 20px;
+      height: 15px;
+    }
+
+  }
+
+  &__failure{
+
+    svg{
+      fill: #B50505;
+      width: 15px;
+      height: 15px;
+    }
+
+  }
+
+  &__play{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #029C3E;
+
+    svg{
+      position: relative;
+      left: 2px;
+      width: 11px;
+      height: 14px;
+      fill: #F8F8F8;
+      -webkit-transform: rotate(-90deg);
+      transform: rotate(-90deg);
+    }
+
+    span{
+      display: none;
+    }
+
+  }
+
+  &__label-new{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 8px;
+
+    img{
+      display: block;
+      max-width: 83px;
+    }
+
+    span{
+      display: block;
+      margin-left: 10px;
+      padding: 0 8px;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 400;
+      text-transform: uppercase;
+      background-color: #029C3E;
+    }
+
+  }
+
 }
 
 @media (min-width: $tablet-portrait) {
 
   #online-casinos {
-    padding: 40px 0;
+    padding: 40px 20px;
 
-    &__layout {
-      padding: 0 20px;
+    &__title {
+      margin-bottom: 15px;
     }
 
   }
+
   .online-casinos {
 
-    &__items {
-      padding-top: 29px;
-    }
     &__head {
+      margin-bottom: 30px;
 
       &-title {
         margin-bottom: 14px;
@@ -168,6 +286,39 @@
       }
 
     }
+
+    &__content{
+
+      &-captions{
+        font-size: 14px;
+
+        >div {
+          padding-bottom: 8px;
+
+          &:nth-child(1) {
+            width: 41%;
+          }
+          &:nth-child(2) {
+            width: 6%;
+          }
+          &:nth-child(3) {
+            width: 9%;
+            padding-right: 3px;
+          }
+          &:nth-child(4) {
+            display: block;
+          }
+
+        }
+
+      }
+
+    }
+
+    &__items {
+      padding-top: 29px;
+    }
+
     &__pic {
       display: block;
     }
@@ -176,20 +327,10 @@
 
 }
 
-@media (min-width: $tablet-portrait) {
-
-  .online-casinos {
-
-
-
-  }
-
-}
-
 @media (min-width: $desktop) {
 
   .online-casinos {
-    padding: 80px 0;
+    padding: 80px calc( 50% - 569px);
 
     &__items {
       font-size: 15px;
@@ -200,6 +341,7 @@
       }
 
     }
+
     &__head {
       width: 22.5%;
     }

@@ -11,6 +11,11 @@
   font-size: 13px;
   color: #323232;
   font-weight: 700;
+
+  &_best{
+    border-color: #1C5DA6;
+  }
+
 }
 
 @media (min-width: $tablet-portrait) {

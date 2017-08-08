@@ -14,6 +14,7 @@
     }
 
   }
+
   &__field {
     margin: 0 0 15px;
   }
@@ -36,6 +37,30 @@
   color: #777A75;
   @include lato();
 
+  &:after{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0,0,0,.5);
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1;
+    content: '';
+    -webkit-transition: opacity .3s ease, visibility .3s ease;
+    transition: opacity .3s ease, visibility .3s ease;
+  }
+
+  &.hide{
+
+    &:after{
+      opacity: 1;
+      visibility: visible;
+    }
+
+  }
+
   p {
     margin-bottom: 15px;
   }
@@ -49,6 +74,72 @@
     margin-bottom: 15px;
     border-bottom: 1px solid #DCE0DB;
     background-color: #F8F8F8;
+    z-index: 2;
+  }
+
+  &__content {
+    //position: relative;
+    //width: 100%;
+    //max-width: 1180px;
+    //padding: 0 10px;
+    //margin: 0 auto;
+
+    &-wrap {
+      @include flexbox();
+      @include flex-direction(column-reverse);
+      @include justify-content();
+      @include align-items(flex-start);
+      @include flex-wrap(wrap);
+      margin: 0 0 16px;
+
+      >div {
+        width: 100%;
+      }
+
+      p {
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+      }
+
+    }
+
+  }
+  &__main-title {
+    @include inline-flex();
+    @include flex-direction();
+    @include justify-content(center);
+    @include align-items(center);
+    position: relative;
+    margin-bottom: 19px;
+    padding: 15px 30px;
+    min-height: 98px;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 1px 0 2px rgba(0,0,0,0.6);
+    font-size: 26px;
+    line-height: 30px;
+    background: url("../img/africanian-flag.png") no-repeat top left/cover;
+    text-transform: uppercase;
+    text-align: center;
+
+    &:after {
+      position: absolute;
+      top: 10px;
+      left: 13px;
+      right: 13px;
+      bottom: 10px;
+      background: rgba(255,255,255,0.8);
+      content: '';
+    }
+
+    span {
+      position: relative;
+      z-index: 1;
+    }
+
   }
   &__title {
     margin: 0 0 12px;
@@ -72,13 +163,9 @@
   &__field {
     margin: 0 0 15px;
   }
-
-}
-#site {
-
   &__footer {
     width: 100%;
-    background: #F8F8F8;
+    background-color: #F8F8F8;
     text-align: center;
 
     &-layout {
@@ -165,70 +252,6 @@
         margin: 0 6px;
       }
 
-    }
-
-  }
-  &__content {
-    //position: relative;
-    //width: 100%;
-    //max-width: 1180px;
-    //padding: 0 10px;
-    //margin: 0 auto;
-
-    &-wrap {
-      @include flexbox();
-      @include flex-direction(column-reverse);
-      @include justify-content();
-      @include align-items(flex-start);
-      @include flex-wrap(wrap);
-      margin: 0 0 16px;
-
-      >div {
-        width: 100%;
-      }
-
-      p {
-
-        &:last-child {
-          margin-bottom: 0;
-        }
-
-      }
-
-    }
-
-  }
-  &__main-title {
-    @include inline-flex();
-    @include flex-direction();
-    @include justify-content(center);
-    @include align-items(center);
-    position: relative;
-    margin-bottom: 19px;
-    padding: 15px 30px;
-    min-height: 98px;
-    font-weight: 700;
-    color: #fff;
-    text-shadow: 1px 0 2px rgba(0,0,0,0.6);
-    font-size: 26px;
-    line-height: 30px;
-    background: url("../img/africanian-flag.png") no-repeat top left/cover;
-    text-transform: uppercase;
-    text-align: center;
-
-    &:after {
-      position: absolute;
-      top: 10px;
-      left: 13px;
-      right: 13px;
-      bottom: 10px;
-      background: rgba(255,255,255,0.8);
-      content: '';
-    }
-
-    span {
-      position: relative;
-      z-index: 1;
     }
 
   }
@@ -328,7 +351,12 @@ textarea.site__input {
     }
 
   }
+
   #site {
+
+    &__header{
+      box-shadow: 0 2px 5px rgba(0,0,0,.1);
+    }
 
     &__content {
       //padding: 0 20px;
@@ -415,6 +443,7 @@ textarea.site__input {
     }
 
   }
+
   input[type="text"].site__input,
   input[type="password"].site__input,
   textarea.site__input,
@@ -449,8 +478,6 @@ textarea.site__input {
 @media (min-width: $desktop) {
 
   .site {
-    font-size: 15px;
-    line-height: 22px;
 
     &__title {
       margin-bottom: 14px;
@@ -473,6 +500,8 @@ textarea.site__input {
   }
 
   #site {
+    font-size: 15px;
+    line-height: 22px;
 
     &__header{
       height: 70px;
