@@ -1,14 +1,80 @@
-/* --------------- content --------------- */
-.content {
+#content {
   position: relative;
   width: 100%;
-  max-width: 1180px;
-  margin: 0 auto;
-  padding: 15px 10px 40px;
+  padding: 0 10px 27px;
   font-size: 14px;
   line-height: 22px;
   color: #777A75;
   @include lato();
+
+  &__wrap {
+    @include flexbox();
+    @include flex-direction(column-reverse);
+    @include justify-content();
+    @include align-items(flex-start);
+    @include flex-wrap(wrap);
+    margin-bottom: 22px;
+  }
+
+  &__main-title {
+    @include inline-flex();
+    @include flex-direction();
+    @include justify-content(center);
+    @include align-items(center);
+    position: relative;
+    width: 100%;
+    margin-bottom: 19px;
+    padding: 15px 30px;
+    min-height: 98px;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 1px 0 2px rgba(0,0,0,0.6);
+    font-size: 26px;
+    line-height: 30px;
+    background: url("../img/africanian-flag.png") no-repeat top left/cover;
+    text-transform: uppercase;
+    text-align: center;
+
+    &:after {
+      position: absolute;
+      top: 10px;
+      left: 13px;
+      right: 13px;
+      bottom: 10px;
+      background: rgba(255,255,255,0.8);
+      content: '';
+    }
+
+    span {
+      position: relative;
+      z-index: 1;
+    }
+
+  }
+
+  &__text {
+    width: 100%;
+    font-size: 14px;
+    line-height: 22px;
+
+    h1{
+      margin-bottom: 14px;
+      font-weight: 700;
+      font-size: 25px;
+      line-height: 30px;
+      color: #323232;
+    }
+
+    p{
+      margin-bottom: 15px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+    }
+
+  }
 
   h1 {
     margin: 0 0 12px;
@@ -149,16 +215,40 @@
   }
 
 }
-/* --------------- /content --------------- */
 
 @media (min-width: $tablet-portrait) {
 
-  .content {
+  #content {
     padding: 31px 20px 84px;
     line-height: 20px;
 
-    .site__content-wrap {
-      margin: 0 0 31px;
+    &__wrap{
+      flex-flow: row nowrap;
+      justify-content: space-between;
+      margin-bottom: 31px;
+    }
+
+    &__main-title {
+      width: 274px;
+      padding: 14px 45px 15px;
+      font-size: 23px;
+      line-height: 28px;
+      order: 2;
+    }
+
+    &__text {
+      width: calc( 100% - 290px );
+      line-height: 20px;
+      order: 1;
+
+      h1{
+        margin-bottom: 12px;
+      }
+
+      p{
+        margin-bottom: 9px;
+      }
+
     }
 
     h2,
@@ -217,6 +307,10 @@
       margin: 47px 0;
     }
 
+  }
+
+  .content {
+
     &__inner {
       position: relative;
       border-bottom: 1px solid #DCE0DB;
@@ -230,12 +324,46 @@
   }
 
 }
+
 @media (min-width: $desktop) {
 
-  .content {
-    padding: 47px 0 84px;
+  #content {
+    padding: 31px calc( 50% - 569px ) 45px;
     font-size: 15px;
     line-height: 22px;
+
+    &__main-title {
+      min-height: 124px;
+      padding: 8px 45px;
+      font-size: 28px;
+      line-height: 34px;
+
+      &:after {
+        top: 12px;
+        left: 14px;
+        right: 14px;
+        bottom: 12px;
+        border: 1px solid #fff;
+      }
+
+    }
+
+    &__text{
+      width: calc( 100% - 315px);
+      padding-top: 0;
+      line-height: 22px;
+
+      h1{
+        margin-bottom: 17px;
+        font-size: 36px;
+        line-height: 36px;
+      }
+
+      p{
+        margin-bottom: 17px;
+      }
+
+    }
 
     h1 {
       margin-bottom: 14px;
@@ -278,6 +406,10 @@
     p {
       margin-bottom: 15px;
     }
+
+  }
+
+  .content {
 
     &__inner {
       padding: 9px 0 25px 288px;

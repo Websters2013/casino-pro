@@ -681,6 +681,16 @@
       left: -16px;
     }
 
+    &__play{
+      -webkit-transition: background-color .3s ease;
+      transition: background-color .3s ease;
+
+      &:hover{
+        background-color: #FFB612;
+      }
+
+    }
+
   }
 
 }
