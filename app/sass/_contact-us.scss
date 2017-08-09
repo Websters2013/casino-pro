@@ -1,40 +1,100 @@
 #contact-us {
   position: relative;
   width: 100%;
-  max-width: 1180px;
-  padding: 15px 10px 40px;
+  padding: 0 10px 29px;
   margin: 0 auto;
 
-  &__content {
+  &__wrap {
     @include flexbox();
     @include flex-direction(column-reverse);
     @include justify-content();
     @include align-items(flex-start);
     @include flex-wrap(wrap);
-    margin: 0 0 16px;
+    margin-bottom: 31px;
+  }
 
-    >div {
-      width: 100%;
+  &__main-title {
+    @include inline-flex();
+    @include flex-direction();
+    @include justify-content(center);
+    @include align-items(center);
+    position: relative;
+    width: 100%;
+    margin-bottom: 19px;
+    padding: 15px 30px;
+    min-height: 98px;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 1px 0 2px rgba(0,0,0,0.6);
+    font-size: 26px;
+    line-height: 30px;
+    background: url("../img/africanian-flag.png") no-repeat top left/cover;
+    text-transform: uppercase;
+    text-align: center;
+
+    &:after {
+      position: absolute;
+      top: 10px;
+      left: 13px;
+      right: 13px;
+      bottom: 10px;
+      background: rgba(255,255,255,0.8);
+      content: '';
+    }
+
+    span {
+      position: relative;
+      z-index: 1;
     }
 
   }
+
+  &__content {
+    width: 100%;
+    font-size: 14px;
+    line-height: 22px;
+
+    h1{
+      margin-bottom: 14px;
+      font-weight: 700;
+      font-size: 25px;
+      line-height: 30px;
+      color: #323232;
+    }
+
+    p{
+      margin-bottom: 15px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+    }
+
+  }
+
   &__info {
     @include flexbox();
     @include flex-direction(column-reverse);
     @include justify-content();
     @include align-items(flex-start);
     @include flex-wrap(wrap);
-    padding-top: 15px;
 
-    >div {
+    > div {
       width: 100%;
     }
 
   }
+
   &__form {
 
-    .site__title {
-      margin: 0 0 20px;
+    &-field {
+      margin: 0 0 15px;
+    }
+
+    h2{
+      margin-bottom: 20px;
+      font-size: 18px;
     }
 
     button[type=submit] {
@@ -42,6 +102,7 @@
     }
 
   }
+
   &__note {
     display: none;
     color: #E11E16;
@@ -56,36 +117,131 @@
 
 }
 
+.contact-us {
+
+  &__form {
+
+    &-field {
+      margin-bottom: 15px;
+    }
+
+  }
+
+}
+
+input[type="text"].site__input,
+input[type="password"].site__input,
+textarea.site__input,
+input[type="email"].site__input,
+input[type="tel"].site__input,
+input[type="phone"].site__input,
+input[type="number"].site__input {
+  display: inline-block;
+  vertical-align: top;
+  width: 100%;
+  height: 40px;
+  padding: 11px 14px;
+  background: #fff;
+  border: 1px solid #DCE0DB;
+  border-radius: 3px;
+  color: #323232;
+  font-size: 13px;
+  line-height: 13px;
+  @include lato();
+  font-weight: 700;
+  transition: border 0.3s ease-in-out;
+
+  &::-webkit-input-placeholder {
+    color: #999D96;
+    font-size: 13px;
+    line-height: 13px;
+  }
+  &:-moz-placeholder {
+    color: #999D96;
+    font-size: 13px;
+    line-height: 13px;
+  }
+  &.placeholder {
+    color: #999D96;
+    font-size: 13px;
+    line-height: 13px;
+  }
+
+  &:focus {
+    border-color: #000;
+  }
+  &.not-valid {
+    border-color: #DE3831;
+    color: #DE3831;
+
+    &::-webkit-input-placeholder {
+      color: #DE3831;
+    }
+    &:-moz-placeholder {
+      color: #DE3831;
+    }
+    &.placeholder {
+      color: #DE3831;
+    }
+
+  }
+
+}
+textarea.site__input {
+  height: 200px;
+  margin-bottom: 15px;
+  padding: 13px 14px;
+  font-size: 14px;
+  line-height: 22px;
+}
+
 @media (min-width: $tablet-portrait) {
 
   #contact-us {
-    padding: 31px 20px 84px;
+    padding: 15px 20px 84px;
+
+    &__wrap{
+      flex-flow: row nowrap;
+      justify-content: space-between;
+      margin-bottom: 29px;
+    }
+
+    &__main-title {
+      width: 274px;
+      padding: 14px 45px 15px;
+      font-size: 23px;
+      line-height: 28px;
+      order: 2;
+    }
 
     &__content {
-      @include flex-direction(row);
-      @include justify-content(space-between);
+      width: calc( 100% - 290px );
+      order: 1;
 
-      >div {
-        width: 37.8%;
+      h1{
+        margin-bottom: 12px;
+      }
 
-        &:first-child {
-          width: 61%;
-        }
-
+      p{
+        margin-bottom: 9px;
       }
 
     }
+
     &__info {
       @include flex-direction(column);
     }
+
     &__form {
-      margin-bottom: 36px;
+      margin-bottom: 25px;
+      padding-right: 3px;
 
       button[type=submit] {
         margin-right: 22px;
       }
 
     }
+
     &__note {
       vertical-align: middle;
 
@@ -97,29 +253,84 @@
 
   }
 
-}
-@media (min-width: $desktop) {
+  .contact-us {
 
-  #contact-us {
-    padding: 47px 0 84px;
+    &__form {
 
-    &__content {
+      &-fields {
+        display: flex;
+        justify-content: space-between;
+        align-items: stretch;
+      }
 
-      >div {
-        width: 24%;
-
-        &:first-child {
-          width: 72%;
-        }
-
+      &-field {
+        width: 48.3%;
+        margin-bottom: 25px;
       }
 
     }
+
+  }
+
+  input[type="text"].site__input,
+  input[type="password"].site__input,
+  textarea.site__input,
+  input[type="email"].site__input,
+  input[type="tel"].site__input,
+  input[type="phone"].site__input,
+  input[type="number"].site__input{
+    padding: 11px 10px;
+  }
+  textarea.site__input {
+    height: 150px;
+    margin-bottom: 25px;
+  }
+
+}
+
+@media (min-width: $desktop) {
+
+  #contact-us {
+    padding: 30px calc( 50% - 569px ) 45px;
+
+    &__main-title {
+      min-height: 124px;
+      padding: 8px 45px;
+      font-size: 28px;
+      line-height: 34px;
+
+      &:after {
+        top: 12px;
+        left: 14px;
+        right: 14px;
+        bottom: 12px;
+        border: 1px solid #fff;
+      }
+
+    }
+
+    &__content{
+      width: calc( 100% - 315px);
+      padding-top: 4px;
+      line-height: 21px;
+
+      h1{
+        margin-bottom: 17px;
+        font-size: 36px;
+        line-height: 36px;
+      }
+
+      p{
+        margin-bottom: 17px;
+      }
+
+    }
+
     &__info {
       @include flex-direction(row);
       @include justify-content(space-between);
 
-      >div {
+      > div {
         width: 24%;
 
         &:first-child {
@@ -130,10 +341,16 @@
       }
 
     }
+
+    &__wrap{
+      margin-bottom: 31px;
+    }
+
     &__form {
 
-      .site__title {
-        margin: 0 0 26px;
+      h2 {
+        font-size: 24px;
+        margin-bottom: 28px;
       }
 
     }

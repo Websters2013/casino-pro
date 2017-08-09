@@ -1,35 +1,31 @@
 #get-in-touch {
   margin: 0 0 30px;
 
+  h2{
+    margin-bottom: 16px;
+    font-size: 18px;
+    line-height: 22px;
+    color: #323232;
+  }
+
   &__mail {
     position: relative;
     display: inline-block;
     vertical-align: top;
-    margin: 0 0 19px;
-    padding: 0 0 0 26px;
+    margin-bottom: 19px;
     font-size: 14px;
     line-height: 18px;
     color: #029C3E;
-    background: url("../../../pro-photo-studio/app/img/email-open-outline.svg") no-repeat top left;
-    background-size: 17px;
 
-    &:after {
-      position: absolute;
-      left: 26px;
-      bottom: 0;
-      width: 0;
-      height: 1px;
-      background: #029C3E;
-      content: '';
-      transition: width 0.3s ease-in-out;
-    }
-
-    &:hover {
-
-      &:after {
-        width: calc(100% - 26px);
-      }
-
+    svg{
+      display: inline-block;
+      vertical-align: middle;
+      position: relative;
+      top: -1px;
+      width: 16px;
+      height: 17px;
+      margin-right: 7px;
+      fill: #029C3E;
     }
 
   }
@@ -40,17 +36,54 @@
 
   #get-in-touch {
 
-    .site__title {
-      margin: 0 0 26px;
+    h2{
+      margin-bottom: 26px;
     }
 
     &__mail {
-      margin: 0 0 24px;
-      padding: 1px 0 1px 30px;
+      margin-bottom: 24px;
+      padding: 1px 0;
       background-size: 20px;
 
+      svg{
+        width: 20px;
+        height: 18px;
+      }
+
+    }
+
+  }
+
+}
+
+@media (min-width: $desktop) {
+
+  #get-in-touch {
+
+    h2{
+      margin-bottom: 28px;
+      font-size: 24px;
+    }
+
+    &__mail {
+      margin-bottom: 22px;
+      font-size: 15px;
+
+      svg{
+        top: -3px;
+        width: 19px;
+        height: 19px;
+      }
+
       &:after {
+        position: absolute;
         left: 30px;
+        bottom: 0;
+        width: 0;
+        height: 1px;
+        background: #029C3E;
+        content: '';
+        transition: width 0.3s ease-in-out;
       }
 
       &:hover {
@@ -61,17 +94,6 @@
 
       }
 
-    }
-
-  }
-
-}
-@media (min-width: $desktop) {
-
-  #get-in-touch {
-
-    &__mail {
-      font-size: 15px;
     }
 
   }

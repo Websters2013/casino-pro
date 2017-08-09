@@ -1,9 +1,9 @@
-#daily-bonuses {
+#games {
   width: 100%;
-  padding: 20px 10px 29px;
+  padding: 30px 10px 18px;
 
   &__info{
-    margin-bottom: 29px;
+    margin-bottom: 25px;
     font-size: 14px;
     line-height: 20px;
 
@@ -53,35 +53,52 @@
 
 }
 
-.daily-bonuses{
+.games {
 
-  &__new{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 48px;
-    height: 48px;
-    padding: 5px 7px;
-    border-radius: 50%;
-    color: #fff;
+  &__item{
+    display: block;
+    margin-bottom: 16px;
+    color: #777A75;
     font-size: 12px;
-    line-height: 15px;
-    background-color: #029C3E;
-    text-align: center;
+    line-height: 22px;
+
+    h3{
+      color: #029C3E;
+      font-size: 14px;
+    }
+
+    span{
+      display: block;
+      letter-spacing: .3px;
+    }
+
+  }
+
+  &__img{
+    margin-bottom: 7px;
+
+    img{
+      display: block;
+      width: 100%;
+    }
+
   }
 
 }
 
 @media (min-width: $tablet-portrait) {
-  #daily-bonuses {
+  #games {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
     align-items: flex-start;
-    padding: 30px 20px 14px;
+    padding: 41px 20px 46px;
 
     &__wrap{
-      width: calc( 100% - 304px );
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: stretch;
 
       li{
         margin-bottom: 17px;
@@ -93,7 +110,7 @@
 
     &__info{
       width: 100%;
-      margin-bottom: 24px;
+      margin-bottom: 30px;
 
       span{
         margin-bottom: 12px;
@@ -103,20 +120,20 @@
 
   }
 
-  .daily-bonuses{
+  .games{
 
-    &__new{
-      padding: 3px 7px 9px;
+    &__item{
+      width: calc( 33% - 8px );
+      margin-bottom: 25px;
     }
 
   }
-
 }
 
 @media (min-width: $desktop) {
-  #daily-bonuses {
+  #games {
     flex-wrap: nowrap;
-    padding: 80px calc( 50% - 569px) 25px;
+    padding: 80px calc( 50% - 585px) 64px calc( 50% - 569px);
 
     &__info{
       width: 260px;
@@ -137,13 +154,13 @@
     }
 
     &__wrap{
-      width: calc( 100% - 603px);
+      width: calc( 100% - 289px);
       margin-right: 2px;
 
       li{
         margin-bottom: 54px;
         line-height: 30px;
-        padding: 26px 58px 20px 59px;
+        padding: 26px 60px 20px 59px;
 
         h3{
           font-size: 20px;
@@ -155,17 +172,21 @@
 
   }
 
-  .daily-bonuses{
+  .games {
 
-    &__new{
-      position: relative;
-      top: -2px;
-      width: 60px;
-      height: 60px;
-      padding: 5px 13px;
-      line-height: 16px;
+    &__item {
+      width: calc( 33% - 10px );
+      margin-bottom: 24px;
+
+      strong{
+        letter-spacing: .1px;
+      }
+
+    }
+
+    &__img{
+      margin-bottom: 9px;
     }
 
   }
-
 }

@@ -16,6 +16,22 @@
     border-color: #1C5DA6;
   }
 
+  &_new{
+    border-color: #029C3E;
+  }
+
+  &_live{
+    border-color: #FFB612;
+  }
+
+  &_blacklist{
+    border-color: #323232;
+  }
+
+  &_all{
+    border-color: #DE3831;
+  }
+
 }
 
 @media (min-width: $tablet-portrait) {

@@ -59,13 +59,13 @@
   }
 
   &__main-title {
-    @include inline-flex();
-    @include flex-direction();
+    display: flex;
+    flex-direction: column;
     @include justify-content(center);
     @include align-items(center);
     position: relative;
     width: 100%;
-    min-height: 98px;
+    height: 98px;
     margin-bottom: 20px;
     padding: 15px 30px;
     font-weight: 700;
@@ -104,7 +104,7 @@
     padding: 15px 20px 21px;
 
     &__content{
-      width: calc( 100% - 274px );
+      width: calc( 100% - 290px );
       order: 1;
 
       h1{
@@ -142,6 +142,7 @@
 
     &__content{
       width: calc( 100% - 315px);
+      font-size: 15px;
       line-height: 21px;
 
       h1{

@@ -1,3 +1,5 @@
+@import "variables";
+
 #not-found {
   padding: 50px 0;
   font-size: 15px;
@@ -87,6 +89,7 @@
   }
 
 }
+
 @media (min-width: $desktop) {
 
   #not-found {

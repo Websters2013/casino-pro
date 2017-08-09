@@ -335,9 +335,6 @@
                 _window.on (
                     'resize', function () {
 
-                        _hidePanel();
-                        _hidePopup();
-
                     }
                 );
 
