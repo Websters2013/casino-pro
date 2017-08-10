@@ -363,8 +363,9 @@
     }
 
     &__form{
-      width: 915px;
+      width: 915px!important;
       right: -2px;
+      left: auto!important;
       padding: 15px 0;
       background-color: transparent;
 
@@ -380,8 +381,8 @@
     &__popup{
       top: calc( 100% - 5px );
       right: -2px;
-      left: auto;
-      width: 915px;
+      left: auto!important;
+      width: 915px!important;;
       margin-top: 0;
       padding: 27px 29px 25px 29px;
     }

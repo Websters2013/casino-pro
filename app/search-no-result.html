@@ -10,6 +10,7 @@
     <title>Title</title>
 
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/search-page.css">
 
 </head>
 <body>
@@ -89,7 +90,7 @@
                 <svg viewBox="47.5 15.5 14 14"><path class="a" d="M9-10.214a3.5,3.5,0,0,1-3.5,3.5,3.5,3.5,0,0,1-3.5-3.5,3.5,3.5,0,0,1,3.5-3.5A3.5,3.5,0,0,1,9-10.214Zm4,6.5a1.006,1.006,0,0,0-.289-.7L10.031-7.1A5.487,5.487,0,0,0,11-10.214a5.5,5.5,0,0,0-5.5-5.5,5.5,5.5,0,0,0-5.5,5.5,5.5,5.5,0,0,0,5.5,5.5,5.487,5.487,0,0,0,3.117-.969L11.3-3.011a.98.98,0,0,0,.7.3A1.007,1.007,0,0,0,13-3.714Z" transform="translate(48 31.714)"/></svg>
             </a>
 
-            <form id="search__form">
+            <form id="search__form" class="show">
 
                 <button type="submit" id="search__btn-cancel">
                     <svg viewBox="368 16 14 14"><path class="a" d="M18.16,10.2v1.768H7.554l4.861,4.861L11.16,18.08l-7-7,7-7,1.255,1.255L7.554,10.2Z" transform="translate(363.84 11.92)"/></svg>
@@ -114,7 +115,22 @@
 
     <div id="site__content">
 
+        <div id="search-result">
 
+            <div id="search-result__btn-wrap">
+
+                <a href="#" class="btn btn_2">
+                    <svg viewBox="368 16 14 14"><path d="M18.16,10.2v1.768H7.554l4.861,4.861L11.16,18.08l-7-7,7-7,1.255,1.255L7.554,10.2Z" transform="translate(363.84 11.92)"/></svg>
+                    Back
+                </a>
+
+            </div>
+
+            <h1 id="search-result__title">Search Results for “<span>Casino</span>”</h1>
+
+            <div>There are no results  for your query</div>
+
+        </div>
 
     </div>
 
