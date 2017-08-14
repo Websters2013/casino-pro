@@ -38,6 +38,16 @@
 
   }
 
+  &.hide-for-filter{
+
+    &:after{
+      opacity: 1;
+      visibility: visible;
+      z-index: 3;
+    }
+
+  }
+
   &__header {
     display: flex;
     justify-content: space-between;
@@ -51,7 +61,7 @@
   }
 
   &__content {
-    min-height: calc( 100vh - 305px );
+    min-height: calc( 100vh - 320px );
     overflow: hidden;
   }
 
@@ -159,7 +169,7 @@
     }
 
     &__content {
-      min-height: calc( 100vh - 209px );
+      min-height: calc( 100vh - 224px );
     }
 
     &__footer {
@@ -239,7 +249,7 @@
     }
 
     &__content {
-      min-height: calc( 100vh - 220px );
+      min-height: calc( 100vh - 235px );
     }
 
     &__footer {

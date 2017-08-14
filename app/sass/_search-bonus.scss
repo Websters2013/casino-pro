@@ -137,12 +137,13 @@
     justify-content: space-between;
     align-items: center;
     padding: 9px 15px 7px 18px;
-    border-bottom: 1px solid #DCE0DB;
+    border-top: 1px solid #DCE0DB;
     color: #777A75;
     font-size: 14px;
 
-    &:last-child{
-      border-bottom: none;
+    &:first-child{
+      padding-top: 8px;
+      border-top: none;
     }
 
     i{
@@ -204,7 +205,11 @@
 
     &__item{
       margin-bottom: 2px;
-      padding: 6px 15px 8px 14px;
+      padding: 8px 15px 8px 14px;
+
+      &:first-child {
+        padding-top: 6px;
+      }
 
       span{
         position: relative;

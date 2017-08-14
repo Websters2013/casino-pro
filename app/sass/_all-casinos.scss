@@ -1,0 +1,109 @@
+#all-casinos {
+  padding: 0 10px 41px;
+
+  &__head{
+    margin-bottom: 17px;
+    color: #777A75;
+    font-size: 14px;
+
+    &-sort{
+      display: flex;
+      justify-content: space-between;
+      align-items: stretch;
+      padding-top: 13px;
+    }
+
+  }
+
+  &__title{
+    width: 100%;
+    color: #323232;
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  &__btn-wrap{
+    display: flex;
+    justify-content: center;
+    padding-top: 19px;
+    border-top: 1px solid #DCE0DB;
+  }
+
+}
+
+.all-casinos{
+
+}
+
+@media (min-width: $tablet-portrait) {
+  #all-casinos {
+    padding: 15px 20px 21px;
+
+    &__head{
+      position: relative;
+      margin-bottom: 16px;
+
+      &-sort{
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 300px;
+        padding-top: 0;
+      }
+
+    }
+
+    &__title {
+      width: 50%;
+    }
+
+  }
+
+  .all-casinos{
+
+  }
+}
+
+@media (min-width: $desktop) {
+  #all-casinos {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    padding: 0 calc( 50% - 570px ) 45px;
+
+    &__title{
+      font-size: 24px;
+      line-height: 26px;
+    }
+
+    &__head{
+      margin-bottom: 9px;
+      font-size: 15px;
+
+      &-sort{
+        top: 4px;
+        width: 180px;
+      }
+
+    }
+
+    &__wrap{
+      width: calc( 100% - 290px );
+
+      .online-casinos__content{
+        width: 100%;
+      }
+
+    }
+
+    &__btn-wrap{
+      padding-top: 31px;
+      border-top: none;
+    }
+
+  }
+
+  .all-casinos{
+
+  }
+}

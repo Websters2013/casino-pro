@@ -28,7 +28,7 @@
 
   &__wrap{
 
-    li{
+    /*li{
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -47,7 +47,7 @@
         font-size: 16px;
       }
 
-    }
+    }*/
 
   }
 
@@ -86,6 +86,28 @@
 
 }
 
+@media (min-width: $phone-landscape) {
+  #games {
+
+    &__wrap {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: stretch;
+    }
+
+  }
+
+  .games{
+
+    &__item{
+      width: calc( 33% - 8px );
+      margin-bottom: 25px;
+    }
+
+  }
+}
+
 @media (min-width: $tablet-portrait) {
   #games {
     display: flex;
@@ -95,16 +117,12 @@
     padding: 41px 20px 46px;
 
     &__wrap{
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: stretch;
 
-      li{
+      /*li{
         margin-bottom: 17px;
         padding: 22px 19px 19px 19px;
         line-height: 25px;
-      }
+      }*/
 
     }
 
@@ -116,15 +134,6 @@
         margin-bottom: 12px;
       }
 
-    }
-
-  }
-
-  .games{
-
-    &__item{
-      width: calc( 33% - 8px );
-      margin-bottom: 25px;
     }
 
   }
@@ -157,7 +166,7 @@
       width: calc( 100% - 289px);
       margin-right: 2px;
 
-      li{
+      /*li{
         margin-bottom: 54px;
         line-height: 30px;
         padding: 26px 60px 20px 59px;
@@ -166,7 +175,7 @@
           font-size: 20px;
         }
 
-      }
+      }*/
 
     }
 

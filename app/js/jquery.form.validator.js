@@ -60,7 +60,10 @@
 
                         var curItem = $(this);
 
-                        _validateField( curItem );
+                        if ( curItem.hasClass( 'not-valid' ) ){
+                            _validateField( curItem );
+                        }
+
                     }
                 } );
                 _inputs.on( {
@@ -142,10 +145,9 @@
                     }
                 }
 
-
                 if( tagName.toLocaleLowerCase() == 'textarea' ){
 
-                    if( field.val() === '' || field.val().length < 80 ){
+                    if( field.val() === '' ){
                         _makeNotValid( field );
                         return false;
                     }

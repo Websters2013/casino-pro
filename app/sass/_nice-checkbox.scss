@@ -1,63 +1,101 @@
 .nice-checkbox {
-  display: inline-block;
-  vertical-align: top;
+  display: block;
+  margin-bottom: 16px;
   user-select: none;
+
+  &:last-child{
+    margin-bottom: 0;
+  }
 
   input[ type = checkbox ] {
     position: absolute;
     clip: rect(0, 0, 0, 0);
 
-    &:checked + label {
+    &:checked + span {
 
-      &:before {
-        display: block;
+      .nice-checkbox__svg{
+
+        svg{
+
+          &:first-child{
+            opacity: 0;
+          }
+
+          & + svg{
+            opacity: 1;
+          }
+
+        }
+
       }
 
     }
 
-    &:disabled + label {
+    &:disabled + span {
       cursor: default;
       opacity: .5;
     }
 
   }
-  label {
-    position: relative;
+
+  span {
     display: flex;
-    text-align: left;
-    flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    height: 20px;
-    padding-left: 25px;
-    color: $nice-checkbox-color;
+    position: relative;
+    color: #777A75;
     cursor: pointer;
+  }
 
-    &:after,
-    &:before {
+  &__svg{
+    position: relative;
+    width: 12px;
+    height: 12px;
+    margin-right: 11px;
+
+    svg{
       position: absolute;
-      content: '';
-    }
-
-    &:after {
       top: 0;
       left: 0;
-      width: 15px;
-      height: 15px;
-      border: 2px solid $nice-checkbox-after-color;
-    }
+      width: 12px;
+      height: 12px;
+      fill: #777A75;
+      transition: opacity .3s ease;
 
-    &:before {
-      display: none;
-      top: 7px;
-      left: 7px;
-      border-radius: 50%;
-      background: $nice-checkbox-after-color;
-      width: 5px;
-      height: 5px;
-      content: '';
+      &:first-child{
+        opacity: 1;
+      }
+
+      & + svg{
+        width: 14px;
+        opacity: 0;
+        fill: #029C3E;
+      }
+
     }
 
   }
 
+}
+
+@media (min-width: $desktop) {
+  .nice-checkbox {
+
+    &__svg{
+      width: 15px;
+      height: 15px;
+      margin-right: 10px;
+
+      svg{
+        width: 16px;
+        height: 16px;
+
+        & + svg {
+          width: 16px;
+        }
+
+      }
+    }
+
+  }
 }

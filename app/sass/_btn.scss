@@ -3,14 +3,13 @@
   @include flex-direction();
   @include justify-content(center);
   @include align-items(center);
-  border: none;
   height: 40px;
   padding: 1px 25px 0;
-  color: #fff;
+  border: none;
   border-radius: 40px;
+  color: #fff;
   font-size: 12px;
   line-height: 16px;
-  background: #029C3E;
   text-align: center;
   @include lato();
   text-transform: uppercase;
@@ -29,6 +28,10 @@
     background: #02c54f;
   }
 
+  &_1 {
+    background-color: #029C3E;
+  }
+
   &_2 {
     border: 1px solid #DCE0DB;
     color: #029C3E;
@@ -45,4 +48,43 @@
 
   }
 
+  &_3{
+    height: 35px;
+    border: 1px solid #029C3E;
+    color: #029C3E;
+    background-color: transparent;
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  &_4{
+    height: 30px;
+    padding: 1px 16px 0;
+    border: 1px solid #029C3E;
+    color: #029C3E;
+    background-color: transparent;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+}
+
+@media (min-width: $tablet-portrait) {
+  .btn {
+
+    &_3{
+      padding: 1px 23px 0;
+      height: 40px;
+      border-width: 2px;
+      font-size: 12px;
+      letter-spacing: 0.5px;
+
+      &:hover{
+        background-color: #029C3E;
+        color: #fff;
+      }
+
+    }
+
+  }
 }

@@ -1,0 +1,130 @@
+#intro {
+  @include flexbox();
+  @include flex-direction(column);
+  @include justify-content();
+  @include align-items(flex-start);
+  @include flex-wrap(wrap);
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 10px 5px;
+
+  &:after{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 4px;
+    background: #ed1c24;
+    background: -moz-linear-gradient(left, #ed1c24 0%, #ed1c24 20%, #00a650 20.5%, #00a650 40%, #ffd700 40.5%, #ffd700 60%, #242122 60.5%, #242122 80%, #0066b3 80.5%, #0066b3 100%);
+    background: -webkit-linear-gradient(left, #ed1c24 0%,#ed1c24 20%,#00a650 20.5%,#00a650 40%,#ffd700 40.5%,#ffd700 60%,#242122 60.5%,#242122 80%,#0066b3 80.5%,#0066b3 100%);
+    background: linear-gradient(to right, #ed1c24 0%,#ed1c24 20%,#00a650 20.5%,#00a650 40%,#ffd700 40.5%,#ffd700 60%,#242122 60.5%,#242122 80%,#0066b3 80.5%,#0066b3 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ed1c24', endColorstr='#0066b3',GradientType=1 );
+    content: '';
+  }
+
+  &__content{
+    width: 100%;
+    margin-bottom: 16px;
+    font-size: 14px;
+    line-height: 20px;
+
+    h1{
+      margin: 0 0 12px;
+      font-weight: 700;
+      font-size: 25px;
+      line-height: 30px;
+      color: #323232;
+    }
+
+    p{
+      margin-bottom: 15px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+    }
+
+  }
+
+  &__text{
+    height: 60px;
+    overflow: hidden;
+    -webkit-transition: height .3s ease;
+    transition: height .3s ease;
+  }
+
+  &__more{
+    color: #029C3E;
+  }
+}
+
+@media (min-width: $tablet-portrait) {
+  #intro {
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    padding: 15px 20px 21px;
+
+    &__content{
+      width: calc( 100% - 290px );
+      order: 1;
+
+      h1{
+        margin-bottom: 14px;
+      }
+
+    }
+
+    &__text{
+      height: 40px;
+    }
+
+  }
+}
+
+@media (min-width: $desktop) {
+  #intro {
+    padding: 34px calc( 50% - 569px ) 45px;
+    border-bottom: 4px solid #DCE0DB;
+
+    &:after{
+      width: 1140px;
+      bottom: -4px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    &__content{
+      width: calc( 100% - 315px);
+      font-size: 15px;
+      line-height: 21px;
+
+      h1{
+        margin-bottom: 17px;
+        font-size: 36px;
+        line-height: 36px;
+      }
+
+    }
+
+    &__text {
+      height: 100px;
+    }
+
+    &__more{
+      -webkit-transition: color .3s ease;
+      transition: color .3s ease;
+
+      &:hover{
+        color: #FFB612;
+      }
+
+    }
+
+    #main-title{
+      margin: 53px 0 0;
+    }
+
+  }
+}

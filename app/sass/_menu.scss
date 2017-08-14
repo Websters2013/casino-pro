@@ -180,6 +180,11 @@
 
     &__item{
       border-bottom: 0;
+
+      &.active{
+        cursor: default;
+      }
+
     }
 
     &__open-sub-menu{

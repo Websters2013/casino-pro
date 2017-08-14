@@ -16,42 +16,6 @@
     margin-bottom: 22px;
   }
 
-  &__main-title {
-    @include inline-flex();
-    @include flex-direction();
-    @include justify-content(center);
-    @include align-items(center);
-    position: relative;
-    width: 100%;
-    margin-bottom: 19px;
-    padding: 15px 30px;
-    min-height: 98px;
-    font-weight: 700;
-    color: #fff;
-    text-shadow: 1px 0 2px rgba(0,0,0,0.6);
-    font-size: 26px;
-    line-height: 30px;
-    background: url("../img/africanian-flag.png") no-repeat top left/cover;
-    text-transform: uppercase;
-    text-align: center;
-
-    &:after {
-      position: absolute;
-      top: 10px;
-      left: 13px;
-      right: 13px;
-      bottom: 10px;
-      background: rgba(255,255,255,0.8);
-      content: '';
-    }
-
-    span {
-      position: relative;
-      z-index: 1;
-    }
-
-  }
-
   &__text {
     width: 100%;
     font-size: 14px;
@@ -228,14 +192,6 @@
       margin-bottom: 31px;
     }
 
-    &__main-title {
-      width: 274px;
-      padding: 14px 45px 15px;
-      font-size: 23px;
-      line-height: 28px;
-      order: 2;
-    }
-
     &__text {
       width: calc( 100% - 290px );
       line-height: 20px;
@@ -332,25 +288,10 @@
     font-size: 15px;
     line-height: 22px;
 
-    &__main-title {
-      min-height: 124px;
-      padding: 8px 45px;
-      font-size: 28px;
-      line-height: 34px;
-
-      &:after {
-        top: 12px;
-        left: 14px;
-        right: 14px;
-        bottom: 12px;
-        border: 1px solid #fff;
-      }
-
-    }
-
     &__text{
       width: calc( 100% - 315px);
       padding-top: 0;
+      font-size: 15px;
       line-height: 22px;
 
       h1{

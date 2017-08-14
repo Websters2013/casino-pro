@@ -97,6 +97,8 @@
 
   &__content {
     width: 100%;
+    -webkit-transition: height .3s ease;
+    transition: height .3s ease;
 
     &-captions {
       @include flexbox();
@@ -143,6 +145,9 @@
         grid-template-columns: 1fr 15% 20% 9%;
         padding: 8px 0 10px;
         border-bottom: 1px solid #DCE0DB;
+        opacity: 1;
+        -webkit-transition: opacity .3s ease;
+        transition: opacity .3s ease;
 
         > div {
           &:nth-child(1) {
@@ -202,6 +207,10 @@
 
         &:last-child{
           border-bottom: none;
+        }
+
+        &.new{
+          opacity: 0;
         }
 
       }
@@ -270,26 +279,34 @@
       display: none;
     }
 
-  }
+    &_warning{
+      background-color: #323232;
 
-  &__warning{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    background-color: #323232;
+      svg{
+        left: 0;
+        width: 12px;
+        height: 12px;
+        fill: #fff;
+        -webkit-transform: rotate(0);
+        transform: rotate(0);
+      }
 
-    svg{
-      width: 12px;
-      height: 12px;
-      fill: #F8F8F8;
     }
 
-    span{
-      display: none;
+    &_attention{
+      background-color: transparent;
+
+      svg{
+        left: 0;
+        width: 24px;
+        height: 24px;
+        fill: #FC2E2E;
+        -webkit-transform: rotate(0);
+        transform: rotate(0);
+      }
+
     }
+
   }
 
   &__label-new{
@@ -475,24 +492,37 @@
         display: none;
       }
 
-    }
+      &_warning{
 
-    &__warning{
-      width: 80px;
-      height: 30px;
-      border-radius: 15px;
+        span{
+          display: inline-block;
+          margin: 1px 2px 0 5px;
+        }
 
-      span{
-        display: inline-block;
-        margin-left: 4px;
-        color: #fff;
-        font-size: 12px;
-        text-transform: uppercase;
+        svg{
+          display: inline-block;
+          width: 13.7px;
+          height: 15px;
+        }
+
       }
 
-      svg{
-        width: 13.7px;
-        height: 15px;
+      &_attention{
+        background-color: #FC2E2E;
+
+        span{
+          display: inline-block;
+          margin: 3px 0 0 5px;
+        }
+
+        svg{
+          display: inline-block;
+          top: 1px;
+          width: 15px;
+          height: 15px;
+          fill: #fff;
+        }
+
       }
 
     }

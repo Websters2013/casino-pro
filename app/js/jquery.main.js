@@ -8,13 +8,39 @@
 
         new Menu ( $( '#menu' ) );
 
-        if ( $( '#page-info__content' ).length == 1 ){
-            new PageInfoContent( $( '#page-info__content' ) );
+        if ( $( '#anchor' ).length == 1 ){
+            new Anchor( $( '#anchor' ) );
+        };
+
+        if ( $( '#intro__content' ).length == 1 ){
+            new PageInfoContent( $( '#intro__content' ) );
         };
 
         if ( $( '#search-bonus' ).length == 1 ){
             new SearchBonus( $( '#search-bonus' ) );
         };
+
+        if ( $( '#filter-mobile-btn' ).length == 1 ){
+            new FilterMobile( $( '#all-casinos' ) );
+        };
+
+        if ( $( '#sort' ).length == 1 ){
+            new SortPopup( $( '#sort' ) );
+        };
+
+        if ( $( '#filter' ).length == 1 ){
+            new Filter( $( '#filter' ) );
+        };
+
+        if ( $( '#all-casinos' ).length == 1 ){
+            new AllCasinos( $( '#all-casinos' ) );
+        };
+
+        $.each( $('.anchor'), function () {
+
+            new Anchor( $(this) );
+
+        } );
 
         $.each( $('.search-result__wrap'), function () {
 
@@ -23,6 +49,171 @@
         } );
 
     } );
+
+    var Anchor = function ( obj ) {
+        var _obj = obj,
+            _window = $( 'html, body' );
+
+        var _onEvents = function() {
+
+                _obj.on( {
+                    click: function() {
+
+                        _window.animate( {
+                            scrollTop: $( $.attr(this, 'href') ).offset().top
+                        }, 600);
+
+                        return false;
+                    }
+                } );
+
+            },
+            _construct = function() {
+                _onEvents();
+            };
+
+        _construct()
+    };
+
+    var AllCasinos = function ( obj ) {
+        var _self = this,
+            _obj = obj,
+            _allCasinosContent = _obj.find( '.online-casinos__content' ),
+            _allCasinosWrap = _obj.find( '#online-casinos__content-body' ),
+            _btnLoadMore = _obj.find( '#all-casinos__load' ),
+            _window = $( window ),
+            _request = new XMLHttpRequest();
+
+        var _onEvents = function() {
+
+                _btnLoadMore.on( 'click', function () {
+                    _ajaxRequest();
+                    return false;
+                } );
+
+            },
+            _construct = function() {
+                _ajaxRequest( 0 );
+                _onEvents();
+                _obj[0].obj = _self;
+            },
+            _ajaxRequest = function( page ){
+
+                _request = $.ajax( {
+                    url: 'php/all-casinos.php',
+                    data: {
+
+                    },
+                    dataType: 'html',
+                    type: 'GET',
+                    success: function ( data ) {
+
+                        _loadData( data, page );
+
+                    },
+                    error: function ( XMLHttpRequest ) {
+                        if ( XMLHttpRequest.statusText != "abort" ) {
+                            console.log( 'err' );
+                        }
+                    }
+                } );
+
+            },
+            _loadData = function ( data, page ) {
+
+                var content = data,
+                    pageNumber = page,
+                    newItem = _allCasinosWrap.find( '.new' );
+
+                if ( pageNumber == 0 ){
+                    _allCasinosWrap.html( content );
+                } else {
+                    _allCasinosWrap.append( content );
+                }
+
+                newItem.each( function ( i ) {
+
+                    var curItem = $( this );
+
+                    setTimeout( function() {
+                        curItem.removeClass( 'new' );
+                    }, 300 * i );
+
+                } );
+
+            };
+
+        //public methods
+        _self.reload = function () {
+            _ajaxRequest( 0 );
+        };
+
+        _construct()
+    };
+
+    var Filter = function ( obj ) {
+        var _self = this,
+            _obj = obj,
+            _form = _obj.find( '#filter__wrap' ),
+            _inputs = _form.find( 'input[type=checkbox]' ),
+            _collectionArr = {};
+
+        var _onEvents = function() {
+
+                _inputs.on( 'change', function() {
+                    _dataCollection();
+                    _filterContent();
+                } );
+
+            },
+            _dataCollection = function () {
+
+                _inputs.filter( ':checked' ).each( function () {
+
+                    var curInputs = $( this ),
+                        curInputsVal = curInputs.val();
+
+                    _collectionArr.empty();
+
+                    _collectionArr.push( curInputsVal )
+
+                    console.log( _collectionArr )
+
+                } );
+
+            },
+            _filterContent = function () {
+
+                if ( $( '#all-casinos' ).length == 1 ){
+                    $( '#all-casinos' )[0].obj.reload();
+                };
+
+            },
+            _construct = function() {
+                _onEvents();
+                _obj[0].obj = _self;
+            };
+
+        //public methods
+        _self.dataCollection = function () {
+            _dataCollection();
+        };
+
+        _construct()
+    };
+
+    var FilterMobile = function ( obj ) {
+        var _obj = obj;
+
+        var _onEvents = function() {
+
+            },
+            _construct = function() {
+                _onEvents();
+            };
+
+        _construct()
+    };
 
     var Menu = function( obj ) {
 
@@ -130,7 +321,7 @@
                 _btnShowMobile.removeClass( 'close' );
 
             },
-            _init = function() {
+            _construct = function() {
                 _onEvent();
             };
 
@@ -138,15 +329,15 @@
 
         //public methods
 
-        _init();
+        _construct();
     };
 
     var PageInfoContent = function( obj ) {
 
         //private properties
         var _obj = obj,
-            _content = _obj.find( '#page-info__text' ),
-            _btnMore = _obj.find( '#page-info__more' ),
+            _content = _obj.find( '#intro__text' ),
+            _btnMore = _obj.find( '#intro__more' ),
             _contentHeight;
 
         //private methods
@@ -186,7 +377,7 @@
                 _btnMore.html( 'Read More' );
 
             },
-            _init = function() {
+            _construct = function() {
                 _onEvent();
             };
 
@@ -194,7 +385,7 @@
 
         //public methods
 
-        _init();
+        _construct();
     };
 
     var PageSearchResult = function( obj ) {
@@ -275,7 +466,7 @@
                 } );
 
             },
-            _init = function() {
+            _construct = function() {
                 _showLessLinks( 0 );
                 _onEvent();
             };
@@ -284,7 +475,7 @@
 
         //public methods
 
-        _init();
+        _construct();
     };
 
     var SearchBonus = function( obj ) {
@@ -394,11 +585,15 @@
 
                 _obj.removeClass( 'load' );
 
-                _resultWrap.mCustomScrollbar();
+                _resultWrap.perfectScrollbar('update');
 
             },
-            _init = function() {
+            _scrollContent = function () {
+                _resultWrap.perfectScrollbar();
+            },
+            _construct = function() {
                 _ajaxRequest();
+                _scrollContent();
                 _onEvent();
             };
 
@@ -406,7 +601,7 @@
 
         //public methods
 
-        _init();
+        _construct();
     };
 
     var SearchPanel = function( obj ) {
@@ -655,7 +850,7 @@
                 } );
 
             },
-            _init = function() {
+            _construct = function() {
                 _checkShow();
                 _onEvent();
             };
@@ -664,7 +859,55 @@
 
         //public methods
 
-        _init();
+        _construct();
+    };
+
+    var SortPopup = function ( obj ) {
+        var _sort = obj,
+            _sortBtn = _sort.find( '#sort__select' ),
+            _sortPopup = _sort.find( '#sort__popup' ),
+            _sortItem = _sortPopup.find( 'label' ),
+            _sortRadio = _sortPopup.find( 'input' ),
+            _site = $( '#site' );
+
+        var _onEvents = function() {
+
+                _site.on(
+                    'click', function ( e ) {
+
+                        if ( _sort.hasClass( 'show' )&& $( e.target ).closest( _sort ).length == 0 ){
+                            _hideSortPopup();
+                        }
+
+                    }
+                );
+
+                _sortBtn.on( 'click', function () {
+
+                    if ( _sort.hasClass( 'show' ) ){
+                        _hideSortPopup();
+                    } else {
+                        _showSortPopup();
+                    }
+
+                } );
+
+            },
+            _showSortPopup = function() {
+
+                _sort.addClass( 'show' );
+
+            },
+            _hideSortPopup = function() {
+
+                _sort.removeClass( 'show' );
+
+            },
+            _construct = function() {
+                _onEvents();
+            };
+
+        _construct()
     };
 
 } )();
