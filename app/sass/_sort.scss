@@ -42,6 +42,10 @@
     text-align: left;
     z-index: 2;
 
+    i{
+      font-style: normal;
+    }
+
     svg{
       position: relative;
       top: -1px;
@@ -135,6 +139,7 @@
     }
 
     &__popup {
+      z-index: 3;
 
       label{
 

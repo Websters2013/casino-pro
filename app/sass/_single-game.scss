@@ -1,0 +1,511 @@
+#single-game {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 10px;
+
+  h1{
+    color: #323232;
+    font-size: 25px;
+    line-height: 1;
+  }
+
+  &__head{
+    margin-bottom: 17px;
+  }
+
+  &__back{
+    margin-bottom: 18px;
+  }
+
+  &__control{
+    display: none;
+  }
+
+  &__screen{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-bottom: 20px;
+
+    &:after{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,.5);
+      z-index: 1;
+      content: '';
+    }
+
+    img{
+      display: block;
+      width: 100%;
+    }
+
+    span{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      height: 40px;
+      width: 132px;
+      border-radius: 20px;
+      color: #fff;
+      font-size: 12px;
+      text-transform: uppercase;
+      background-color: #029C3E;
+      text-align: center;
+      z-index: 2;
+      -webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+    }
+
+  }
+
+  &__info{
+    width: 100%;
+    margin-bottom: 20px;
+
+    h2{
+      padding: 12px 15px 11px;
+      color: #fff;
+      font-size: 14px;
+      line-height: 17px;
+      background-color: #323232;
+      text-transform: uppercase;
+
+      .swiper-container{
+        border: 1px solid #ccc;
+      }
+
+
+
+    }
+
+    &.start{
+
+      #single-game__swiper-next{
+        opacity: 0;
+        visibility: hidden;
+      }
+
+    }
+
+    &.end{
+
+      #single-game__swiper-prev{
+        opacity: 0;
+        visibility: hidden;
+      }
+
+    }
+
+  }
+
+  &__swiper{
+    border: 1px solid #ccc;
+  }
+
+  &__about{
+    margin-bottom: 30px;
+    font-size: 14px;
+    line-height: 21px;
+
+    h2{
+      margin-bottom: 8px;
+      padding: 12px 15px 11px;
+      color: #fff;
+      font-size: 14px;
+      line-height: 17px;
+      background-color: #323232;
+      text-transform: uppercase;
+
+      .swiper-container{
+        border: 1px solid #ccc;
+      }
+
+
+
+    }
+
+    p{
+      margin-bottom: 11px;
+    }
+
+  }
+
+  &__all-casinos{
+    margin-bottom: 30px;
+    border-bottom: 1px solid #DCE0DB;
+  }
+
+  &__games{
+    margin-bottom: 47px;
+  }
+
+  &__swiper-prev,
+  &__swiper-next{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: #C5C5C5;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    z-index: 2;
+    -webkit-transition: opacity .3s ease, visibility .3s ease;
+    transition: opacity .3s ease, visibility .3s ease;
+
+    svg{
+      width: 15px;
+      height: 11px;
+      fill: #fff;
+    }
+
+  }
+
+  &__swiper-prev{
+    right: 5px;
+  }
+
+  &__swiper-next{
+    left: 5px;
+  }
+
+}
+
+.single-game{
+
+  &__info-item{
+    text-align: center;
+    padding: 13px 0 15px;
+    border-left: 1px solid #ccc;
+
+    &:first-child{
+      border-left: none;
+    }
+
+    dt{
+      margin-bottom: 4px;
+      color: #777A75;
+      font-size: 13px;
+      line-height: 16px;
+    }
+
+    dd{
+      color: #323232;
+      font-size: 14px;
+      line-height: 17px;
+      font-weight: 700;
+    }
+
+  }
+
+  &__negative svg{
+    width: 15px;
+    height: 15px;
+    fill: #B50505;
+  }
+
+  &__positive svg{
+    width: 20px;
+    height: 15px;
+    fill: #029C3E;
+  }
+
+  &__topic{
+    margin-bottom: 18px;
+    color: #323232;
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+}
+
+@media (min-width: $tablet-portrait) {
+  #single-game {
+    padding: 0 20px;
+
+    h1{
+      line-height: 30px;
+    }
+
+    &__head{
+      margin-bottom: 20px;
+    }
+
+    &__back{
+      margin-bottom: 18px;
+    }
+
+    &__screen{
+      margin-bottom: 24px;
+
+      span{
+        height: 50px;
+        width: 156px;
+        border-radius: 30px;
+        font-size: 14px;
+      }
+
+    }
+
+    &__info{
+      margin-bottom: 24px;
+
+      h2{
+        padding: 17px 20px 16px;
+      }
+
+    }
+
+    &__about{
+      margin-bottom: 21px;
+      font-size: 15px;
+      line-height: 22px;
+
+      h2{
+        margin-bottom: 14px;
+        padding: 17px 20px 16px;
+      }
+
+      p{
+        margin-bottom: 15px;
+      }
+
+    }
+
+    &__all-casinos{
+      margin-bottom: 25px;
+    }
+
+    &__games{
+      .single-game__topic{
+        margin-bottom: 21px;
+      }
+    }
+
+    &__additionally{
+      margin-bottom: 45px;
+    }
+
+    &__swiper-prev,
+    &__swiper-next{
+      display: none;
+    }
+
+  }
+
+  .single-game {
+
+    &__info-item{
+      width: 16.6666%;
+      padding-bottom: 12px;
+
+      dd{
+        margin-bottom: 3px;
+      }
+
+    }
+
+    &__topic{
+      margin-bottom: 16px;
+    }
+
+  }
+
+}
+
+@media (min-width: $desktop) {
+  #single-game {
+    padding: 0 calc( 50% - 570px );
+
+    h1{
+      margin: 0;
+      font-size: 36px;
+      line-height: 44px;
+    }
+
+    &__head{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      padding-top: 30px;
+    }
+
+    &__control{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      a{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        margin-left: 14px;
+        border-radius: 50%;
+        background-color: #DCE0DB;
+        -webkit-transition: background-color .3s ease;
+        transition: background-color .3s ease;
+
+        &:hover{
+          background-color: #323232;
+
+          svg{
+            fill: #fff;
+          }
+
+        }
+
+        svg{
+          fill: #323232;
+          -webkit-transition: fill .3s ease;
+          transition: fill .3s ease;
+        }
+
+        &#reset svg{
+          width: 16px;
+          height: 16px;
+        }
+
+        &#full svg{
+          width: 18px;
+          height: 18px;
+        }
+
+        &#mute svg{
+          width: 18px;
+          height: 17.5px;
+        }
+
+      }
+
+    }
+
+    &__back{
+      display: none;
+    }
+
+    &__screen{
+      margin-bottom: 28px;
+
+      &:after{
+        opacity: 0;
+        visibility: hidden;
+        -webkit-transition: opacity .3s ease, visibility .3s ease;
+        transition: opacity .3s ease, visibility .3s ease;
+      }
+
+      span{
+        opacity: 0;
+        visibility: hidden;
+        background-color: #FFB612;
+        -webkit-transition: opacity .3s ease, visibility .3s ease;
+        transition: opacity .3s ease, visibility .3s ease;
+      }
+
+      &:hover{
+
+        &:after{
+          opacity: 1;
+          visibility: visible;
+        }
+
+        span{
+          opacity: 1;
+          visibility: visible;
+        }
+
+      }
+
+    }
+
+    &__info{
+      margin-bottom: 21px;
+
+      h2{
+        padding: 16px 21px 17px;
+        font-size: 16px;
+      }
+
+    }
+
+    &__about{
+      margin-bottom: 47px;
+
+      h2{
+        margin-bottom: 13px;
+        padding: 17px 21px 16px;
+        font-size: 16px;
+      }
+
+    }
+
+    &__additionally{
+      display: flex;
+      justify-content: space-between;
+      align-items: stretch;
+      margin-bottom: 12px;
+    }
+
+    &__all-casinos{
+      width: calc( 100% - 287px );
+      border-bottom: none;
+
+      .online-casinos__content{
+        width: 100%;
+      }
+
+    }
+
+    &__games{
+      width: 258px;
+
+      .single-game__topic {
+        margin-bottom: 34px;
+      }
+
+      #games__wrap{
+        width: inherit;
+      }
+
+      .games__item{
+        width: 100%;
+        margin-right: 0;
+      }
+
+      .games__img {
+        margin-bottom: 6px;
+      }
+
+    }
+
+  }
+
+  .single-game {
+
+    &__info-item{
+      width: 16.6666%;
+      padding-bottom: 11px;
+    }
+
+    &__topic{
+      margin-bottom: 12px;
+      font-size: 24px;
+      line-height: 29px;
+    }
+
+  }
+
+}

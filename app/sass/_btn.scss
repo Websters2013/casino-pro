@@ -63,7 +63,7 @@
   }
 
   &_5{
-    padding: 5px 34px 0;
+    padding: 0 34px;
     color: #fff;
     background-color: #DE3831;
 
@@ -94,6 +94,7 @@
     transition: background 0.3s ease-in-out, color 0.3s ease-in-out, border 0.3s ease-in-out;
 
     &:hover {
+      color: #fff;
       background: #027532;
     }
 

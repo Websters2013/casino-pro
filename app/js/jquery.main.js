@@ -12,6 +12,10 @@
             new Anchor( $( '#anchor' ) );
         };
 
+        if ( $( '#single-game__info' ).length == 1 ){
+            new Sliders( $( '#single-game__info' ) );
+        };
+
         if ( $( '#revision__note' ).length == 1 ){
             new RevisionNote( $( '#revision__note' ) );
         };
@@ -133,9 +137,20 @@
             _revisionNotePopup = _revisionNote.find( '#revision__note-popup' ),
             _window = $( window ),
             _url, _allCasinosWrap,
+            _site = $( '#site' ),
             _request = new XMLHttpRequest();
 
         var _onEvents = function() {
+
+                _site.on(
+                    'click', function ( e ) {
+
+                        if ( _revisionNotePopup.hasClass( 'visible' )&& $( e.target ).closest( _revisionNotePopup ).length == 0 ){
+                            _hideNotePopup();
+                        }
+
+                    }
+                );
 
                 _btnLoadMore.on( 'click', function () {
                     _ajaxRequest();
@@ -151,7 +166,7 @@
 
                 _revisionNoteBtn.on( 'click', function () {
 
-                    if ( !_revisionNotePopup.hasClass( 'visible' ) ) {
+                    if ( !_revisionNotePopup.hasClass( 'visible' ) && _window.outerWidth() < 1200 ) {
                         _showNotePopup();
                     } else {
                         _hideNotePopup();
@@ -1194,6 +1209,79 @@
         _construct();
     };
 
+    var Sliders = function( obj ) {
+
+        //private properties
+        var _obj = obj,
+            _subMenuSwiper = _obj.find( '#single-game__swiper' ),
+            _subMenuPrev = _obj.find( '#single-game__swiper-prev' ),
+            _subMenuNext = _obj.find( '#single-game__swiper-next' ),
+            _subMenu,
+            _window = $( window );
+
+        //private methods
+        var _initSlider = function() {
+
+                _subMenu = new Swiper ( _subMenuSwiper, {
+                    autoplay: false,
+                    speed: 500,
+                    effect: 'slide',
+                    slidesPerView: 2,
+                    nextButton: _subMenuPrev,
+                    prevButton: _subMenuNext,
+                    onSlideChangeStart: function() {
+                        _obj.removeClass( 'start' );
+                        _obj.removeClass( 'end' );
+                    },
+                    onReachBeginning: function() {
+                        setTimeout( function () {
+                            _obj.addClass('start');
+                        }, 300 )
+                    },
+                    onReachEnd: function() {
+                        setTimeout( function () {
+                            _obj.addClass('end');
+                        }, 300 )
+                    }
+                } );
+
+            },
+            _onEvent = function() {
+
+                _window.on( {
+                    'resize': function() {
+
+                        if ( _window.outerWidth() > 768  ){
+                            _destroySlider();
+                        } else {
+                            _initSlider();
+                        }
+
+                    }
+                } )
+
+            },
+            _destroySlider = function() {
+
+                _subMenu[ 0 ].swiper.destroy( false, true );
+
+            },
+            _init = function() {
+                _onEvent();
+
+                if ( _window.outerWidth() < 768  ){
+                    _initSlider ();
+                }
+
+            };
+
+        //public properties
+
+        //public methods
+
+        _init();
+    };
+
     var SortPopup = function ( obj ) {
         var _sort = obj,
             _sortBtn = _sort.find( '#sort__select' ),
@@ -1225,7 +1313,10 @@
 
                 _sortRadio.on( 'change', function() {
 
+                    var curItem = $( this );
+
                     _sortContent();
+                    _changeTitle( curItem );
                     _hideSortPopup();
 
                 } );
@@ -1233,6 +1324,14 @@
             },
             _sortContent = function () {
                 $( '#filter' )[0].obj.reloadFrame();
+            },
+            _changeTitle = function ( elem ) {
+
+                var curItem = elem,
+                    curText = curItem.next( 'span' ).html();
+
+                _sortBtn.find( 'i' ).text( curText );
+
             },
             _showSortPopup = function() {
 
