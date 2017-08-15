@@ -13,15 +13,10 @@
   text-align: center;
   @include lato();
   text-transform: uppercase;
-  transition: background 0.3s ease-in-out, color 0.3s ease-in-out, border 0.3s ease-in-out;
 
   span {
     width: 100%;
     text-align: center;
-  }
-
-  &:hover {
-    background: #027532;
   }
 
   &:active {
@@ -67,6 +62,17 @@
     font-weight: 700;
   }
 
+  &_5{
+    padding: 5px 34px 0;
+    color: #fff;
+    background-color: #DE3831;
+
+    &:active{
+      background-color: #FFB612;
+    }
+
+  }
+
 }
 
 @media (min-width: $tablet-portrait) {
@@ -78,10 +84,32 @@
       border-width: 2px;
       font-size: 12px;
       letter-spacing: 0.5px;
+    }
+
+  }
+}
+
+@media (min-width: $desktop) {
+  .btn {
+    transition: background 0.3s ease-in-out, color 0.3s ease-in-out, border 0.3s ease-in-out;
+
+    &:hover {
+      background: #027532;
+    }
+
+    &_3{
 
       &:hover{
         background-color: #029C3E;
         color: #fff;
+      }
+
+    }
+
+    &_5{
+
+      &:hover{
+        background-color: #FFB612;
       }
 
     }

@@ -1,4 +1,8 @@
-<li class="new">
+<?php
+
+$loadedType = $_GET['filter'];
+
+    $string = '<li class="new">
     <div>
 
         <div class="online-casinos__pic">
@@ -691,4 +695,10 @@
         </a>
     </div>
 
-</li>
+</li>';
+
+    $count = '760';
+
+echo '{"count":"'.$count.'","html":'.json_encode($string).'}';
+
+?>

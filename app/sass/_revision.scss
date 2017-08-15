@@ -1,0 +1,390 @@
+#revision {
+  padding: 0 10px 41px;
+
+  &__head{
+    margin-bottom: 17px;
+    color: #777A75;
+    font-size: 14px;
+
+    &-sort{
+      display: flex;
+      justify-content: space-between;
+      align-items: stretch;
+      padding-top: 13px;
+    }
+
+  }
+
+  &__sub-head{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  &__title{
+    width: 100%;
+    color: #323232;
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  &__btn-wrap{
+    display: flex;
+    justify-content: center;
+    padding-top: 19px;
+    border-top: 1px solid #DCE0DB;
+    -webkit-transition: opacity .3s ease, visibility .3s ease;
+    transition: opacity .3s ease, visibility .3s ease;
+
+    &.hide{
+      display: none;
+      opacity: 0;
+      visibility: hidden;
+    }
+
+  }
+
+  &__result{
+    -webkit-transition: color .3s ease;
+    transition: color .3s ease;
+
+    b{
+      font-weight: 400;
+    }
+
+    &.null{
+      color: #DE3831;
+    }
+
+  }
+
+  &__no-result{
+    display: none;
+    padding-top: 35px;
+    color: #323232;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: opacity .3s ease, visibility .3s ease;
+    transition: opacity .3s ease, visibility .3s ease;
+
+    &.show{
+      display: block;
+      opacity: 1;
+      visibility: visible;
+    }
+
+  }
+
+  &__body{
+    -webkit-transition: opacity .3s ease, visibility .3s ease;
+    transition: opacity .3s ease, visibility .3s ease;
+
+    &.hide{
+      display: none;
+      opacity: 0;
+      visibility: hidden;
+    }
+
+  }
+
+  &__reset{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 18px;
+    padding-right: 28px;
+    font-size: 15px;
+    font-weight: 400;
+    color: #029C3E;
+
+    svg{
+      position: relative;
+      top: -2px;
+      width: 16px;
+      height: 19px;
+      margin-right: 8px;
+      fill: #029C3E;
+    }
+
+  }
+
+  &__note{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    margin-left: 5px;
+    color: #029C3E;
+    font-size: 14px;
+
+    input{
+      display: none;
+    }
+
+    a{
+      color: inherit;
+    }
+
+    &:before{
+      margin-right: 5px;
+      color: #777A75;
+      font-size: 14px;
+      content: ' | ';
+    }
+
+    &-btn{
+      position: relative;
+      top: -1px;
+      width: 14px;
+      height: 14px;
+      margin-left: 4px;
+
+      svg{
+        width: inherit;
+        height: inherit;
+        fill: #029C3E;
+      }
+
+    }
+
+    &-popup{
+      position: absolute;
+      bottom: calc( 100% + 14px );
+      right: -5px;
+      width: 220px;
+      padding: 7.5px 15px 13px;
+      border: 1px solid #029C3E;
+      border-radius: 4px;
+      box-shadow: 0 2px 5px rgba(0,0,0,.16);
+      color: #777A75;
+      font-size: 13px;
+      line-height: 20px;
+      z-index: 2;
+      background-color: #fff;
+      opacity: 0;
+      visibility: hidden;
+      -webkit-transition: opacity .3s ease, visibility .3s ease, bottom .3s ease;
+      transition: opacity .3s ease, visibility .3s ease, bottom .3s ease;
+
+      &:after, &:before {
+        top: 100%;
+        right: 5px;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+      }
+
+      &:after {
+        border-color: rgba(255, 255, 255, 0);
+        border-top-color: #ffffff;
+        border-width: 5px;
+      }
+
+      &:before {
+        border-color: rgba(2, 156, 62, 0);
+        border-top-color: #029C3E;
+        border-width: 6px;
+        margin-right: -1px;
+      }
+
+      &.visible{
+        bottom: calc( 100% + 4px );
+        opacity: 1;
+        visibility: visible;
+      }
+
+    }
+
+  }
+
+}
+
+@media (min-width: $tablet-portrait) {
+  #revision {
+    padding: 15px 20px 21px;
+
+    &__head{
+      position: relative;
+      margin-bottom: 16px;
+
+      &-sort{
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 300px;
+        padding-top: 0;
+      }
+
+    }
+
+    &__sub-head{
+      padding-top: 2px;
+    }
+
+    &__title {
+      width: 50%;
+    }
+
+    &__note{
+
+      &-btn{
+        top: 0;
+        width: 16px;
+        height: 16px;
+      }
+
+      &-popup{
+        right: calc( -50% + 6px );
+
+        &.visible{
+          bottom: calc( 100% + 7px);
+        }
+
+        &:after, &:before {
+          right: calc( 50% - 6px );
+        }
+
+      }
+
+      &:before{
+        margin-right: 7px;
+      }
+
+    }
+
+    &__body{
+
+      #games__wrap{
+        padding-top: 3px;
+      }
+
+    }
+
+    &__btn-wrap{
+
+      &.revision__btn-wrap_2{
+        margin-bottom: -6px;
+        padding-top: 0;
+        border-top: 0;
+      }
+
+    }
+
+  }
+}
+
+@media (min-width: $desktop) {
+  #revision {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    padding: 0 calc( 50% - 570px ) 45px;
+
+    &__title{
+      font-size: 24px;
+      line-height: 26px;
+    }
+
+    &__head{
+      margin-bottom: 11px;
+      font-size: 15px;
+
+      &-sort{
+        top: 4px;
+        width: 180px;
+      }
+
+    }
+
+    &__wrap{
+      width: calc( 100% - 290px );
+
+      .online-casinos__content{
+        width: 100%;
+      }
+
+      #games__wrap{
+        width: 100%;
+      }
+
+    }
+
+    &__body{
+
+      #games__wrap{
+        padding-top: 18px;
+      }
+
+      .games__item{
+        width: calc( 33% - 8px);
+        margin: 0 16px 26px 0;
+      }
+
+    }
+
+    &__btn-wrap{
+      padding-top: 31px;
+      border-top: none;
+
+      &.revision__btn-wrap_2 {
+        margin-bottom: -29px;
+        padding-top: 9px;
+      }
+
+    }
+
+    &__reset{
+      -webkit-transition: color .3s ease;
+      transition: color .3s ease;
+      cursor: pointer;
+
+      svg{
+        -webkit-transition: fill .3s ease;
+        transition: fill .3s ease;
+      }
+
+      &:hover{
+        color: #FFB612;
+
+        svg{
+          fill: #FFB612;
+        }
+
+      }
+
+    }
+
+    &__note{
+      -webkit-transition: color .3s ease;
+      transition: color .3s ease;
+
+      svg{
+        -webkit-transition: fill .3s ease;
+        transition: fill .3s ease;
+      }
+
+      &:hover{
+        color: #FFB612;
+
+        svg{
+          fill: #FFB612;
+        }
+
+      }
+
+      &-btn:hover + #revision__note-popup{
+        bottom: calc( 100% + 7px);
+        opacity: 1;
+        visibility: visible;
+      }
+
+    }
+
+  }
+}

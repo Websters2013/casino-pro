@@ -12,16 +12,20 @@
             new Anchor( $( '#anchor' ) );
         };
 
+        if ( $( '#revision__note' ).length == 1 ){
+            new RevisionNote( $( '#revision__note' ) );
+        };
+
+        if ( $( '#notification' ).length == 1 ){
+            new Notification( $( '#notification' ) );
+        };
+
         if ( $( '#intro__content' ).length == 1 ){
             new PageInfoContent( $( '#intro__content' ) );
         };
 
         if ( $( '#search-bonus' ).length == 1 ){
             new SearchBonus( $( '#search-bonus' ) );
-        };
-
-        if ( $( '#filter-mobile-btn' ).length == 1 ){
-            new FilterMobile( $( '#all-casinos' ) );
         };
 
         if ( $( '#sort' ).length == 1 ){
@@ -32,8 +36,12 @@
             new Filter( $( '#filter' ) );
         };
 
-        if ( $( '#all-casinos' ).length == 1 ){
-            new AllCasinos( $( '#all-casinos' ) );
+        if ( $( '#filter' ).length == 1 ){
+            new DataCollection( $( '#filter' ) );
+        };
+
+        if ( $( '#revision' ).length == 1 ){
+            new Revision( $( '#revision' ) );
         };
 
         $.each( $('.anchor'), function () {
@@ -52,14 +60,14 @@
 
     var Anchor = function ( obj ) {
         var _obj = obj,
-            _window = $( 'html, body' );
+            _body = $( 'html, body' );
 
         var _onEvents = function() {
 
                 _obj.on( {
                     click: function() {
 
-                        _window.animate( {
+                        _body.animate( {
                             scrollTop: $( $.attr(this, 'href') ).offset().top
                         }, 600);
 
@@ -75,13 +83,56 @@
         _construct()
     };
 
-    var AllCasinos = function ( obj ) {
+    var Notification = function ( obj ) {
+        var _obj = obj,
+            _btnClose = _obj.find( '.notification__close' );
+
+        var _onEvents = function() {
+
+                _btnClose.on( {
+                    click: function() {
+                        _closePopup();
+                        return false;
+                    }
+                } );
+
+            },
+            _closePopup = function () {
+
+                _obj.addClass( 'hide' );
+
+                setTimeout( function () {
+                    _obj.remove();
+                }, 500 )
+
+            },
+            _construct = function() {
+                _onEvents();
+            };
+
+        _construct()
+    };
+
+    var Revision = function ( obj ) {
         var _self = this,
             _obj = obj,
-            _allCasinosContent = _obj.find( '.online-casinos__content' ),
-            _allCasinosWrap = _obj.find( '#online-casinos__content-body' ),
-            _btnLoadMore = _obj.find( '#all-casinos__load' ),
+            _page = 0,
+            _filter = $( '#filter' ),
+            _form = _filter.find( '#filter__wrap' ),
+            _filterResultHead = _filter.find( '#filter__result' ),
+            _filterResult = _filterResultHead.find( '#filter__result-find' ),
+            _resultframe = _obj.find( '#revision__result' ),
+            _allCasinosBody = _obj.find( '#revision__body' ),
+            _allBtnMoreWrap = _allCasinosBody.find( '#revision__btn-wrap' ),
+            _result = _resultframe.find( 'b' ),
+            _noResult = _obj.find( '#revision__no-result' ),
+            _reset = _noResult.find( '#revision__reset' ),
+            _btnLoadMore = _obj.find( '#revision__load' ),
+            _revisionNote = _obj.find( '#revision__note' ),
+            _revisionNoteBtn = _revisionNote.find( '#revision__note-btn' ),
+            _revisionNotePopup = _revisionNote.find( '#revision__note-popup' ),
             _window = $( window ),
+            _url, _allCasinosWrap,
             _request = new XMLHttpRequest();
 
         var _onEvents = function() {
@@ -91,24 +142,49 @@
                     return false;
                 } );
 
+                _reset.on( 'click', function () {
+                    _form[0].reset();
+                    _page = 0;
+                    _ajaxRequest( _page );
+                    return false;
+                } );
+
+                _revisionNoteBtn.on( 'click', function () {
+
+                    if ( !_revisionNotePopup.hasClass( 'visible' ) ) {
+                        _showNotePopup();
+                    } else {
+                        _hideNotePopup();
+                    }
+
+                    return false;
+                } );
+
             },
             _construct = function() {
-                _ajaxRequest( 0 );
+                _ajaxRequest( _page );
                 _onEvents();
                 _obj[0].obj = _self;
             },
-            _ajaxRequest = function( page ){
+            _ajaxRequest = function(){
+
+                if ( _obj.hasClass( 'all-casinos' ) ){
+                    _url = 'php/all-casinos.php'
+                } else  if ( _obj.hasClass( 'all-games' ) ){
+                    _url = 'php/all-games.php'
+                }
 
                 _request = $.ajax( {
-                    url: 'php/all-casinos.php',
+                    url: _url,
                     data: {
-
+                        page: _page,
+                        filter: $( '#filter' )[0].obj.dataCollection()
                     },
                     dataType: 'html',
                     type: 'GET',
                     success: function ( data ) {
 
-                        _loadData( data, page );
+                        _loadData( data );
 
                     },
                     error: function ( XMLHttpRequest ) {
@@ -119,73 +195,154 @@
                 } );
 
             },
-            _loadData = function ( data, page ) {
+            _loadData = function ( data ) {
 
-                var content = data,
-                    pageNumber = page,
-                    newItem = _allCasinosWrap.find( '.new' );
+                var data = JSON.parse( data ),
+                    content = data.html,
+                    allResult = data.count,
+                    leftPage = data.page;
 
-                if ( pageNumber == 0 ){
+                _showResults( allResult );
+
+                _noResult.removeClass( 'show' );
+                _allCasinosBody.removeClass( 'hide' );
+
+                if ( content == '' || content == undefined ) {
+                    _noResult.addClass( 'show' );
+                    _allCasinosBody.addClass( 'hide' );
+                } else {
+                    _addNewItems( content );
+                }
+
+                if ( leftPage <= 0 ){
+                    _allBtnMoreWrap.addClass( 'hide' );
+                }
+
+            },
+            _addNewItems = function ( data ) {
+
+                if ( _obj.hasClass( 'all-casinos' ) ){
+                    _allCasinosWrap = _obj.find( '#online-casinos__content-body' );
+                } else  if ( _obj.hasClass( 'all-games' ) ){
+                    _allCasinosWrap = _obj.find( '#games__wrap' );
+                }
+
+                var content = data;
+
+                if ( _page == 0 ){
                     _allCasinosWrap.html( content );
                 } else {
                     _allCasinosWrap.append( content );
                 }
 
+                _page = _page + 1;
+
+                var newItem = _allCasinosWrap.find( '.new' );
+
                 newItem.each( function ( i ) {
 
                     var curItem = $( this );
 
-                    setTimeout( function() {
-                        curItem.removeClass( 'new' );
-                    }, 300 * i );
+                    _showNewItems( curItem, i );
 
                 } );
 
+            },
+            _showResults = function ( numser ) {
+
+                var allResult = +numser;
+
+                _filterResult.removeClass( 'active' );
+                _filterResultHead.removeClass( 'null' );
+                _resultframe.removeClass( 'null' );
+
+                if ( allResult > 0 ) {
+                    _filterResult.text( allResult );
+                    _filterResult.addClass( 'active' );
+
+                    _result.text( allResult );
+                } else if ( allResult == 0 ){
+                    _filterResult.text( allResult );
+                    _filterResult.addClass( 'active' );
+                    _filterResultHead.addClass( 'null' );
+
+                    _result.text( allResult );
+                    _resultframe.addClass( 'null' );
+                } else{
+                    _filterResult.removeClass( 'active' );
+                    _filterResultHead.removeClass( 'null' );
+                    _resultframe.removeClass( 'null' );
+                }
+
+            },
+            _showNewItems = function ( item, index ) {
+
+                    var curItem = item;
+
+                    setTimeout( function() {
+                        curItem.removeClass( 'new' );
+                    }, 50 * index );
+
+            },
+            _showNotePopup = function () {
+                _revisionNotePopup.addClass( 'visible' )
+            },
+            _hideNotePopup = function () {
+                _revisionNotePopup.removeClass( 'visible' )
             };
 
         //public methods
         _self.reload = function () {
-            _ajaxRequest( 0 );
+            _page = 0;
+            _ajaxRequest( _page );
         };
 
         _construct()
     };
 
-    var Filter = function ( obj ) {
+    var DataCollection = function ( obj ) {
         var _self = this,
             _obj = obj,
-            _form = _obj.find( '#filter__wrap' ),
-            _inputs = _form.find( 'input[type=checkbox]' ),
+            _filterForm = $( '#filter__wrap' ),
+            _filterFormCheckboxes = _filterForm.find( 'input[type=checkbox]' ),
+            _sort = $( '#sort' ),
+            _demo = $( '#revision__note input' ),
             _collectionArr = {};
 
         var _onEvents = function() {
 
-                _inputs.on( 'change', function() {
-                    _dataCollection();
-                    _filterContent();
-                } );
-
             },
             _dataCollection = function () {
 
-                _inputs.filter( ':checked' ).each( function () {
+                var arr = [];
+
+                _collectionArr = {};
+
+                _filterFormCheckboxes.filter( ':checked' ).each( function () {
 
                     var curInputs = $( this ),
                         curInputsVal = curInputs.val();
 
-                    _collectionArr.empty();
-
-                    _collectionArr.push( curInputsVal )
-
-                    console.log( _collectionArr )
+                    arr.push( curInputsVal );
 
                 } );
+
+                var sortBy = _sort.find( 'input[type=radio]:checked' );
+
+                _collectionArr['filter'] = arr;
+                _collectionArr['sort'] = sortBy.val();
+
+                if ( _demo.is( ':checked' ) ){
+                    _collectionArr['demo'] = _demo.val();
+                }
+
+                return _collectionArr;
 
             },
             _filterContent = function () {
 
-                if ( $( '#all-casinos' ).length == 1 ){
-                    $( '#all-casinos' )[0].obj.reload();
+                if ( $( '#revision' ).length == 1 ){
+                    $( '#revision' )[0].obj.reload();
                 };
 
             },
@@ -196,21 +353,196 @@
 
         //public methods
         _self.dataCollection = function () {
-            _dataCollection();
+            return JSON.stringify( _dataCollection() );
+        };
+        _self.reloadFrame = function () {
+            _filterContent();
         };
 
         _construct()
     };
 
-    var FilterMobile = function ( obj ) {
-        var _obj = obj;
+    var Filter = function ( obj ) {
+        var _obj = obj,
+            _mobileOpenBtn = $( '#filter-mobile-btn' ),
+            _form = _obj.find( '#filter__wrap' ),
+            _mobileBtn = _obj.find( '#filter__done' ),
+            _resetBtn = _obj.find( '#filter__result-reset' ),
+            _inputs = _form.find( 'input[type=checkbox]' ),
+            _closeFrameBtn = _form.find( '.filter__frame-topic' ),
+            _btnShowMore = _form.find( '.filter__more' ),
+            _filterFrame = _obj.find( '.filter__frame' ),
+            _site = $( '#site' ),
+            _window = $( window );
 
         var _onEvents = function() {
 
+                _site.on(
+                    'click', function ( e ) {
+
+                        if ( _obj.hasClass( 'show' ) && $( e.target ).closest( _obj ).length == 0 && _window.width() <= 1200 ){
+                            _hideMobileFilter();
+                        }
+
+                    }
+                );
+
+                _inputs.on( 'change', function() {
+
+                    if ( _window.outerWidth() >= 1200 ) {
+                        _filterContent();
+
+
+                        if (_inputs.filter(':checked').length > 0) {
+                            _showResetBtn();
+                        } else {
+                            _hideResetBtn();
+                        }
+
+                    }
+
+                } );
+
+                _mobileBtn.on( 'click', function() {
+                    _filterContent();
+                    _hideMobileFilter
+                    return false;
+                } );
+
+                _resetBtn.on( 'click', function() {
+                    _form[0].reset();
+                    _filterContent();
+
+                    if ( _window.outerWidth() >= 1200 ) {
+                        _hideResetBtn();
+                    }
+
+                    return false;
+                } );
+
+                _closeFrameBtn.on( 'click', function() {
+
+                    var curElem = $( this );
+
+                    if ( curElem.hasClass( 'close' ) ){
+                        _showFrame( curElem );
+                    } else {
+                        _hideFrame( curElem );
+                    }
+
+                    return false;
+                } );
+
+                _mobileOpenBtn.on( 'click', function() {
+
+                    if ( !_obj.hasClass( 'show' ) && _window.outerWidth() <= 1200 ){
+                        _showMobileFilter();
+                    } else {
+                        _hideMobileFilter();
+                    }
+
+                    return false;
+                } );
+
+                _btnShowMore.on( 'click', function() {
+
+                    var curBtn = $( this );
+
+                    if ( !curBtn.hasClass( 'less' ) ){
+                        _showLess( curBtn );
+                    } else {
+                        _showMore( curBtn );
+                    }
+
+                    return false;
+                } );
+
+            },
+            _showMore = function ( elment ) {
+
+                var curBtn = elment,
+                    curParent = curBtn.parents( '.filter__frame' );
+
+                curBtn.removeClass( 'less' );
+
+                curParent.find( 'label' ).filter( '.visible' ).addClass( 'hide' ).removeClass( 'visible' );
+                curBtn.find( 'span' ).html( 'Show <i></i> More' )
+
+                _countLabels();
+
+            },
+            _showLess = function ( elment ) {
+
+                var curBtn = elment,
+                    curParent = curBtn.parents( '.filter__frame' );
+
+                curBtn.addClass( 'less' );
+
+                curParent.find( 'label' ).filter( '.hide' ).addClass( 'visible' ).removeClass( 'hide' );
+                curBtn.find( 'span' ).text( 'Show Less' );
+
+            },
+            _countLabels = function () {
+
+                var hideLength = _filterFrame.find( 'label' ).filter( '.hide' ).length;
+
+                _btnShowMore.find( 'i' ).text( hideLength );
+
+            },
+            _showMobileFilter = function () {
+
+                _obj.addClass( 'show' );
+                _site.addClass( 'hide-for-filter' );
+
+            },
+            _hideMobileFilter = function () {
+
+                _obj.removeClass( 'show' );
+                _site.removeClass( 'hide-for-filter' );
+
+            },
+            _showFrame = function ( elem ) {
+
+                var curBtn = elem,
+                    curFrame = curBtn.next( 'dd' );
+
+                curBtn.removeClass( 'close' );
+                curFrame.css( 'height', curFrame.attr( 'data-height' ) );
+
+            },
+            _hideFrame = function ( elem ) {
+
+                var curBtn = elem,
+                    curFrame = curBtn.next( 'dd' );
+
+                curFrame.css( 'height', curFrame.outerHeight() );
+                curFrame.attr( 'data-height', curFrame.outerHeight() )
+
+                curBtn.addClass( 'close' );
+                curFrame.css( 'height', 0 );
+
+            },
+            _showResetBtn = function () {
+
+                if( !_resetBtn.hasClass( 'visible' ) ){
+                    _resetBtn.addClass( 'visible' );
+                }
+
+            },
+            _hideResetBtn = function () {
+
+                _resetBtn.removeClass( 'visible' );
+
+            },
+            _filterContent = function () {
+                $( '#filter' )[0].obj.reloadFrame();
             },
             _construct = function() {
+                _countLabels();
                 _onEvents();
             };
+
+        //public methods
 
         _construct()
     };
@@ -866,7 +1198,6 @@
         var _sort = obj,
             _sortBtn = _sort.find( '#sort__select' ),
             _sortPopup = _sort.find( '#sort__popup' ),
-            _sortItem = _sortPopup.find( 'label' ),
             _sortRadio = _sortPopup.find( 'input' ),
             _site = $( '#site' );
 
@@ -892,6 +1223,16 @@
 
                 } );
 
+                _sortRadio.on( 'change', function() {
+
+                    _sortContent();
+                    _hideSortPopup();
+
+                } );
+
+            },
+            _sortContent = function () {
+                $( '#filter' )[0].obj.reloadFrame();
             },
             _showSortPopup = function() {
 
@@ -902,6 +1243,37 @@
 
                 _sort.removeClass( 'show' );
 
+            },
+            _construct = function() {
+                _onEvents();
+            };
+
+        _construct()
+    };
+
+    var RevisionNote = function ( obj ) {
+        var _obj = obj,
+            _chooser = _obj.find( 'input' ),
+            _label = _obj.find( '#revision__note-label' );
+
+        var _onEvents = function() {
+
+                _chooser.on( 'change', function() {
+
+                    _addContent();
+
+                    if ( _chooser.is( ':checked' ) ){
+                        _label.text( 'Hide games without demo play' );
+                    } else {
+                        _label.text( 'Add games without demo play' );
+                    }
+
+
+                } );
+
+            },
+            _addContent = function () {
+                $( '#filter' )[0].obj.reloadFrame();
             },
             _construct = function() {
                 _onEvents();

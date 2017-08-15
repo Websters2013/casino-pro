@@ -7,7 +7,11 @@
   height: 100%;
   background-color: #fff;
   overflow-y: auto;
-  z-index: 3;
+  z-index: 4;
+  -webkit-transform: translateX( 100% );
+  transform: translateX( 100% );
+  -webkit-transition: transform .3s ease;
+  transition: transform .3s ease;
 
   &-mobile-btn{
     display: inline-flex;
@@ -44,8 +48,6 @@
     color: #323232;
     font-size: 15px;
 
-    strong
-
     svg{
       position: relative;
       top: -2px;
@@ -67,6 +69,12 @@
     color: #fff;
     font-size: 13px;
     background-color: #029C3E;
+    -webkit-transition: background-color .3s ease;
+    transition: background-color .3s ease;
+
+    &.null{
+      background-color: #DE3831;
+    }
 
     &-reset{
       position: absolute;
@@ -88,6 +96,19 @@
 
     }
 
+    &-find{
+      display: none;
+
+      &:after{
+        content: ' /';
+      }
+
+      &.active{
+        display: inline-block;
+      }
+
+    }
+
   }
 
   &__wrap{
@@ -95,14 +116,9 @@
     font-size: 15px;
   }
 
-  &:after{
-    position: absolute;
-    top: 0;
-    right: 100%;
-    width: 100000%;
-    height: 100%;
-    background-color: rgba(0,0,0,.5);
-    content: '';
+  &.show{
+    -webkit-transform: translateX( 0 );
+    transform: translateX( 0 );
   }
 
 }
@@ -115,12 +131,16 @@
     border-bottom: 1px solid #DCE0DB;
 
     &:last-child{
+      margin-bottom: 0;
+      padding-bottom: 0;
       border-bottom: none;
     }
 
     dd{
       margin-bottom: 8px;
       padding-top: 15px;
+      overflow: hidden;
+      transition: height .3s ease;
     }
 
     &-topic{
@@ -137,6 +157,49 @@
         height: 5px;
         margin-right: 14px;
         fill: #029C3E;
+        -webkit-transition: transform .3s ease;
+        transition: transform .3s ease;
+      }
+
+      &.close{
+
+        svg{
+          -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+        }
+
+      }
+
+    }
+
+  }
+
+  &__more{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: #029C3E;
+    font-size: 14px;
+
+    i{
+      margin: 0 2px;
+      font-style: normal;
+    }
+
+    svg{
+      width: 11px;
+      height: 5px;
+      margin: 0 5px;
+      fill: #029C3E;
+      -webkit-transition: transform .3s ease;
+      transition: transform .3s ease;
+    }
+
+    &.less{
+
+      svg{
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
       }
 
     }
@@ -162,17 +225,19 @@
 @media (min-width: $desktop) {
   #filter {
     position: relative;
-    width: 273px;
+    width: 275px;
     height: auto;
-    margin-bottom: 70px;
+    overflow-y: visible;
     border-right: 1px solid #DCE0DB;
+    -webkit-transform: translateX( 0 )!important;
+    transform: translateX( 0 )!important;
 
     &-mobile-btn{
       display: none;
     }
 
     &__head{
-      margin-bottom: 30px;
+      margin-bottom: 31px;
       padding: 0;
       font-size: 16px;
       line-height: 18px;
@@ -198,9 +263,13 @@
       display: none;
 
       &-reset{
-        position: relative;
-        top: 9px;
+        top: -3px;
         right: 9px;
+        height: auto;
+        opacity: 0;
+        visibility: hidden;
+        -webkit-transition: opacity .3s ease, visibility .3s ease;
+        transition: opacity .3s ease, visibility .3s ease;
 
         svg{
           width: 18px;
@@ -210,6 +279,11 @@
 
         span{
           display: none;
+        }
+
+        &.visible{
+          opacity: 1;
+          visibility: visible;
         }
 
       }
@@ -226,7 +300,7 @@
   .filter {
 
     &__frame{
-      margin-bottom: 16px;
+      margin-bottom: 27px;
       border-bottom: none;
 
       dt{
@@ -235,13 +309,17 @@
 
       dd{
         margin-bottom: 1px;
-        padding-top: 9px;
+        padding-top: 10px;
       }
 
       &-topic svg{
         width: 12px;
         height: 6px;
-        margin-right: 9px;
+        margin-right: 10px;
+      }
+
+      &:last-child{
+        margin-bottom: 0;
       }
 
     }
@@ -249,6 +327,26 @@
     &__number{
       font-size: 13px;
       color: #777A75;
+    }
+
+    &__more{
+      -webkit-transition: color .3s ease;
+      transition: color .3s ease;
+
+      svg{
+        -webkit-transition: fill .3s ease;
+        transition: fill .3s ease;
+      }
+
+      &:hover{
+        color: #FFB612;
+
+        svg{
+          fill: #FFB612;
+        }
+
+      }
+
     }
 
   }

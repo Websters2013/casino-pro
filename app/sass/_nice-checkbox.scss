@@ -2,6 +2,8 @@
   display: block;
   margin-bottom: 16px;
   user-select: none;
+  -webkit-transition: height .3s ease, margin-bottom .3s ease;
+  transition: height .3s ease, margin-bottom .3s ease;
 
   &:last-child{
     margin-bottom: 0;
@@ -76,10 +78,17 @@
 
   }
 
+  &.hide{
+    overflow: hidden;
+    height: 0;
+    margin-bottom: 0;
+  }
+
 }
 
 @media (min-width: $desktop) {
   .nice-checkbox {
+    margin-bottom: 16px;
 
     &__svg{
       width: 15px;

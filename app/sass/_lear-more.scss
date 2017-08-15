@@ -73,9 +73,9 @@
 
 @media (min-width: $desktop) {
   #lear-more {
-    padding: 26px calc( 50% - 569px ) 28px;
+    padding: 28px calc( 50% - 569px ) 28px;
     font-size: 15px;
-    line-height: 22px;
+    line-height: 23px;
 
     h2{
       margin-bottom: 30px;
@@ -100,7 +100,11 @@
       justify-content: space-between;
       align-items: flex-start;
       margin-bottom: 31px;
-      padding: 0 15px 30px 0;
+      padding: 0 15px 29px 0;
+
+      p{
+        margin-bottom: 14px;
+      }
 
       & > div{
         padding-top: 1px;

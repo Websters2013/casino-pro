@@ -96,9 +96,6 @@
   }
 
   &__content {
-    width: 100%;
-    -webkit-transition: height .3s ease;
-    transition: height .3s ease;
 
     &-captions {
       @include flexbox();
