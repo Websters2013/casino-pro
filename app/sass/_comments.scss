@@ -211,7 +211,7 @@
   }
 
   #comments{
-    padding: 0 0 20px;
+    padding: 0 0 15px;
 
     &__header{
       padding: 0 8px 39px 0;
@@ -219,6 +219,38 @@
 
     &__list{
       margin-bottom: 50px;
+    }
+
+    &__form{
+
+      &-inputs{
+        order: 1;
+        width: 100%;
+        max-width: 385px;
+      }
+
+      &-frame{
+        display: flex;
+        flex-flow: column wrap;
+        align-items: flex-start;
+      }
+
+      input[type="text"].site__input, input[type="password"].site__input,
+      textarea.site__input, input[type="email"].site__input,
+      input[type="tel"].site__input, input[type="phone"].site__input,
+      input[type="number"].site__input{
+        margin-bottom: 20px;
+      }
+
+      textarea.site__input{
+        max-width: 620px;
+        order: 2;
+      }
+
+    }
+
+    #contact-us__note{
+      margin: 0 0 0 10px;
     }
 
   }
@@ -229,9 +261,40 @@
 
   .comments{
 
+    &__head{
+
+      time{
+        top: 1px;
+      }
+
+    }
+
   }
 
   #comments{
+
+    &__header{
+
+      h2{
+        font-size: 24px;
+        line-height: 34px;
+      }
+
+    }
+
+    &__form{
+
+      h2{
+        margin-bottom: 28px;
+        font-size: 24px;
+        line-height: 34px;
+      }
+
+      &-inputs{
+        max-width: 379px;
+      }
+
+    }
 
   }
 

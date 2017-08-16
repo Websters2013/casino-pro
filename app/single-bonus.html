@@ -474,9 +474,16 @@
 
                         <h2>Write a comment</h2>
 
-                        <textarea class="site__input" name="message" id="message" cols="30" rows="10" placeholder="Write your message..." data-required></textarea>
-                        <input class="site__input" type="text" name="name" placeholder="Name" data-required>
-                        <input class="site__input" type="email" name="email" placeholder="Email" data-required>
+                        <div id="comments__form-frame">
+
+                            <textarea class="site__input" name="message" id="message" cols="30" rows="10" placeholder="Write your message..." data-required></textarea>
+
+                            <div id="comments__form-inputs">
+                                <input class="site__input" type="text" name="name" placeholder="Name" data-required>
+                                <input class="site__input" type="email" name="email" placeholder="Email" data-required>
+                            </div>
+
+                        </div>
 
                         <button type="submit" class="btn btn_1"><span>POST COMMENT</span></button>
 
