@@ -59,9 +59,19 @@ $loadedType = $_GET['filter'];
 
                                     <div class="bonus__casinos">
 
+                                        <div class="bonus__casinos-popup" data-casino="001">
+                                            <p>Casino Room</p>
+                                            <a href="#">GO TO REVIEW PAGE</a>
+                                        </div>
+
+                                        <div class="bonus__casinos-popup" data-casino="002">
+                                            <p>Casino Room2</p>
+                                            <a href="#">GO TO REVIEW PAGE</a>
+                                        </div>
+                                        
                                         <div class="bonus__casinos-item inactive">
 
-                                                <button class="bonus__casinos-img">
+                                                <button class="bonus__casinos-img" data-casino="001">
                                                     <img src="pic/logo-011.png" alt="img"/>
                                                 </button>
 
@@ -71,7 +81,7 @@ $loadedType = $_GET['filter'];
 
                                             <div class="bonus__casinos-item inactive">
 
-                                                <button class="bonus__casinos-img">
+                                                <button class="bonus__casinos-img" data-casino="002">
                                                     <img src="pic/logo-013.png" alt="img"/>
                                                 </button>
 
@@ -81,7 +91,7 @@ $loadedType = $_GET['filter'];
 
                                             <div class="bonus__casinos-item inactive">
 
-                                                <button class="bonus__casinos-img">
+                                                <button class="bonus__casinos-img" data-casino="001">
                                                     <img src="pic/logo-018.png" alt="img"/>
                                                 </button>
 
@@ -90,7 +100,7 @@ $loadedType = $_GET['filter'];
                                             </div>
                                             <div class="bonus__casinos-item inactive">
 
-                                                <button class="bonus__casinos-img">
+                                                <button class="bonus__casinos-img" data-casino="001">
                                                     <img src="pic/logo-011.png" alt="img"/>
                                                 </button>
 
@@ -100,7 +110,7 @@ $loadedType = $_GET['filter'];
 
                                             <div class="bonus__casinos-item inactive">
 
-                                                <button class="bonus__casinos-img">
+                                                <button class="bonus__casinos-img" data-casino="001">
                                                     <img src="pic/logo-013.png" alt="img"/>
                                                 </button>
 
@@ -110,7 +120,7 @@ $loadedType = $_GET['filter'];
 
                                             <div class="bonus__casinos-item inactive">
 
-                                                <button class="bonus__casinos-img">
+                                                <button class="bonus__casinos-img" data-casino="001">
                                                     <img src="pic/logo-018.png" alt="img"/>
                                                 </button>
 
@@ -434,7 +444,17 @@ $loadedType = $_GET['filter'];
 
                                     <div class="bonus__casinos">
 
-                                        <div class="bonus__casinos-item inactive">
+                                        <div class="bonus__casinos-popup" data-casino="001">
+                                            <p>Casino Room</p>
+                                            <a href="#">GO TO REVIEW PAGE</a>
+                                        </div>
+
+                                        <div class="bonus__casinos-popup" data-casino="002">
+                                            <p>Casino Room2</p>
+                                            <a href="#">GO TO REVIEW PAGE</a>
+                                        </div>
+                                        
+                                        <div class="bonus__casinos-item inactive" data-casino="001">
 
                                                 <button class="bonus__casinos-img">
                                                     <img src="pic/logo-011.png" alt="img"/>
@@ -444,26 +464,26 @@ $loadedType = $_GET['filter'];
 
                                             </div>
 
-                                            <div class="bonus__casinos-item inactive">
+                                            <div class="bonus__casinos-item inactive" data-casino="001">
 
                                                 <button class="bonus__casinos-img">
                                                     <img src="pic/logo-013.png" alt="img"/>
                                                 </button>
 
-                                                <a href="#" class="online-casinos__play online-casinos__play_attention">
+                                                <a href="#" class="btn btn_1 btn_attention">
                                                     <svg viewBox="240 16 16 16"><path class="a" d="M10.8,10.8H9.2V6h1.6m0,8H9.2V12.4h1.6M10,2a8,8,0,1,0,8,8,8,8,0,0,0-8-8Z" transform="translate(238 14)"></path></svg>
                                                     <span>Play</span>
                                                 </a>
 
                                             </div>
 
-                                            <div class="bonus__casinos-item inactive">
+                                            <div class="bonus__casinos-item inactive" data-casino="001">
 
                                                 <button class="bonus__casinos-img">
                                                     <img src="pic/logo-018.png" alt="img"/>
                                                 </button>
 
-                                                <a href="#" class="online-casinos__play online-casinos__play_warning">
+                                                <a href="#" class="btn btn_1 btn_warning">
                                                     <svg viewBox="272 16 13.7 15"><path class="a" d="M14.7,3.437V12.5A2.5,2.5,0,0,1,12.209,15H7.663a2.482,2.482,0,0,1-1.775-.744L1,9.269s.785-.769.81-.781A.736.736,0,0,1,2.3,8.306a.759.759,0,0,1,.374.1c.025.006,2.684,1.537,2.684,1.537V2.5a.934.934,0,1,1,1.868,0V6.875H7.85V.937a.934.934,0,1,1,1.868,0V6.875h.623V1.562a.934.934,0,1,1,1.868,0V6.875h.623V3.437a.934.934,0,1,1,1.868,0Z" transform="translate(271 16)"></path></svg>
                                                     <span>Play</span>
                                                 </a>
@@ -482,7 +502,7 @@ $loadedType = $_GET['filter'];
                                     <a href="#" data-tab="info">Bonus information</a>
                                     <a href="#" data-tab="comments">
                                         <svg viewBox="416 48 11.4 11.4"><path d="M5.99,13.4a.57.57,0,0,1-.57-.57V11.12H3.14A1.14,1.14,0,0,1,2,9.98V3.14A1.14,1.14,0,0,1,3.14,2h9.12A1.14,1.14,0,0,1,13.4,3.14V9.98a1.14,1.14,0,0,1-1.14,1.14H8.783L6.674,13.235a.581.581,0,0,1-.4.165H5.99m.57-3.42v1.756L8.316,9.98H12.26V3.14H3.14V9.98Z" transform="translate(414 46)"/></svg>
-                                        5 Comments
+                                        Comments
                                     </a>
                                 </dt>
 
@@ -537,125 +557,6 @@ $loadedType = $_GET['filter'];
     
                                     <div class="bonus__comments" data-tab="comments">
                                     
-                                        <div class="bonus__comments-list">
-                                        
-                                            <div class="bonus__comments-item inactive">
-                                            
-                                                <div class="bonus__comments-head">
-                                                    <strong>Monarch2345</strong>
-                                                    <time><span>03:45:56 PM</span> Mar 27, 2017</time>
-                                                </div>
-                                            
-                                                <div class="bonus__comments-body">
-                                                    
-                                                    <div class="bonus__comments-text">
-                                                        <div>
-                                                            <p>Nice casino!</p>
-                                                            <p>This is a sister casino of Exclusive casino! Exclusive, have paid me the max cash out of a welcome bonus they allow me to play!Going try to claim these $10!</p>
-                                                            <p>This is a sister casino of Exclusive casino! Exclusive, have paid me the max cash out of a welcome bonus they allow me to play!Going try to claim these $10!</p>
-                                                        </div>
-                                                    </div>
-                                                       
-                                                    <a href="#" class="bonus__comments-more">Read More</a>
-                                                           
-                                                </div>
-                                                
-                                            </div>
-                                            
-                                            <div class="bonus__comments-item inactive">
-                                            
-                                                <div class="bonus__comments-head">
-                                                    <strong>louisemostert4</strong>
-                                                    <time><span>03:45:56 PM</span> Mar 27, 2017</time>
-                                                </div>
-                                            
-                                                <div class="bonus__comments-body">
-                                                    
-                                                    <div class="bonus__comments-text">
-                                                        <div>
-                                                            <p>Nice casino!</p>
-                                                            <p>This is a sister casino of Exclusive casino! Exclusive, have paid me the max cash out of a welcome bonus they allow me to play!Going try to claim these $10!</p>
-                                                            <p>This is a sister casino of Exclusive casino! Exclusive, have paid me the max cash out of a welcome bonus they allow me to play!Going try to claim these $10!</p>
-                                                        </div>
-                                                    </div>
-                                                       
-                                                    <a href="#" class="bonus__comments-more">Read More</a>
-                                                           
-                                                </div>
-                                                
-                                            </div>
-                                            
-                                            <div class="bonus__comments-item inactive">
-                                            
-                                                <div class="bonus__comments-head">
-                                                    <strong>commy92</strong>
-                                                    <time><span>03:45:56 PM</span> Mar 27, 2017</time>
-                                                </div>
-                                            
-                                                <div class="bonus__comments-body">
-                                                    
-                                                    <div class="bonus__comments-text">
-                                                        <div>
-                                                            <p>Nice casino!</p>
-                                                            <p>This is a sister casino of Exclusive casino! Exclusive, have paid me the max cash out of a welcome bonus they allow me to play!Going try to claim these $10!</p>
-                                                            <p>This is a sister casino of Exclusive casino! Exclusive, have paid me the max cash out of a welcome bonus they allow me to play!Going try to claim these $10!</p>
-                                                        </div>
-                                                    </div>
-                                                       
-                                                    <a href="#" class="bonus__comments-more">Read More</a>
-                                                           
-                                                </div>
-                                                
-                                            </div>
-                                            
-                                            <div class="bonus__comments-item inactive hidden">
-                                            
-                                                <div class="bonus__comments-head">
-                                                    <strong>louisemostert4</strong>
-                                                    <time><span>03:45:56 PM</span> Mar 27, 2017</time>
-                                                </div>
-                                            
-                                                <div class="bonus__comments-body">
-                                                    
-                                                    <div class="bonus__comments-text">
-                                                        <div>
-                                                            <p>Nice casino!</p>
-                                                            <p>This is a sister casino of Exclusive casino! Exclusive, have paid me the max cash out of a welcome bonus they allow me to play!Going try to claim these $10!</p>
-                                                            <p>This is a sister casino of Exclusive casino! Exclusive, have paid me the max cash out of a welcome bonus they allow me to play!Going try to claim these $10!</p>
-                                                        </div>
-                                                    </div>
-                                                       
-                                                    <a href="#" class="bonus__comments-more">Read More</a>
-                                                           
-                                                </div>
-                                                
-                                            </div>
-                                            
-                                            <div class="bonus__comments-item inactive hidden">
-                                            
-                                                <div class="bonus__comments-head">
-                                                    <strong>commy92</strong>
-                                                    <time><span>03:45:56 PM</span> Mar 27, 2017</time>
-                                                </div>
-                                            
-                                                <div class="bonus__comments-body">
-                                                    
-                                                    <div class="bonus__comments-text">
-                                                        <div>
-                                                            <p>Nice casino!</p>
-                                                            <p>This is a sister casino of Exclusive casino! Exclusive, have paid me the max cash out of a welcome bonus they allow me to play!Going try to claim these $10!</p>
-                                                            <p>This is a sister casino of Exclusive casino! Exclusive, have paid me the max cash out of a welcome bonus they allow me to play!Going try to claim these $10!</p>
-                                                        </div>
-                                                    </div>
-                                                       
-                                                    <a href="#" class="bonus__comments-more">Read More</a>
-                                                           
-                                                </div>
-                                                
-                                            </div>
-                                        
-                                        </div>
-                                      
                                         <form action="#" class="bonus__comments-form validation-form">
                                             
                                             <textarea class="site__input" name="message" id="message" cols="30" rows="10" placeholder="Write your message..." data-required></textarea>
@@ -838,9 +739,19 @@ $loadedType = $_GET['filter'];
 
                                     <div class="bonus__casinos">
 
+                                        <div class="bonus__casinos-popup" data-casino="001">
+                                            <p>Casino Room</p>
+                                            <a href="#">GO TO REVIEW PAGE</a>
+                                        </div>
+
+                                        <div class="bonus__casinos-popup" data-casino="002">
+                                            <p>Casino Room2</p>
+                                            <a href="#">GO TO REVIEW PAGE</a>
+                                        </div>
+                                        
                                         <div class="bonus__casinos-item inactive">
 
-                                                <button class="bonus__casinos-img">
+                                                <button class="bonus__casinos-img" data-casino="001">
                                                     <img src="pic/logo-011.png" alt="img"/>
                                                 </button>
 
@@ -848,7 +759,7 @@ $loadedType = $_GET['filter'];
 
                                             </div>
 
-                                            <div class="bonus__casinos-item inactive">
+                                            <div class="bonus__casinos-item inactive" data-casino="001">
 
                                                 <button class="bonus__casinos-img">
                                                     <img src="pic/logo-013.png" alt="img"/>
@@ -858,7 +769,7 @@ $loadedType = $_GET['filter'];
 
                                             </div>
 
-                                            <div class="bonus__casinos-item inactive">
+                                            <div class="bonus__casinos-item inactive" data-casino="002">
 
                                                 <button class="bonus__casinos-img">
                                                     <img src="pic/logo-018.png" alt="img"/>
@@ -867,7 +778,7 @@ $loadedType = $_GET['filter'];
                                                 <a href="" class="btn btn_1"><span>Play</span></a>
 
                                             </div>
-                                            <div class="bonus__casinos-item inactive">
+                                            <div class="bonus__casinos-item inactive" data-casino="002">
 
                                                 <button class="bonus__casinos-img">
                                                     <img src="pic/logo-011.png" alt="img"/>
@@ -877,7 +788,7 @@ $loadedType = $_GET['filter'];
 
                                             </div>
 
-                                            <div class="bonus__casinos-item inactive">
+                                            <div class="bonus__casinos-item inactive" data-casino="002">
 
                                                 <button class="bonus__casinos-img">
                                                     <img src="pic/logo-013.png" alt="img"/>
@@ -887,7 +798,7 @@ $loadedType = $_GET['filter'];
 
                                             </div>
 
-                                            <div class="bonus__casinos-item inactive">
+                                            <div class="bonus__casinos-item inactive" data-casino="002">
 
                                                 <button class="bonus__casinos-img">
                                                     <img src="pic/logo-018.png" alt="img"/>

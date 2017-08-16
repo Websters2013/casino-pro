@@ -110,9 +110,22 @@
             _tabsLink = _bonusBody.find( '.bonus__tabs-link a' ),
             _commentMore = _obj.find( '.bonus__comments-more' ),
             _commentWrite = _obj.find( '.bonus__comments-write' ),
-            _window = $( window );
+            _casinosInfo = _obj.find( '.bonus__casinos-img' ),
+            _casinosAboutPopup = _obj.find( '.bonus__casinos-popup' ),
+            _window = $( window ),
+            _site = $( '#site' );
 
         var _onEvents = function() {
+
+                _site.on(
+                    'click', function ( e ) {
+
+                        if ( _casinosAboutPopup.hasClass( 'show' ) && $( e.target ).closest( _casinosAboutPopup ).length == 0 ){
+                            _closePopup();
+                        }
+
+                    }
+                );
 
                 _commentMore.on(
                     'click', function () {
@@ -173,6 +186,23 @@
                             curForm = curBtn.next( '.bonus__comments-form' );
 
                         _showForm( curForm, curBtn );
+
+                        return false;
+
+                    }
+                );
+
+                _casinosInfo.on(
+                    'click', function () {
+
+                        var curBtn = $( this ),
+                            curPopup = _obj.find( '.bonus__casinos-popup' ).filter( '[data-casino='+ curBtn.attr( 'data-casino' ) +']' );
+
+                        if ( !curPopup.hasClass( 'show' ) ){
+                            _openPopup( curBtn, curPopup );
+                        } else{
+                            _closePopup( );
+                        }
 
                         return false;
 
@@ -303,7 +333,6 @@
                             casinoListItem.css( 'height', 80 );
                         }
 
-
                         setTimeout( function () {
                             parentItemBody.attr( 'data-height', parentItemFrame.outerHeight() )
                             parentItemBody.css( 'height', parentItemFrame.outerHeight() );
@@ -379,6 +408,27 @@
 
                 _tabsLink.eq( 0 ).addClass( 'active' );
                 _tabsContentItem.eq( 0 ).addClass( 'active' );
+
+            },
+            _openPopup = function ( btn, popup ) {
+
+                var curBtn = btn,
+                    curPopup = popup;
+
+                curPopup.addClass( 'show' );
+
+                curPopup.css( 'top', curBtn.offset().top - 14 - curPopup.outerHeight() )
+
+                if ( _window.outerWidth() >= 1200 ){
+
+                    curPopup.css( 'left', curBtn.offset().left - 16 )
+
+                }
+
+            },
+            _closePopup = function () {
+
+                _casinosAboutPopup.removeClass( 'show' )
 
             },
             _showForm = function ( form, btn ) {
