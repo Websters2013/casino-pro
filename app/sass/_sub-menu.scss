@@ -1,0 +1,100 @@
+#sub-menu {
+  position: relative;
+  width: 100%;
+  background-color: #fff;
+  border-top: 1px solid #DCE0DB;
+  box-shadow: 0 2px 5px rgba(0,0,0,.16);
+
+  &.start:before {
+    opacity: 0;
+  }
+
+  &.end:after {
+    opacity: 0;
+  }
+
+  &:before,
+  &:after {
+    position: absolute;
+    top: 0;
+    width: 80px;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+    transition: opacity .3s ease;
+    -webkit-transition: opacity .3s ease;
+    content: '';
+  }
+
+  &:before {
+    left: 0;
+    background: -moz-linear-gradient(left, rgba(255,255,255,0.8) 0%, rgba(254,254,254,0.8) 47%, rgba(252,252,252,0) 100%);
+    background: -webkit-linear-gradient(left, rgba(255,255,255,0.8) 0%,rgba(254,254,254,0.8) 47%,rgba(252,252,252,0) 100%);
+    background: linear-gradient(to right, rgba(255,255,255,0.8) 0%,rgba(254,254,254,0.8) 47%,rgba(252,252,252,0) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ccffffff', endColorstr='#00fcfcfc',GradientType=1 );
+  }
+
+  &:after {
+    right: 0;
+    background: -moz-linear-gradient(left, rgba(252,252,252,0) 0%, rgba(254,254,254,0.8) 53%, rgba(255,255,255,0.8) 100%);
+    background: -webkit-linear-gradient(left, rgba(252,252,252,0) 0%,rgba(254,254,254,0.8) 53%,rgba(255,255,255,0.8) 100%);
+    background: linear-gradient(to right, rgba(252,252,252,0) 0%,rgba(254,254,254,0.8) 53%,rgba(255,255,255,0.8) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00fcfcfc', endColorstr='#ccffffff',GradientType=1 );
+  }
+
+}
+
+.sub-menu{
+
+  &__item{
+    width: auto;
+    padding: 15px 9px 14px;
+    color: #777A75;
+    font-size: 13px;
+    line-height: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+
+    &.active{
+      color: #029C3E;
+    }
+
+  }
+
+}
+
+@media (min-width: $tablet-portrait) {
+  #sub-menu {
+    padding: 0 10px;
+
+    .swiper-wrapper{
+      justify-content: space-between;
+    }
+
+    &:before,
+    &:after {
+      display: none;
+    }
+
+  }
+  .sub-menu{
+
+    &__item{
+      padding: 14px 9px 11px;
+    }
+
+  }
+}
+
+@media (min-width: $desktop) {
+  #sub-menu {
+    padding: 0 calc( 50% - 570px );
+  }
+  .sub-menu{
+
+    &__item {
+      padding: 23px 0 22px;
+    }
+
+  }
+}

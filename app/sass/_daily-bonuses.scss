@@ -51,6 +51,21 @@
 
   }
 
+  &__intro{
+    @include flexbox();
+    @include flex-direction(column);
+    @include justify-content();
+    @include align-items(flex-start);
+    @include flex-wrap(wrap);
+    margin: 0 10px 5px;
+
+    #search-bonus{
+      height: 216px;
+      margin-bottom: 20px;
+    }
+
+  }
+
 }
 
 .daily-bonuses{
@@ -97,6 +112,42 @@
 
       span{
         margin-bottom: 12px;
+      }
+
+    }
+
+    &__intro{
+      position: relative;
+      flex-flow: row wrap;
+      justify-content: space-between;
+      margin: 4px 20px -4px;
+
+      #main-title{
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin-bottom: 30px;
+      }
+
+      #intro__content{
+        width: calc( 100% - 295px );
+        margin-bottom: 0;
+        grid-area: text;
+      }
+
+      #intro__text{
+        height: 290px;
+      }
+
+      #search-bonus{
+        height: 236px;
+        margin-top: 128px;
+        order: 2;
+
+        .search-bonus__item{
+          padding-bottom: 6px;
+        }
+
       }
 
     }
@@ -149,6 +200,33 @@
           font-size: 20px;
         }
 
+      }
+
+    }
+
+    &__intro{
+      margin: 23px calc(50% - 569px) 27px;
+
+      #intro__content{
+        padding-top: 4px;
+        line-height: 23px;
+
+        h1{
+          margin-bottom: 15px;
+        }
+
+        p{
+          margin-bottom: 12px;
+        }
+
+      }
+
+      #intro__text {
+        height: 284px;
+      }
+
+      #search-bonus{
+        margin-top: 145px;
       }
 
     }

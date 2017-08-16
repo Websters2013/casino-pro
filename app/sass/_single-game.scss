@@ -15,6 +15,7 @@
 
   &__back{
     margin-bottom: 18px;
+    padding: 0 10px;
   }
 
   &__control{
@@ -62,6 +63,10 @@
       z-index: 2;
       -webkit-transform: translate(-50%, -50%);
       transform: translate(-50%, -50%);
+    }
+
+    .games__demo{
+      z-index: 2;
     }
 
   }
@@ -244,6 +249,7 @@
 
     &__back{
       margin-bottom: 18px;
+      padding: 0 20px;
     }
 
     &__screen{
@@ -254,6 +260,16 @@
         width: 156px;
         border-radius: 30px;
         font-size: 14px;
+      }
+
+      .games__demo{
+        top: 20px;
+        left: 20px;
+        width: 100px;
+        height: 100px;
+        padding: 0 15px;
+        font-size: 15px;
+        line-height: 18px;
       }
 
     }

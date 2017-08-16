@@ -49,15 +49,20 @@
   }
 
   &__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 50px;
-    width: 100%;
     margin-bottom: 15px;
     border-bottom: 1px solid #DCE0DB;
     background-color: #F8F8F8;
     z-index: 2;
+
+    &-layout{
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      height: 50px;
+    }
+
   }
 
   &__content {
@@ -166,6 +171,11 @@
 
     &__header{
       box-shadow: 0 2px 5px rgba(0,0,0,.1);
+
+      &-layout{
+        height: 50px;
+      }
+
     }
 
     &__content {
@@ -243,9 +253,13 @@
     line-height: 22px;
 
     &__header{
-      height: 70px;
-      padding: 0 calc( 50% - 570px );
       box-shadow: 0 3px 9px rgba(0,0,0,.1);
+
+      &-layout{
+        height: 70px;
+        padding: 0 calc( 50% - 570px );
+      }
+
     }
 
     &__content {

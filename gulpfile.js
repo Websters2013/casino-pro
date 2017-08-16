@@ -22,13 +22,6 @@ var paths = {
             contains: [
                 'app/js/jquery.main.js',
             ]
-        },
-        {
-            dist: 'contact.min.js',
-            contains: [
-                'app/js/jquery.main.js',
-                'app/js/jquery.form.validator.js'
-            ]
         }
     ],
     vendorScripts: 'app/js/vendors/**/*.js',

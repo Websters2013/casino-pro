@@ -8,12 +8,25 @@
 
         new Menu ( $( '#menu' ) );
 
+        if ( $( '.validation-form' ).length ){
+            new FormValidator( $( '.validation-form' ) );
+        }
+
         if ( $( '#anchor' ).length == 1 ){
             new Anchor( $( '#anchor' ) );
         };
 
         if ( $( '#single-game__info' ).length == 1 ){
             new Sliders( $( '#single-game__info' ) );
+        };
+
+        if ( $( '#no-demo' ).length == 1 ){
+            new Sliders( $( '#no-demo' ) );
+            new NoDemoOpen( $( '#no-demo' ) );
+        };
+
+        if ( $( '#sub-menu' ).length == 1 ){
+            new Sliders( $( '#sub-menu' ) );
         };
 
         if ( $( '#revision__note' ).length == 1 ){
@@ -87,230 +100,340 @@
         _construct()
     };
 
-    var Notification = function ( obj ) {
+    var BonusItem = function ( obj ) {
         var _obj = obj,
-            _btnClose = _obj.find( '.notification__close' );
+            _textMore = _obj.find( '.bonus__text-more' ),
+            _casinoList = _obj.find( '.bonus__casinos' ),
+            _commentsList = _obj.find( '.bonus__comments-list' ),
+            _bonusBody = _obj.find( '.bonus__body' ),
+            _tabsContentItem = _bonusBody.find( '.bonus__tabs-content > div' ),
+            _tabsLink = _bonusBody.find( '.bonus__tabs-link a' ),
+            _commentMore = _obj.find( '.bonus__comments-more' ),
+            _commentWrite = _obj.find( '.bonus__comments-write' ),
+            _window = $( window );
 
         var _onEvents = function() {
 
-                _btnClose.on( {
-                    click: function() {
-                        _closePopup();
-                        return false;
-                    }
-                } );
+                _commentMore.on(
+                    'click', function () {
 
-            },
-            _closePopup = function () {
+                        var curBtn = $( this ),
+                            curTextContent = curBtn.prev( '.bonus__comments-text' );
 
-                _obj.addClass( 'hide' );
-
-                setTimeout( function () {
-                    _obj.remove();
-                }, 500 )
-
-            },
-            _construct = function() {
-                _onEvents();
-            };
-
-        _construct()
-    };
-
-    var Revision = function ( obj ) {
-        var _self = this,
-            _obj = obj,
-            _page = 0,
-            _filter = $( '#filter' ),
-            _form = _filter.find( '#filter__wrap' ),
-            _filterResultHead = _filter.find( '#filter__result' ),
-            _filterResult = _filterResultHead.find( '#filter__result-find' ),
-            _resultframe = _obj.find( '#revision__result' ),
-            _allCasinosBody = _obj.find( '#revision__body' ),
-            _allBtnMoreWrap = _allCasinosBody.find( '#revision__btn-wrap' ),
-            _result = _resultframe.find( 'b' ),
-            _noResult = _obj.find( '#revision__no-result' ),
-            _reset = _noResult.find( '#revision__reset' ),
-            _btnLoadMore = _obj.find( '#revision__load' ),
-            _revisionNote = _obj.find( '#revision__note' ),
-            _revisionNoteBtn = _revisionNote.find( '#revision__note-btn' ),
-            _revisionNotePopup = _revisionNote.find( '#revision__note-popup' ),
-            _window = $( window ),
-            _url, _allCasinosWrap,
-            _site = $( '#site' ),
-            _request = new XMLHttpRequest();
-
-        var _onEvents = function() {
-
-                _site.on(
-                    'click', function ( e ) {
-
-                        if ( _revisionNotePopup.hasClass( 'visible' )&& $( e.target ).closest( _revisionNotePopup ).length == 0 ){
-                            _hideNotePopup();
+                        if ( !curTextContent.hasClass( 'visible' ) && _window.width() < 768 ) {
+                            _showAllInfo( curTextContent, curBtn );
+                        } else {
+                            _showLessInfo(  curTextContent, curBtn);
                         }
+
+                        return false;
 
                     }
                 );
 
-                _btnLoadMore.on( 'click', function () {
-                    _ajaxRequest();
-                    return false;
-                } );
+                _textMore.on(
+                    'click', function () {
 
-                _reset.on( 'click', function () {
-                    _form[0].reset();
-                    _page = 0;
-                    _ajaxRequest( _page );
-                    return false;
-                } );
+                        var curBtn = $( this ),
+                            curTextContent = curBtn.prev( '.bonus__text' )
 
-                _revisionNoteBtn.on( 'click', function () {
+                        if ( !curTextContent.hasClass( 'visible' ) && _window.width() < 768 ) {
+                            _showAllInfo( curTextContent, curBtn );
+                        } else {
+                            _showLessInfo(  curTextContent, curBtn);
+                        }
 
-                    if ( !_revisionNotePopup.hasClass( 'visible' ) && _window.outerWidth() < 1200 ) {
-                        _showNotePopup();
-                    } else {
-                        _hideNotePopup();
+                        return false;
+
+                    }
+                );
+
+                _tabsLink.on( 'click', function () {
+
+                    var curLink = $( this );
+
+                    _tabsLink.removeClass( 'active' );
+                    _tabsContentItem.removeClass( 'active' );
+
+                    curLink.addClass( 'active' );
+                    _tabsContentItem.filter( '[data-tab='+ curLink.attr( 'data-tab' ) +']' ).addClass( 'active' );
+
+                    if ( _window.outerWidth() >= 768 && _commentsList.hasClass( 'ps-container' ) ){
+                        _commentsList.perfectScrollbar( 'update' );
                     }
 
                     return false;
+
                 } );
+
+                _commentWrite.on(
+                    'click', function () {
+
+                        var curBtn = $( this ),
+                            curForm = curBtn.next( '.bonus__comments-form' );
+
+                        _showForm( curForm, curBtn );
+
+                        return false;
+
+                    }
+                );
+
+            },
+            _minimizeCommentsList = function () {
+
+                _commentsList.each( function () {
+
+                    if ( _window.outerWidth() < 768 ){
+
+                        var curElem = $( this ),
+                            casinoListItem = curElem.find( '.bonus__comments-item' ),
+                            itemNumber = casinoListItem.length;
+
+                        curElem.removeClass( 'inactive' );
+
+                        if ( itemNumber > 3 ){
+
+                            curElem.append( '<a href="#" class="bonus__comments-show"><span>Show '+ ( itemNumber - 3 ) +' More</span>'+
+                                '<svg viewBox="146 23 12 6"><path d="M7,10l6,6,6-6Z" transform="translate(139 13)"></path></svg>'+
+                                '</a>' );
+
+                            for ( var i = 3; i <= itemNumber; i++ ) {
+
+                                casinoListItem.eq( i ).css( 'height', 0 );
+                                casinoListItem.eq( i ).addClass( 'hidden' );
+
+                            }
+
+                        }
+
+                    } else {
+
+                        var curElem = $( this ),
+                            casinoListItem = curElem.find( '.bonus__comments-item' );
+
+                            curElem.perfectScrollbar();
+
+                        casinoListItem.removeClass( 'hidden' );
+
+                    }
+
+                } );
+
+                var casinoShowMore = _commentsList.find( '.bonus__comments-show' );
+
+                casinoShowMore.on( 'click', function () {
+
+                    var curElem = $( this ),
+                        parentCasinoList = curElem.parents( '.bonus__comments-list' ),
+                        casinoListItem = parentCasinoList.find( '.hidden' );
+
+                    if ( !curElem.hasClass( 'less' ) ){
+
+                        curElem.find( 'span' ).html( 'Show Less' );
+                        curElem.addClass( 'less' );
+                        casinoListItem.removeClass( 'hidden' );
+                        casinoListItem.css( 'height', 143 );
+
+                    } else {
+
+                        curElem.find( 'span' ).html( 'Show '+ ( parentCasinoList.find( '.bonus__casinos-item' ).length - 3 ) +' More' );
+                        curElem.removeClass( 'less' );
+
+                        for ( var i = 3; i <= parentCasinoList.find( '.bonus__comments-item' ).length; i++ ) {
+
+                            parentCasinoList.find( '.bonus__comments-item' ).eq( i ).css( 'height', 0 );
+                            parentCasinoList.find( '.bonus__comments-item' ).eq( i ).addClass( 'hidden' );
+
+                        }
+
+                    }
+
+                    return false;
+
+                } );
+
+            },
+            _minimizeCasinoList = function () {
+
+                _casinoList.each( function () {
+
+                    var curElem = $( this ),
+                        casinoListItem = curElem.find( '.bonus__casinos-item' ),
+                        itemNumber = casinoListItem.length;
+
+                    curElem.removeClass( 'inactive' );
+
+                    if ( itemNumber > 3 ){
+
+                        curElem.append( '<a href="#" class="bonus__casinos-show"><span>Show '+ ( itemNumber - 3 ) +' More</span>'+
+                            '<svg viewBox="146 23 12 6"><path d="M7,10l6,6,6-6Z" transform="translate(139 13)"></path></svg>'+
+                            '</a>' );
+
+                        for ( var i = 3; i <= itemNumber; i++ ) {
+
+                            casinoListItem.eq( i ).css( 'height', 0 );
+                            casinoListItem.eq( i ).addClass( 'hidden' );
+
+                        }
+
+                    }
+
+                } );
+
+                var casinoShowMore = _casinoList.find( '.bonus__casinos-show' );
+
+                casinoShowMore.on( 'click', function () {
+
+                    var curElem = $( this ),
+                        parentCasinoList = curElem.parents( '.bonus__casinos' ),
+                        parentItemFrame = curElem.parents( '.bonus__frame' ),
+                        parentItemBody = curElem.parents( '.bonus__body' ),
+                        casinoListItem = parentCasinoList.find( '.hidden' );
+
+                    if ( !curElem.hasClass( 'less' ) ){
+
+                        curElem.find( 'span' ).html( 'Show Less' );
+                        curElem.addClass( 'less' );
+                        casinoListItem.removeClass( 'hidden' );
+
+                        if ( _window < 768 ){
+                            casinoListItem.css( 'height', 70 );
+                        } else {
+                            casinoListItem.css( 'height', 80 );
+                        }
+
+
+                        setTimeout( function () {
+                            parentItemBody.attr( 'data-height', parentItemFrame.outerHeight() )
+                            parentItemBody.css( 'height', parentItemFrame.outerHeight() );
+                        }, 300 )
+
+                    } else {
+
+                        curElem.find( 'span' ).html( 'Show '+ ( parentCasinoList.find( '.bonus__casinos-item' ).length - 3 ) +' More' );
+                        curElem.removeClass( 'less' );
+
+                        for ( var i = 3; i <= parentCasinoList.find( '.bonus__casinos-item' ).length; i++ ) {
+
+                            parentCasinoList.find( '.bonus__casinos-item' ).eq( i ).css( 'height', 0 );
+                            parentCasinoList.find( '.bonus__casinos-item' ).eq( i ).addClass( 'hidden' );
+
+                        }
+
+                        setTimeout( function () {
+                            parentItemBody.attr( 'data-height', parentItemFrame.outerHeight() )
+                            parentItemBody.css( 'height', parentItemFrame.outerHeight() );
+                        }, 300 )
+
+                    }
+
+                    return false;
+
+                } );
+
+            },
+            _initSlider = function() {
+
+                var bonusSlider = _obj.find( '.bonus__slider' ).filter( '.inactive' );
+
+                bonusSlider.each( function () {
+
+                    var curItem = $( this ),
+                        bonusItem = curItem.find( '.bonus__slide' );
+
+                    curItem.removeClass( 'inactive' );
+
+                    if ( bonusItem.length > 1 ){
+
+                        var bonusSwiper = curItem.find( '.bonus__swiper' ),
+                            swiperPagination = $( '<div class="bonus__pagination"></div>' ),
+                            swiperNextButton = $( '<div class="bonus__button-next"><svg viewBox="352 16 7.42 12"><path d="M7.41,8.58,12,13.17l4.59-4.59L18,10l-6,6L6,10Z" transform="translate(343.42 34) rotate(-90)"/></svg></div>' ),
+                            swiperPrevButton = $( '<div class="bonus__button-prev"><svg viewBox="336 16 7.42 12"><path d="M7.41,8.58,12,13.17l4.59-4.59L18,10l-6,6L6,10Z" transform="translate(352 10) rotate(90)"/></svg></div>' ),
+                            bonus;
+
+                        curItem.append( swiperPagination );
+                        curItem.append( swiperNextButton );
+                        curItem.append( swiperPrevButton );
+
+                        bonus = new Swiper ( bonusSwiper, {
+                            autoplay: false,
+                            speed: 500,
+                            effect: 'slide',
+                            slidesPerView: 1,
+                            loop: false,
+                            pagination: swiperPagination,
+                            nextButton: swiperNextButton,
+                            prevButton: swiperPrevButton
+                        } );
+
+                    }
+
+                } );
+
+            },
+            _initTabs = function() {
+
+                _tabsLink.removeClass( 'active' );
+                _tabsContentItem.removeClass( 'active' );
+
+                _tabsLink.eq( 0 ).addClass( 'active' );
+                _tabsContentItem.eq( 0 ).addClass( 'active' );
+
+            },
+            _showForm = function ( form, btn ) {
+
+                var curBtn = btn,
+                    curForm = form;
+
+                curBtn.addClass( 'hide' );
+                curForm.removeClass( 'hide' );
+
+                setTimeout( function () {
+                    curBtn.remove();
+                }, 500 );
+
+            },
+            _showAllInfo = function ( text, btn ) {
+
+                var curBtn = btn,
+                    curTextContent = text;
+
+                curTextContent.addClass( 'visible' );
+
+                curTextContent.attr( 'data-height',curTextContent.outerHeight() );
+                curTextContent.css( 'height', curTextContent.find( 'div' ).outerHeight() );
+
+                curBtn.html( 'Read Less' );
+
+            },
+            _showLessInfo = function ( text, btn ) {
+
+                var curBtn = btn,
+                    curTextContent = text;
+
+                curTextContent.removeClass( 'visible' );
+                curTextContent.css( 'height', curTextContent.attr( 'data-height' ) );
+
+                curBtn.html( 'Read More' );
 
             },
             _construct = function() {
-                _ajaxRequest( _page );
+                _initSlider();
+                _minimizeCommentsList();
+                _minimizeCasinoList();
+                _initTabs();
                 _onEvents();
-                _obj[0].obj = _self;
-            },
-            _ajaxRequest = function(){
 
-                if ( _obj.hasClass( 'all-casinos' ) ){
-                    _url = 'php/all-casinos.php'
-                } else  if ( _obj.hasClass( 'all-games' ) ){
-                    _url = 'php/all-games.php'
+                if ( _obj.find( '.validation-form' ).length ){
+
+                    var curForm = $( this );
+
+                    new FormValidator( curForm );
+
                 }
 
-                _request = $.ajax( {
-                    url: _url,
-                    data: {
-                        page: _page,
-                        filter: $( '#filter' )[0].obj.dataCollection()
-                    },
-                    dataType: 'html',
-                    type: 'GET',
-                    success: function ( data ) {
-
-                        _loadData( data );
-
-                    },
-                    error: function ( XMLHttpRequest ) {
-                        if ( XMLHttpRequest.statusText != "abort" ) {
-                            console.log( 'err' );
-                        }
-                    }
-                } );
-
-            },
-            _loadData = function ( data ) {
-
-                var data = JSON.parse( data ),
-                    content = data.html,
-                    allResult = data.count,
-                    leftPage = data.page;
-
-                _showResults( allResult );
-
-                _noResult.removeClass( 'show' );
-                _allCasinosBody.removeClass( 'hide' );
-
-                if ( content == '' || content == undefined ) {
-                    _noResult.addClass( 'show' );
-                    _allCasinosBody.addClass( 'hide' );
-                } else {
-                    _addNewItems( content );
-                }
-
-                if ( leftPage <= 0 ){
-                    _allBtnMoreWrap.addClass( 'hide' );
-                }
-
-            },
-            _addNewItems = function ( data ) {
-
-                if ( _obj.hasClass( 'all-casinos' ) ){
-                    _allCasinosWrap = _obj.find( '#online-casinos__content-body' );
-                } else  if ( _obj.hasClass( 'all-games' ) ){
-                    _allCasinosWrap = _obj.find( '#games__wrap' );
-                }
-
-                var content = data;
-
-                if ( _page == 0 ){
-                    _allCasinosWrap.html( content );
-                } else {
-                    _allCasinosWrap.append( content );
-                }
-
-                _page = _page + 1;
-
-                var newItem = _allCasinosWrap.find( '.new' );
-
-                newItem.each( function ( i ) {
-
-                    var curItem = $( this );
-
-                    _showNewItems( curItem, i );
-
-                } );
-
-            },
-            _showResults = function ( numser ) {
-
-                var allResult = +numser;
-
-                _filterResult.removeClass( 'active' );
-                _filterResultHead.removeClass( 'null' );
-                _resultframe.removeClass( 'null' );
-
-                if ( allResult > 0 ) {
-                    _filterResult.text( allResult );
-                    _filterResult.addClass( 'active' );
-
-                    _result.text( allResult );
-                } else if ( allResult == 0 ){
-                    _filterResult.text( allResult );
-                    _filterResult.addClass( 'active' );
-                    _filterResultHead.addClass( 'null' );
-
-                    _result.text( allResult );
-                    _resultframe.addClass( 'null' );
-                } else{
-                    _filterResult.removeClass( 'active' );
-                    _filterResultHead.removeClass( 'null' );
-                    _resultframe.removeClass( 'null' );
-                }
-
-            },
-            _showNewItems = function ( item, index ) {
-
-                    var curItem = item;
-
-                    setTimeout( function() {
-                        curItem.removeClass( 'new' );
-                    }, 50 * index );
-
-            },
-            _showNotePopup = function () {
-                _revisionNotePopup.addClass( 'visible' )
-            },
-            _hideNotePopup = function () {
-                _revisionNotePopup.removeClass( 'visible' )
             };
-
-        //public methods
-        _self.reload = function () {
-            _page = 0;
-            _ajaxRequest( _page );
-        };
 
         _construct()
     };
@@ -562,6 +685,194 @@
         _construct()
     };
 
+    var FormValidator = function (obj) {
+
+        //private properties
+        var _obj = obj,
+            _note = _obj.find( '#contact-us__note' ),
+            _inputs = _obj.find( 'input, textarea' ),
+            _fields = _obj.find( '[data-required]' );
+
+        //private methods
+        var _constructor = function () {
+                _onEvents();
+            },
+            _addNotTouchedClass = function () {
+
+                _fields.each( function() {
+
+                    var curItem = $(this);
+
+                    if( curItem.val() === '' ){
+
+                        curItem.addClass( 'not-touched' );
+
+                        _validateField( curItem );
+
+                    }
+
+                } );
+
+            },
+            _onEvents = function () {
+                _fields.on( {
+                    focus: function() {
+
+                        $( this ).removeClass( 'not-touched' );
+
+                    },
+                    focusout: function() {
+
+                        var curItem = $(this);
+
+                        _validateField( curItem );
+
+                    },
+                    keyup: function () {
+
+                        var curItem = $(this);
+
+                        if ( curItem.hasClass( 'not-valid' ) ){
+                            _validateField( curItem );
+                        }
+
+                    }
+                } );
+                _inputs.on( {
+                    focusout: function() {
+
+                        var letterCounter = 0;
+
+                        _inputs.each( function () {
+
+                            var curItem = $(this);
+
+                            if ( curItem.val().length > 0 ){
+                                letterCounter = letterCounter + 1
+                            }
+
+                        } );
+
+                        if ( letterCounter === 0 ) {
+                            _inputs.removeClass( 'not-valid' );
+                            _note.removeClass('visible');
+                        }
+
+                    }
+                } );
+                _obj.on( {
+                    submit: function() {
+
+                        _addNotTouchedClass();
+
+                        if( !(_fields.filter( '.not-valid' ).length === 0) ) {
+
+                            _note.addClass('visible');
+
+                        }
+
+                        if( _fields.hasClass('not-touched') || _fields.hasClass('not-valid') ) {
+
+                            _obj.find('.not-touched:first').focus();
+                            _obj.find('.not-valid:first').focus();
+                            return false;
+
+                        } else {
+
+                            return true;
+
+                        }
+                    }
+                } );
+            },
+            _makeNotValid = function ( field ) {
+                field.addClass( 'not-valid' );
+                field.removeClass( 'valid' );
+            },
+            _makeValid = function ( field ) {
+                field.removeClass( 'not-valid' );
+                field.addClass( 'valid' );
+            },
+            _validateEmail = function ( email ) {
+                var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                return re.test(email);
+            },
+            _validateField = function ( field ) {
+                var type = field.attr( 'type'),
+                    tagName = field[0].tagName;
+
+                if( type === 'email' || type === 'text' ){
+
+                    if( field.val() === '' ){
+                        _makeNotValid( field );
+                        return false;
+                    }
+
+                }
+
+                if( type === 'email' ){
+                    if( !_validateEmail( field.val() ) ){
+                        _makeNotValid( field );
+                        return false;
+                    }
+                }
+
+                if( tagName.toLocaleLowerCase() == 'textarea' ){
+
+                    if( field.val() === '' ){
+                        _makeNotValid( field );
+                        return false;
+                    }
+
+                }
+
+                _makeValid( field );
+
+                if( _fields.filter( '.not-valid' ).length === 0 ) {
+
+                    _note.removeClass('visible');
+
+                }
+
+            };
+
+        //public properties
+
+        //public methods
+
+        _constructor();
+    };
+
+    var Notification = function ( obj ) {
+        var _obj = obj,
+            _btnClose = _obj.find( '.notification__close' );
+
+        var _onEvents = function() {
+
+                _btnClose.on( {
+                    click: function() {
+                        _closePopup();
+                        return false;
+                    }
+                } );
+
+            },
+            _closePopup = function () {
+
+                _obj.addClass( 'hide' );
+
+                setTimeout( function () {
+                    _obj.remove();
+                }, 500 )
+
+            },
+            _construct = function() {
+                _onEvents();
+            };
+
+        _construct()
+    };
+
     var Menu = function( obj ) {
 
         //private properties
@@ -677,6 +988,43 @@
         //public methods
 
         _construct();
+    };
+
+    var NoDemoOpen = function ( obj ) {
+        var _obj = obj,
+            _btnOpen = _obj.find( '#no-demo__show-more' );
+
+        var _onEvents = function() {
+
+                _btnOpen.on( {
+                    click: function() {
+
+                        if ( !_obj.hasClass( 'open' ) ) {
+                            _openPopup();
+                        } else{
+                            _closePopup();
+                        }
+
+                        return false;
+                    }
+                } );
+
+            },
+            _openPopup = function () {
+
+                _obj.addClass( 'open' );
+
+            },
+            _closePopup = function () {
+
+                _obj.removeClass( 'open' );
+
+            },
+            _construct = function() {
+                _onEvents();
+            };
+
+        _construct()
     };
 
     var PageInfoContent = function( obj ) {
@@ -823,6 +1171,244 @@
         //public methods
 
         _construct();
+    };
+
+    var Revision = function ( obj ) {
+        var _self = this,
+            _obj = obj,
+            _page = 0,
+            _filter = $( '#filter' ),
+            _form = _filter.find( '#filter__wrap' ),
+            _filterResultHead = _filter.find( '#filter__result' ),
+            _filterResult = _filterResultHead.find( '#filter__result-find' ),
+            _resultframe = _obj.find( '#revision__result' ),
+            _allCasinosBody = _obj.find( '#revision__body' ),
+            _allBtnMoreWrap = _allCasinosBody.find( '#revision__btn-wrap' ),
+            _result = _resultframe.find( 'b' ),
+            _noResult = _obj.find( '#revision__no-result' ),
+            _reset = _noResult.find( '#revision__reset' ),
+            _btnLoadMore = _obj.find( '#revision__load' ),
+            _revisionNote = _obj.find( '#revision__note' ),
+            _revisionNoteBtn = _revisionNote.find( '#revision__note-btn' ),
+            _revisionNotePopup = _revisionNote.find( '#revision__note-popup' ),
+            _window = $( window ),
+            _url, _allCasinosWrap,
+            _site = $( '#site' ),
+            _request = new XMLHttpRequest();
+
+        var _onEvents = function() {
+
+                _site.on(
+                    'click', function ( e ) {
+
+                        if ( _revisionNotePopup.hasClass( 'visible' )&& $( e.target ).closest( _revisionNotePopup ).length == 0 ){
+                            _hideNotePopup();
+                        }
+
+                    }
+                );
+
+                _btnLoadMore.on( 'click', function () {
+                    _ajaxRequest();
+                    return false;
+                } );
+
+                _reset.on( 'click', function () {
+                    _form[0].reset();
+                    _page = 0;
+                    _ajaxRequest( _page );
+                    return false;
+                } );
+
+                _revisionNoteBtn.on( 'click', function () {
+
+                    if ( !_revisionNotePopup.hasClass( 'visible' ) && _window.outerWidth() < 1200 ) {
+                        _showNotePopup();
+                    } else {
+                        _hideNotePopup();
+                    }
+
+                    return false;
+                } );
+
+            },
+            _construct = function() {
+                _ajaxRequest( _page );
+                _onEvents();
+                _obj[0].obj = _self;
+            },
+            _ajaxRequest = function(){
+
+                if ( _obj.hasClass( 'all-casinos' ) ){
+                    _url = 'php/all-casinos.php'
+                } else  if ( _obj.hasClass( 'all-games' ) ){
+                    _url = 'php/all-games.php'
+                } else  if ( _obj.hasClass( 'daily-bonuses' ) ){
+                    _url = 'php/all-bonus.php'
+                }
+
+                _request = $.ajax( {
+                    url: _url,
+                    data: {
+                        page: _page,
+                        filter: $( '#filter' )[0].obj.dataCollection()
+                    },
+                    dataType: 'html',
+                    type: 'GET',
+                    success: function ( data ) {
+
+                        _loadData( data );
+
+                    },
+                    error: function ( XMLHttpRequest ) {
+                        if ( XMLHttpRequest.statusText != "abort" ) {
+                            console.log( 'err' );
+                        }
+                    }
+                } );
+
+            },
+            _loadData = function ( data ) {
+
+                var data = JSON.parse( data ),
+                    content = data.html,
+                    allResult = data.count,
+                    leftPage = data.page;
+
+                _showResults( allResult );
+
+                _noResult.removeClass( 'show' );
+                _allCasinosBody.removeClass( 'hide' );
+
+                if ( content == '' || content == undefined ) {
+                    _noResult.addClass( 'show' );
+                    _allCasinosBody.addClass( 'hide' );
+                } else {
+                    _addNewItems( content );
+                }
+
+                if ( leftPage <= 0 ){
+                    _allBtnMoreWrap.addClass( 'hide' );
+                }
+
+            },
+            _addNewItems = function ( data ) {
+
+                if ( _obj.hasClass( 'all-casinos' ) ){
+                    _allCasinosWrap = _obj.find( '#online-casinos__content-body' );
+                } else  if ( _obj.hasClass( 'all-games' ) ){
+                    _allCasinosWrap = _obj.find( '#games__wrap' );
+                } else  if ( _obj.hasClass( 'daily-bonuses' ) ){
+                    _allCasinosWrap = _obj.find( '#bonus' );
+                }
+
+                var content = data;
+
+                if ( _page == 0 ){
+                    _allCasinosWrap.html( content );
+                } else {
+                    _allCasinosWrap.append( content );
+                }
+
+                _page = _page + 1;
+
+                var newItem = _allCasinosWrap.find( '.new' );
+
+                newItem.each( function ( i ) {
+
+                    var curItem = $( this );
+
+                    _showNewItems( curItem, i );
+
+                } );
+
+            },
+            _showResults = function ( numser ) {
+
+                var allResult = +numser;
+
+                _filterResult.removeClass( 'active' );
+                _filterResultHead.removeClass( 'null' );
+                _resultframe.removeClass( 'null' );
+
+                if ( allResult > 0 ) {
+                    _filterResult.text( allResult );
+                    _filterResult.addClass( 'active' );
+
+                    _result.text( allResult );
+                } else if ( allResult == 0 ){
+                    _filterResult.text( allResult );
+                    _filterResult.addClass( 'active' );
+                    _filterResultHead.addClass( 'null' );
+
+                    _result.text( allResult );
+                    _resultframe.addClass( 'null' );
+                } else{
+                    _filterResult.removeClass( 'active' );
+                    _filterResultHead.removeClass( 'null' );
+                    _resultframe.removeClass( 'null' );
+                }
+
+            },
+            _showNewItems = function ( item, index ) {
+
+                var curItem = item;
+
+                if ( curItem.hasClass( 'bonus__item' ) ){
+                    new BonusItem ( curItem );
+                }
+
+                setTimeout( function() {
+
+                    curItem.removeClass( 'new' );
+                }, 50 * index );
+
+            },
+            _showNotePopup = function () {
+                _revisionNotePopup.addClass( 'visible' )
+            },
+            _hideNotePopup = function () {
+                _revisionNotePopup.removeClass( 'visible' )
+            };
+
+        //public methods
+        _self.reload = function () {
+            _page = 0;
+            _ajaxRequest( _page );
+        };
+
+        _construct()
+    };
+
+    var RevisionNote = function ( obj ) {
+        var _obj = obj,
+            _chooser = _obj.find( 'input' ),
+            _label = _obj.find( '#revision__note-label' );
+
+        var _onEvents = function() {
+
+                _chooser.on( 'change', function() {
+
+                    _addContent();
+
+                    if ( _chooser.is( ':checked' ) ){
+                        _label.text( 'Hide games without demo play' );
+                    } else {
+                        _label.text( 'Add games without demo play' );
+                    }
+
+
+                } );
+
+            },
+            _addContent = function () {
+                $( '#filter' )[0].obj.reloadFrame();
+            },
+            _construct = function() {
+                _onEvents();
+            };
+
+        _construct()
     };
 
     var SearchBonus = function( obj ) {
@@ -1213,37 +1799,84 @@
 
         //private properties
         var _obj = obj,
-            _subMenuSwiper = _obj.find( '#single-game__swiper' ),
+            _singleGameSwiper = _obj.find( '#single-game__swiper' ),
+            _noDemoSwiper = _obj.find( '#no-demo__swiper' ),
+            _subMenuSwiper = _obj.find( '#sub-menu__swiper' ),
             _subMenuPrev = _obj.find( '#single-game__swiper-prev' ),
             _subMenuNext = _obj.find( '#single-game__swiper-next' ),
-            _subMenu,
+            _subMenuIten = _subMenuSwiper.find( '.sub-menu__item' ),
+            _singleGame, _noDemo, _subMenu,
+            _activeSingleGame = false,
+            _activeNoDemo = false,
+            _activeSubMenu = false,
             _window = $( window );
 
         //private methods
         var _initSlider = function() {
 
-                _subMenu = new Swiper ( _subMenuSwiper, {
-                    autoplay: false,
-                    speed: 500,
-                    effect: 'slide',
-                    slidesPerView: 2,
-                    nextButton: _subMenuPrev,
-                    prevButton: _subMenuNext,
-                    onSlideChangeStart: function() {
-                        _obj.removeClass( 'start' );
-                        _obj.removeClass( 'end' );
-                    },
-                    onReachBeginning: function() {
-                        setTimeout( function () {
-                            _obj.addClass('start');
-                        }, 300 )
-                    },
-                    onReachEnd: function() {
-                        setTimeout( function () {
-                            _obj.addClass('end');
-                        }, 300 )
-                    }
-                } );
+                if ( _window.outerWidth() < 768  ){
+                    _activeSingleGame = true;
+                    _singleGame = new Swiper ( _singleGameSwiper, {
+                        autoplay: false,
+                        speed: 500,
+                        effect: 'slide',
+                        slidesPerView: 2,
+                        nextButton: _subMenuPrev,
+                        prevButton: _subMenuNext,
+                        onSlideChangeStart: function() {
+                            _obj.removeClass( 'start' );
+                            _obj.removeClass( 'end' );
+                        },
+                        onReachBeginning: function() {
+                            setTimeout( function () {
+                                _obj.addClass('start');
+                            }, 300 )
+                        },
+                        onReachEnd: function() {
+                            setTimeout( function () {
+                                _obj.addClass('end');
+                            }, 300 )
+                        }
+                    } );
+                }
+
+                if ( _window.outerWidth() < 768  ){
+                    _activeSubMenu = true;
+                    _subMenuSwiper = new Swiper ( _subMenuSwiper, {
+                        autoplay: false,
+                        speed: 500,
+                        effect: 'slide',
+                        slidesPerView: 'auto',
+                        onInit: function () {
+                            _subMenuSwiper[0].swiper.slideTo( _subMenuIten.filter( '.active' ).index() , 200, false );
+                        },
+                        onSlideChangeStart: function() {
+                            _obj.removeClass( 'start' );
+                            _obj.removeClass( 'end' );
+                        },
+                        onReachBeginning: function() {
+                            setTimeout( function () {
+                                _obj.addClass('start');
+                            }, 300 )
+                        },
+                        onReachEnd: function() {
+                            setTimeout( function () {
+                                _obj.addClass('end');
+                            }, 300 )
+                        }
+                    } );
+                }
+
+
+                if ( _window.outerWidth() < 1200  ){
+                    _activeNoDemo = true;
+                    _noDemo = new Swiper ( _noDemoSwiper, {
+                        autoplay: false,
+                        speed: 500,
+                        effect: 'slide',
+                        slidesPerView: 'auto'
+                    } );
+                }
 
             },
             _onEvent = function() {
@@ -1251,10 +1884,13 @@
                 _window.on( {
                     'resize': function() {
 
-                        if ( _window.outerWidth() > 768  ){
+                        if ( _window.outerWidth() < 1200  ){
                             _destroySlider();
-                        } else {
+                        }
+
+                        if ( _window.outerWidth() > 768  ){
                             _initSlider();
+
                         }
 
                     }
@@ -1263,16 +1899,25 @@
             },
             _destroySlider = function() {
 
-                _subMenu[ 0 ].swiper.destroy( false, true );
+                if ( _window.outerWidth() >= 768 && _activeSubMenu  ) {
+                    _activeSubMenu = false;
+                    _subMenu[ 0 ].swiper.destroy( false, true );
+                }
+
+                if ( _window.outerWidth() >= 768 && _activeSubMenu  ) {
+                    _activeSubMenu = false;
+                    _subMenuSwiper[ 0 ].swiper.destroy( false, true );
+                }
+
+                if ( _window.outerWidth() >= 1200 && _activeNoDemo  ) {
+                    _activeNoDemo = false;
+                    _noDemo[0].swiper.destroy(false, true);
+                }
 
             },
             _init = function() {
                 _onEvent();
-
-                if ( _window.outerWidth() < 768  ){
-                    _initSlider ();
-                }
-
+                _initSlider ();
             };
 
         //public properties
@@ -1342,37 +1987,6 @@
 
                 _sort.removeClass( 'show' );
 
-            },
-            _construct = function() {
-                _onEvents();
-            };
-
-        _construct()
-    };
-
-    var RevisionNote = function ( obj ) {
-        var _obj = obj,
-            _chooser = _obj.find( 'input' ),
-            _label = _obj.find( '#revision__note-label' );
-
-        var _onEvents = function() {
-
-                _chooser.on( 'change', function() {
-
-                    _addContent();
-
-                    if ( _chooser.is( ':checked' ) ){
-                        _label.text( 'Hide games without demo play' );
-                    } else {
-                        _label.text( 'Add games without demo play' );
-                    }
-
-
-                } );
-
-            },
-            _addContent = function () {
-                $( '#filter' )[0].obj.reloadFrame();
             },
             _construct = function() {
                 _onEvents();

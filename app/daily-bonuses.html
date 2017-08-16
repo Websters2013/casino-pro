@@ -9,6 +9,8 @@
 
     <title>Title</title>
 
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <link rel="stylesheet" href="css/perfect-scrollbar.min.css">
     <link rel="stylesheet" href="css/styles.css">
 
 </head>
@@ -18,95 +20,117 @@
 
     <header id="site__header">
 
-        <div id="mobile-menu-btn">
-            <svg viewBox="16 16 22.5 14"><path class="a" d="M1733,343h21.5a1,1,0,0,1,0,2H1733Zm0,4h18a1,1,0,0,1,0,2h-18Zm0,4h14.5a1,1,0,0,1,0,2H1733Zm0,4h11a1,1,0,0,1,0,2h-11Z" transform="translate(-1717 -327)"/></svg>
+        <div id="site__header-layout">
 
-            <svg viewBox="208 18 14 14"><path class="a" d="M19,6.41,17.59,5,12,10.59,6.41,5,5,6.41,10.59,12,5,17.59,6.41,19,12,13.41,17.59,19,19,17.59,13.41,12Z" transform="translate(203 13)"/></svg>
-        </div>
+            <div id="mobile-menu-btn">
+                <svg viewBox="16 16 22.5 14"><path class="a" d="M1733,343h21.5a1,1,0,0,1,0,2H1733Zm0,4h18a1,1,0,0,1,0,2h-18Zm0,4h14.5a1,1,0,0,1,0,2H1733Zm0,4h11a1,1,0,0,1,0,2h-11Z" transform="translate(-1717 -327)"/></svg>
 
-        <a href="/" id="logo">
-            <img src="img/logo.svg" alt="img"/>
-        </a>
+                <svg viewBox="208 18 14 14"><path class="a" d="M19,6.41,17.59,5,12,10.59,6.41,5,5,6.41,10.59,12,5,17.59,6.41,19,12,13.41,17.59,19,19,17.59,13.41,12Z" transform="translate(203 13)"/></svg>
+            </div>
 
-        <nav id="menu">
-            <ul>
-                <li><a href="#" class="menu__item">Homepage</a></li>
-                <li><a href="#" class="menu__item">Daily Bonuses</a></li>
-                <li><a href="#" class="menu__item active">All Casinos</a></li>
-                <li><a href="#" class="menu__item">Best Casinos</a></li>
-                <li><a href="#" class="menu__item">New</a></li>
-                <li><a href="#" class="menu__item">Mobile</a></li>
-                <li><a href="#" class="menu__item">Live</a></li>
-                <li>
-                    <a href="#" class="menu__item menu__open-sub-menu">Software</a>
-
-                    <div class="menu__sub-menu">
-                        <ul>
-                            <li><a href="#" class="menu__item">MicroGaming</a></li>
-                            <li><a href="#" class="menu__item">Cryptologic</a></li>
-                            <li><a href="#" class="menu__item">BetOnSoft</a></li>
-                            <li><a href="#" class="menu__item">Play n Go</a></li>
-                            <li><a href="#" class="menu__item">Top Game</a></li>
-                            <li><a href="#" class="menu__item">NuWorks</a></li>
-                            <li><a href="#" class="menu__item">Playtech</a></li>
-                            <li><a href="#" class="menu__item">Betsoft</a></li>
-                            <li><a href="#" class="menu__item active">NetEnt</a></li>
-                            <li><a href="#" class="menu__item">Rival</a></li>
-                            <li><a href="#" class="menu__item">RTG</a></li>
-                            <li><a href="#" class="menu__item">IGT</a></li>
-                        </ul>
-                    </div>
-
-                </li>
-                <li>
-                    <a href="#" class="menu__item menu__open-sub-menu">Banking</a>
-
-                    <div class="menu__sub-menu">
-                        <ul>
-                            <li><a href="#" class="menu__item">MicroGaming</a></li>
-                            <li><a href="#" class="menu__item">Cryptologic</a></li>
-                            <li><a href="#" class="menu__item">BetOnSoft</a></li>
-                            <li><a href="#" class="menu__item">Play n Go</a></li>
-                            <li><a href="#" class="menu__item">Top Game</a></li>
-                            <li><a href="#" class="menu__item">NuWorks</a></li>
-                            <li><a href="#" class="menu__item">Playtech</a></li>
-                            <li><a href="#" class="menu__item">Betsoft</a></li>
-                            <li><a href="#" class="menu__item">NetEnt</a></li>
-                            <li><a href="#" class="menu__item">Rival</a></li>
-                            <li><a href="#" class="menu__item">RTG</a></li>
-                            <li><a href="#" class="menu__item">IGT</a></li>
-                        </ul>
-                    </div>
-
-                </li>
-                <li><a href="#" class="menu__item">Games</a></li>
-            </ul>
-        </nav>
-
-        <div id="search">
-
-            <a href="#" id="search__btn-open">
-                <svg viewBox="47.5 15.5 14 14"><path class="a" d="M9-10.214a3.5,3.5,0,0,1-3.5,3.5,3.5,3.5,0,0,1-3.5-3.5,3.5,3.5,0,0,1,3.5-3.5A3.5,3.5,0,0,1,9-10.214Zm4,6.5a1.006,1.006,0,0,0-.289-.7L10.031-7.1A5.487,5.487,0,0,0,11-10.214a5.5,5.5,0,0,0-5.5-5.5,5.5,5.5,0,0,0-5.5,5.5,5.5,5.5,0,0,0,5.5,5.5,5.487,5.487,0,0,0,3.117-.969L11.3-3.011a.98.98,0,0,0,.7.3A1.007,1.007,0,0,0,13-3.714Z" transform="translate(48 31.714)"/></svg>
+            <a href="/" id="logo">
+                <img src="img/logo.svg" alt="img"/>
             </a>
 
-            <form id="search__form">
+            <nav id="menu">
+                <ul>
+                    <li><a href="#" class="menu__item">Homepage</a></li>
+                    <li><a href="#" class="menu__item">Daily Bonuses</a></li>
+                    <li><a href="#" class="menu__item active">All Casinos</a></li>
+                    <li><a href="#" class="menu__item">Best Casinos</a></li>
+                    <li><a href="#" class="menu__item">New</a></li>
+                    <li><a href="#" class="menu__item">Mobile</a></li>
+                    <li><a href="#" class="menu__item">Live</a></li>
+                    <li>
+                        <a href="#" class="menu__item menu__open-sub-menu">Software</a>
 
-                <button type="submit" id="search__btn-cancel">
-                    <svg viewBox="368 16 14 14"><path class="a" d="M18.16,10.2v1.768H7.554l4.861,4.861L11.16,18.08l-7-7,7-7,1.255,1.255L7.554,10.2Z" transform="translate(363.84 11.92)"/></svg>
-                </button>
+                        <div class="menu__sub-menu">
+                            <ul>
+                                <li><a href="#" class="menu__item">MicroGaming</a></li>
+                                <li><a href="#" class="menu__item">Cryptologic</a></li>
+                                <li><a href="#" class="menu__item">BetOnSoft</a></li>
+                                <li><a href="#" class="menu__item">Play n Go</a></li>
+                                <li><a href="#" class="menu__item">Top Game</a></li>
+                                <li><a href="#" class="menu__item">NuWorks</a></li>
+                                <li><a href="#" class="menu__item">Playtech</a></li>
+                                <li><a href="#" class="menu__item">Betsoft</a></li>
+                                <li><a href="#" class="menu__item active">NetEnt</a></li>
+                                <li><a href="#" class="menu__item">Rival</a></li>
+                                <li><a href="#" class="menu__item">RTG</a></li>
+                                <li><a href="#" class="menu__item">IGT</a></li>
+                            </ul>
+                        </div>
 
-                <input type="input" placeholder="Search"/>
-                <button type="submit" id="search__btn-find">
-                    <svg viewBox="156 113 17.49 17.49">
-                        <path d="M15.5,14h-.79l-.28-.27a6.51,6.51,0,1,0-.7.7l.27.28v.79l5,4.99L20.49,19Zm-6,0A4.5,4.5,0,1,1,14,9.5,4.494,4.494,0,0,1,9.5,14Z" transform="translate(153 110)"/>
-                    </svg>
-                </button>
+                    </li>
+                    <li>
+                        <a href="#" class="menu__item menu__open-sub-menu">Banking</a>
 
-                <button type="submit" id="search__btn-update">
-                    <svg viewBox="208 18 14 14"><path class="a" d="M19,6.41,17.59,5,12,10.59,6.41,5,5,6.41,10.59,12,5,17.59,6.41,19,12,13.41,17.59,19,19,17.59,13.41,12Z" transform="translate(203 13)"/></svg>
-                </button>
+                        <div class="menu__sub-menu">
+                            <ul>
+                                <li><a href="#" class="menu__item">MicroGaming</a></li>
+                                <li><a href="#" class="menu__item">Cryptologic</a></li>
+                                <li><a href="#" class="menu__item">BetOnSoft</a></li>
+                                <li><a href="#" class="menu__item">Play n Go</a></li>
+                                <li><a href="#" class="menu__item">Top Game</a></li>
+                                <li><a href="#" class="menu__item">NuWorks</a></li>
+                                <li><a href="#" class="menu__item">Playtech</a></li>
+                                <li><a href="#" class="menu__item">Betsoft</a></li>
+                                <li><a href="#" class="menu__item">NetEnt</a></li>
+                                <li><a href="#" class="menu__item">Rival</a></li>
+                                <li><a href="#" class="menu__item">RTG</a></li>
+                                <li><a href="#" class="menu__item">IGT</a></li>
+                            </ul>
+                        </div>
 
-            </form>
+                    </li>
+                    <li><a href="#" class="menu__item">Games</a></li>
+                </ul>
+            </nav>
+
+            <div id="search">
+
+                <a href="#" id="search__btn-open">
+                    <svg viewBox="47.5 15.5 14 14"><path class="a" d="M9-10.214a3.5,3.5,0,0,1-3.5,3.5,3.5,3.5,0,0,1-3.5-3.5,3.5,3.5,0,0,1,3.5-3.5A3.5,3.5,0,0,1,9-10.214Zm4,6.5a1.006,1.006,0,0,0-.289-.7L10.031-7.1A5.487,5.487,0,0,0,11-10.214a5.5,5.5,0,0,0-5.5-5.5,5.5,5.5,0,0,0-5.5,5.5,5.5,5.5,0,0,0,5.5,5.5,5.487,5.487,0,0,0,3.117-.969L11.3-3.011a.98.98,0,0,0,.7.3A1.007,1.007,0,0,0,13-3.714Z" transform="translate(48 31.714)"/></svg>
+                </a>
+
+                <form id="search__form">
+
+                    <button type="submit" id="search__btn-cancel">
+                        <svg viewBox="368 16 14 14"><path class="a" d="M18.16,10.2v1.768H7.554l4.861,4.861L11.16,18.08l-7-7,7-7,1.255,1.255L7.554,10.2Z" transform="translate(363.84 11.92)"/></svg>
+                    </button>
+
+                    <input type="input" placeholder="Search"/>
+                    <button type="submit" id="search__btn-find">
+                        <svg viewBox="156 113 17.49 17.49">
+                            <path d="M15.5,14h-.79l-.28-.27a6.51,6.51,0,1,0-.7.7l.27.28v.79l5,4.99L20.49,19Zm-6,0A4.5,4.5,0,1,1,14,9.5,4.494,4.494,0,0,1,9.5,14Z" transform="translate(153 110)"/>
+                        </svg>
+                    </button>
+
+                    <button type="submit" id="search__btn-update">
+                        <svg viewBox="208 18 14 14"><path class="a" d="M19,6.41,17.59,5,12,10.59,6.41,5,5,6.41,10.59,12,5,17.59,6.41,19,12,13.41,17.59,19,19,17.59,13.41,12Z" transform="translate(203 13)"/></svg>
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        <div id="sub-menu">
+
+            <div id="sub-menu__swiper" class="swiper-container">
+
+                <div class="swiper-wrapper">
+
+                    <a href="#" class="sub-menu__item active swiper-slide">ALL BONUSES</a>
+                    <a href="#" class="sub-menu__item swiper-slide">NO DEPOSIT BONUS</a>
+                    <a href="#" class="sub-menu__item swiper-slide">FREE SPINS</a>
+                    <a href="#" class="sub-menu__item swiper-slide">TOURNAMENT</a>
+                    <a href="#" class="sub-menu__item swiper-slide">MATCH BONUS</a>
+
+                </div>
+
+            </div>
 
         </div>
 
@@ -114,44 +138,15 @@
 
     <div id="site__content">
 
-        <div id="page-info">
+        <div id="daily-bonuses__intro">
 
             <div id="main-title">
-                <span>ALL CASINOS</span>
-            </div>
-
-            <div id="page-info__statistics">
-
-                <div>
-                    <span class="casino-count casino-count_all">1289</span>
-                    <div>All</div>
-                </div>
-
-                <div>
-                    <span class="casino-count casino-count_new">292</span>
-                    <div>NEW</div>
-                </div>
-
-                <div>
-                    <span class="casino-count casino-count_best">85</span>
-                    <div>Best</div>
-                </div>
-
-                <div>
-                    <span class="casino-count casino-count_live">185</span>
-                    <div>live</div>
-                </div>
-
-                <div>
-                    <span class="casino-count casino-count_blacklist">15</span>
-                    <div>BLACKLISTED</div>
-                </div>
-
+                <span>DAILY BONUSES</span>
             </div>
 
             <div id="intro__content">
 
-                <h1>All Casinos</h1>
+                <h1>Daily Bonuses</h1>
 
                 <div id="intro__text">
                     <div>
@@ -168,32 +163,35 @@
 
             </div>
 
-            <div id="page-info__anchor">
+            <div id="search-bonus">
 
-                <h3 id="page-info__anchor-title">LEARN MORE ABOUT CASINOS</h3>
+                <h3 id="search-bonus__title">SEARCH BONUS BY CASINO</h3>
 
-                <a href="#online-casino-reviews" class="page-info__anchor-item anchor">
-                    Online Casino Reviews
-                    <svg viewBox="80 16 14 14"><path class="a" d="M18.16,10.2v1.768H7.554l4.861,4.861L11.16,18.08l-7-7,7-7,1.255,1.255L7.554,10.2Z" transform="translate(75.92 34.16) rotate(-90)"/></svg>
-                </a>
-                <a href="#best-online-casinos" class="page-info__anchor-item anchor">
-                    Best Online Casinos
-                    <svg viewBox="80 16 14 14"><path class="a" d="M18.16,10.2v1.768H7.554l4.861,4.861L11.16,18.08l-7-7,7-7,1.255,1.255L7.554,10.2Z" transform="translate(75.92 34.16) rotate(-90)"/></svg>
-                </a>
-                <a href="#free-Bonuses" class="page-info__anchor-item anchor">
-                    Free Bonuses
-                    <svg viewBox="80 16 14 14"><path class="a" d="M18.16,10.2v1.768H7.554l4.861,4.861L11.16,18.08l-7-7,7-7,1.255,1.255L7.554,10.2Z" transform="translate(75.92 34.16) rotate(-90)"/></svg>
-                </a>
-                <a href="#how-to-choose-a-software" class="page-info__anchor-item anchor">
-                    How to choose a software
-                    <svg viewBox="80 16 14 14"><path class="a" d="M18.16,10.2v1.768H7.554l4.861,4.861L11.16,18.08l-7-7,7-7,1.255,1.255L7.554,10.2Z" transform="translate(75.92 34.16) rotate(-90)"/></svg>
-                </a>
+                <form id="search-bonus__form">
+                    <input type="text" placeholder="Search bonus by casino" />
+                    <button type="submit" id="search-bonus__btn-find">
+                        <svg viewBox="156 113 17.49 17.49">
+                            <path d="M15.5,14h-.79l-.28-.27a6.51,6.51,0,1,0-.7.7l.27.28v.79l5,4.99L20.49,19Zm-6,0A4.5,4.5,0,1,1,14,9.5,4.494,4.494,0,0,1,9.5,14Z" transform="translate(153 110)"/>
+                        </svg>
+                    </button>
+                    <button type="submit" id="search-bonus__search-cancel">
+                        <svg viewBox="208 18 14 14"><path class="a" d="M19,6.41,17.59,5,12,10.59,6.41,5,5,6.41,10.59,12,5,17.59,6.41,19,12,13.41,17.59,19,19,17.59,13.41,12Z" transform="translate(203 13)"></path></svg>
+                    </button>
+                </form>
+
+                <div id="search-bonus__no-results">No results found.</div>
+
+                <div id="search-bonus__result"></div>
+
+                <div id="search-bonus__preload">
+                    <div id="search-bonus__preload-element"></div>
+                </div>
 
             </div>
 
         </div>
 
-        <div id="all-casinos">
+        <div id="revision" class="daily-bonuses">
 
             <aside id="filter">
 
@@ -680,17 +678,25 @@
 
             </aside>
 
-            <div id="all-casinos__wrap">
+            <div id="revision__wrap">
 
-                <div id="all-casinos__head">
+                <div id="revision__head">
 
-                    <h2 id="all-casinos__title">
-                        All South Africa  Online Casinos
+                    <h2 id="revision__title">
+                        All South Africa  Daily Bonuses
                     </h2>
 
-                    <span id="all-casinos__result"><b></b> results</span>
+                    <div id="revision__sub-head">
 
-                    <div id="all-casinos__head-sort">
+                        <span id="revision__result"><b></b> Results</span>
+
+                        <span id="revision__note">
+                            3 new today
+                        </span>
+
+                    </div>
+
+                    <div id="revision__head-sort">
 
                         <a href="#" id="filter-mobile-btn">
                             <svg viewBox="112 16 18 12"><path d="M6,13H18V11H6M3,6V8H21V6M10,18h4V16H10Z" transform="translate(109 10)"/></svg>
@@ -716,149 +722,20 @@
 
                 </div>
 
-                <div id="all-casinos__body">
+                <div id="revision__body">
 
                     <div id="bonus">
 
-                        <div class="bonus__item">
 
-                            <div class="bonus__header">
-
-                                <h2>15 - 100 Free Spins at Casino Extra & Lucky31 Casino</h2>
-
-                                <div class="bonus__header-info">
-
-                                    <div class="bonus__country">
-                                        <img src="img/flag-001.jpg" alt="flag"/>
-
-                                        <span class="bonus__status">
-                                        <svg viewBox="80 76 17.6 13.4"><path d="M9,16.2,4.8,12,3.4,13.4,9,19,21,7,19.6,5.6Z" transform="translate(76.6 70.4)"/></svg>
-                                    </span>
-
-                                    </div>
-
-                                    <time class="bonus__count" datetime="T0:2:0">
-                                        <svg viewBox="118 111 18 20"><path d="M9,11H7v2H9Zm4,0H11v2h2Zm4,0H15v2h2Zm2-7H18V2H16V4H8V2H6V4H5A1.991,1.991,0,0,0,3.01,6L3,20a2,2,0,0,0,2,2H19a2.006,2.006,0,0,0,2-2V6A2.006,2.006,0,0,0,19,4Zm0,16H5V9H19Z" transform="translate(115 109)"/></svg>
-                                        2 Minutes Ago
-                                    </time>
-
-                                    <span class="bonus__expires">Expires in 360 days</span>
-
-                                </div>
-
-                            </div>
-
-                            <div class="bonus__body">
-
-                                <div class="bonus__wrap">
-
-                                    <div class="bonus__frame">
-
-                                        <div class="bonus__code">
-                                            MARSPEL28TBFCL
-                                        </div>
-
-                                        <div class="bonus__marks">
-
-                                            <a href="#">
-
-                    <span class="bonus__marks-icons">
-                                        <svg viewBox="0 0 24 24"><path d="M14,20H10V11L6.5,14.5L4.08,12.08L12,4.16L19.92,12.08L17.5,14.5L14,11V20Z" /></svg>
-                                    </span>
-
-                                                <span class="bonus__marks-num">121</span>
-                                            </a>
-
-                                            <a href="#">
-
-                                    <span class="bonus__marks-icons">
-                                        <svg viewBox="0 0 24 24"><path d="M10,4H14V13L17.5,9.5L19.92,11.92L12,19.84L4.08,11.92L6.5,9.5L10,13V4Z" /></svg>
-                                    </span>
-
-                                                <span class="bonus__marks-num">16</span>
-
-                                            </a>
-
-                                        </div>
-
-                                        <button class="bonus__comments-add popup__open" data-type="comments" data-link="001">
-                <span>
-                    <svg viewBox="0 0 24 24"><path d="M12,23A1,1 0 0,1 11,22V19H7A2,2 0 0,1 5,17V7C5,5.89 5.9,5 7,5H21A2,2 0 0,1 23,7V17A2,2 0 0,1 21,19H16.9L13.2,22.71C13,22.9 12.75,23 12.5,23V23H12M13,17V20.08L16.08,17H21V7H7V17H13M3,15H1V3A2,2 0 0,1 3,1H19V3H3V15Z"></path></svg>
-                    Be the first to comment
-                </span>
-                                        </button>
-
-                                        <div class="bonus__casinos new">
-
-                                            <div class="bonus__casinos-item">
-
-                                                <button class="bonus__casinos-img popup__open" data-type="bonus" data-link="001">
-                                                    <img src="pic/img-002.jpg" alt="img"/>
-                                                </button>
-
-                                                <button class="btn btn_1"><span>visit</span></button>
-
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-
-                                    <div class="bonus__content">
-
-                                        <div class="bonus__characteristic">
-
-                                            <dl>
-                                                <dt>Wagering</dt>
-                                                <dd>70 x B</dd>
-                                            </dl>
-
-                                            <dl>
-                                                <dt>Max cash out</dt>
-                                                <dd>$/€/£50</dd>
-                                            </dl>
-
-                                            <dl>
-                                                <dt>Min deposit</dt>
-                                                <dd>$10</dd>
-                                            </dl>
-
-                                            <dl>
-                                                <dt>Availability</dt>
-                                                <dd>All players</dd>
-                                            </dl>
-
-                                        </div>
-
-                                        <p>The free spins can be played on Warlords Crystals of Power</p>
-                                        <p>Bonus is valid for players from: Australia, Austria, Finland, Germany, New Zealand, Norway, Sweden, Switzerland</p>
-                                        <p>Several free spins bonuses in a row are prohibited, as well as several multiple accounts. Hence, if your recent transaction included a free bonus, you must make a deposit before using this free spins offer.</p>
-                                        <p>Best of luck!</p>
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <a href="#" class="bonus__item-minimize">
-                                <svg viewBox="164 79 12 7.41"><path d="M7.41,7.84,12,12.42l4.59-4.58L18,9.25l-6,6-6-6Z" transform="translate(158 71.16)"/></svg>
-                            </a>
-
-                        </div>
-
-                    </div>
-
-                    <div id="all-casinos__btn-wrap">
-                        <a href="#" id="all-casinos__load" class="btn btn_3">LOAD 50 MORE</a>
                     </div>
 
                 </div>
 
-                <div id="all-casinos__no-result">
+                <div id="revision__no-result">
 
                     <div>Sorry, there are no results for your filtering.</div>
 
-                    <div id="all-casinos__reset">
+                    <div id="revision__reset">
                         <svg viewBox="144.07 48 15.93 18.93"><path d="M16.89,15.5l1.42,1.39A7.906,7.906,0,0,0,19.93,13H17.91a6.084,6.084,0,0,1-1.02,2.5M13,17.9v2.02a7.924,7.924,0,0,0,3.9-1.61l-1.44-1.44A5.786,5.786,0,0,1,13,17.9M19.93,11a7.906,7.906,0,0,0-1.62-3.89L16.89,8.53A5.806,5.806,0,0,1,17.91,11M15.55,5.55,11,1V4.07a7.992,7.992,0,0,0,0,15.86V17.91A5.993,5.993,0,0,1,11,6.09V10Z" transform="translate(140.07 47)"/></svg>
                         Reset filters to start again
                     </div>
@@ -866,60 +743,6 @@
                 </div>
 
             </div>
-
-        </div>
-
-        <div id="lear-more">
-
-            <h2>Learn More About Casinos</h2>
-
-            <article class="lear-more__article" id="online-casino-reviews">
-
-                <h3>Online Casino Reviews</h3>
-
-                <div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                    <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-                    <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat.</p>
-                </div>
-
-            </article>
-
-            <article class="lear-more__article" id="best-online-casinos">
-
-                <h3>Best Online Casinos</h3>
-
-                <div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                    <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-                    <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat.</p>
-                </div>
-
-            </article>
-
-            <article class="lear-more__article" id="free-Bonuses">
-
-                <h3>Free Bonuses</h3>
-
-                <div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                    <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-                    <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat.</p>
-                </div>
-
-            </article>
-
-            <article class="lear-more__article" id="how-to-choose-a-software">
-
-                <h3>How to choose a software</h3>
-
-                <div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                    <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-                    <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat.</p>
-                </div>
-
-            </article>
 
         </div>
 
@@ -977,6 +800,8 @@
 </div>
 
 <script src="js/vendors/jquery-3.2.1.min.js"></script>
+<script src="js/vendors/swiper.jquery.min.js"></script>
+<script src="js/vendors/perfect-scrollbar.jquery.min.js"></script>
 <script src="js/index.min.js"></script>
 
 </body>

@@ -351,6 +351,13 @@
     &__btn-open{
       width: 32px;
       height: 32px;
+      -webkit-transition: background-color .3s ease;
+      transition: background-color .3s ease;
+
+      &:hover{
+        background-color: #FFB612;
+      }
+
     }
 
     &__btn-cancel{
