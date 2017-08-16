@@ -61,6 +61,10 @@
             new Revision( $( '#revision' ) );
         };
 
+        if ( $( '.bonus__item' ).length == 1 ){
+            new BonusItem( $( '.bonus__item' ) );
+        };
+
         $.each( $('.anchor'), function () {
 
             new Anchor( $(this) );
@@ -85,7 +89,7 @@
                     click: function() {
 
                         _body.animate( {
-                            scrollTop: $( $.attr(this, 'href') ).offset().top
+                            scrollTop: $( $.attr(this, 'href') ).offset().top - 50
                         }, 600);
 
                         return false;
@@ -112,23 +116,42 @@
             _commentWrite = _obj.find( '.bonus__comments-write' ),
             _casinosInfo = _obj.find( '.bonus__casinos-img' ),
             _casinosAboutPopup = _obj.find( '.bonus__casinos-popup' ),
+            _stickyHead = _obj.find( '.bonus__sticky-head' ),
+            _stickyHeadTop = _stickyHead.offset().top,
+            _separateComment = $( '#comments' ),
+            _separateCommentPosition = _separateComment.offset().top,
             _window = $( window ),
             _site = $( '#site' );
 
         var _onEvents = function() {
 
-                _site.on(
-                    'click', function ( e ) {
+                _window.on( 'scroll', function () {
+
+                    if ( _window.outerWidth() < 768 && _window.scrollTop() >= _stickyHeadTop ){
+                        _stickyHead.find( 'div' ).addClass( 'sticky' );
+                    } else{
+                        _stickyHead.find( 'div' ).removeClass( 'sticky' );
+                    }
+
+                    if ( _window.outerWidth() < 768 && _window.scrollTop() >= _separateCommentPosition - 100 ) {
+                        _stickyHead.find( 'a[href="#info"]' ).removeClass( 'active' )
+                        _stickyHead.find( 'a[href="#comments"]' ).addClass( 'active' )
+                    } else {
+                        _stickyHead.find( 'a[href="#info"]' ).addClass( 'active' )
+                        _stickyHead.find( 'a[href="#comments"]' ).removeClass( 'active' )
+                    }
+
+                } );
+
+                _site.on( 'click', function ( e ) {
 
                         if ( _casinosAboutPopup.hasClass( 'show' ) && $( e.target ).closest( _casinosAboutPopup ).length == 0 ){
                             _closePopup();
                         }
 
-                    }
-                );
+                    } );
 
-                _commentMore.on(
-                    'click', function () {
+                _commentMore.on( 'click', function () {
 
                         var curBtn = $( this ),
                             curTextContent = curBtn.prev( '.bonus__comments-text' );
@@ -141,11 +164,9 @@
 
                         return false;
 
-                    }
-                );
+                    } );
 
-                _textMore.on(
-                    'click', function () {
+                _textMore.on( 'click', function () {
 
                         var curBtn = $( this ),
                             curTextContent = curBtn.prev( '.bonus__text' )
@@ -158,8 +179,7 @@
 
                         return false;
 
-                    }
-                );
+                    } );
 
                 _tabsLink.on( 'click', function () {
 
@@ -179,8 +199,7 @@
 
                 } );
 
-                _commentWrite.on(
-                    'click', function () {
+                _commentWrite.on( 'click', function () {
 
                         var curBtn = $( this ),
                             curForm = curBtn.next( '.bonus__comments-form' );
@@ -189,11 +208,9 @@
 
                         return false;
 
-                    }
-                );
+                    } );
 
-                _casinosInfo.on(
-                    'click', function () {
+                _casinosInfo.on( 'click', function () {
 
                         var curBtn = $( this ),
                             curPopup = _obj.find( '.bonus__casinos-popup' ).filter( '[data-casino='+ curBtn.attr( 'data-casino' ) +']' );
@@ -206,9 +223,14 @@
 
                         return false;
 
-                    }
-                );
+                    } );
 
+            },
+            _stickyHeadFunction = function () {
+
+                if ( _window.outerWidth() < 768 && _window.scrollTop() >= _stickyHeadTop ){
+                    _stickyHead.addClass( 'sticky' );
+                }
             },
             _minimizeCommentsList = function () {
 
@@ -304,6 +326,11 @@
 
                             casinoListItem.eq( i ).css( 'height', 0 );
                             casinoListItem.eq( i ).addClass( 'hidden' );
+
+                            setTimeout( function () {
+                                _separateCommentPosition = _separateComment.offset().top,
+                                _stickyHeadTop = _stickyHead.offset().top;
+                            }, 500 );
 
                         }
 
@@ -403,9 +430,6 @@
             },
             _initTabs = function() {
 
-                _tabsLink.removeClass( 'active' );
-                _tabsContentItem.removeClass( 'active' );
-
                 _tabsLink.eq( 0 ).addClass( 'active' );
                 _tabsContentItem.eq( 0 ).addClass( 'active' );
 
@@ -474,6 +498,10 @@
                 _minimizeCasinoList();
                 _initTabs();
                 _onEvents();
+
+                if ( _window.outerWidth() < 768 ){
+                    _stickyHeadFunction();
+                }
 
                 if ( _obj.find( '.validation-form' ).length ){
 

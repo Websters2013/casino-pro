@@ -354,14 +354,28 @@
     color: #029C3E;
   }
 
+  &__sticky-head{
+    position: relative;
+    height: 64px;
+  }
+
+  &__sticky-head div{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+
+  &__sticky-head div,
   &__tabs-link{
     display: flex;
     justify-content: space-between;
     align-items: stretch;
     margin-bottom: 15px;
     border-bottom: 1px solid #E0E0E0;
+    background-color: #fff;
 
-    a{
+    span, a{
       display: flex;
       justify-content: center;
       align-items: center;
@@ -396,6 +410,14 @@
         transition: fill .3s ease;
       }
 
+    }
+
+    &.sticky{
+      position: fixed;
+      top: 0;
+      left: 10px;
+      right: 10px;
+      z-index: 2;
     }
 
   }
@@ -440,6 +462,24 @@
 
   &__comments{
     padding: 0 10px 20px;
+
+    &-header{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      h2{
+        color: #323232;
+        font-size: 18px;
+        line-height: 22px;
+      }
+
+      .btn{
+        height: 41px;
+        margin-right: -7px;
+      }
+
+    }
 
     &-item{
       margin-bottom: 17px;
@@ -797,13 +837,15 @@
       display: none;
     }
 
+    &__sticky-head div,
     &__tabs-link{
       border-bottom-color: #95989A;
 
-      a{
+      span, a{
         padding: 10px 0 12px;
 
-        & + a{
+        & + a,
+        & + span{
           padding-top: 5px;
 
           svg{
@@ -1257,14 +1299,16 @@
 
     }
 
+    &__sticky-head div,
     &__tabs-link{
       margin-bottom: 13px;
 
-      a{
+      a, span{
         padding-bottom: 14px;
         transition: color .3s ease;
 
-        + a{
+        + a,
+        + span{
           padding-top: 10px;
 
           svg{

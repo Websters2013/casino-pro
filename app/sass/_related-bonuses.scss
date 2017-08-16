@@ -1,0 +1,156 @@
+.related-bonuses {
+
+  &__item{
+    display: block;
+    margin-bottom: 15px;
+    padding: 14px 10px 8px 13px;
+    border: 1px solid #E0E0E0;
+    border-radius: 4px;
+    background-color: #F8F8F8;
+
+    h2{
+      margin-bottom: 4px;
+      color: #029C3E;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 17px;
+    }
+
+  }
+
+  &__info{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    padding-left: 2px;
+    font-size: 12px;
+  }
+
+  &__time{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #83868a;
+
+    svg{
+      width: 10px;
+      height: 12px;
+      margin-right: 5px;
+      fill: #83868a;
+    }
+
+  }
+
+  &__count{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 12px;
+    color: #83868a;
+
+    svg{
+      width: 12px;
+      height: 12px;
+      margin-right: 5px;
+      fill: #83868a;
+    }
+
+  }
+
+}
+
+#related-bonuses{
+  margin-bottom: 36px;
+  padding-top: 3px;
+
+  &__title{
+    margin-bottom: 16px;
+    padding: 0 5px;
+    color: #323232;
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+}
+
+@media (min-width: $tablet-portrait) {
+
+  .related-bonuses{
+
+    &__item{
+      position: relative;
+      padding: 13px 16px;
+
+      h2{
+        margin-bottom: 7px;
+        font-size: 16px;
+        line-height: 19px;
+      }
+
+    }
+
+
+    &__info{
+      justify-content: flex-start;
+      margin-left: -2px;
+      font-size: 12px;
+      line-height: 15px;
+
+      svg{
+        position: relative;
+        top: -1px;
+        width: 16px;
+        height: 16px;
+        margin-right: 5px;
+      }
+
+    }
+
+    &__time{
+
+      svg{
+        width: 16px;
+        height: 17px;
+      }
+
+    }
+
+    &__count{
+      margin-left: 20px;
+    }
+
+  }
+
+  #related-bonuses{
+
+  }
+
+}
+
+@media (min-width: $desktop) {
+
+  .related-bonuses{
+
+    &__item{
+      padding: 18px 20px;
+
+      h2{
+        margin-bottom: 9px;
+        font-size: 18px;
+        line-height: 22px;
+      }
+
+    }
+
+    &__count svg{
+      margin-right: 4px;
+    }
+
+  }
+
+  #related-bonuses{
+
+  }
+
+}

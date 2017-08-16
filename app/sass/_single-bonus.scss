@@ -1,0 +1,60 @@
+#single-bonus {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 10px;
+
+  &__back{
+    margin-bottom: 15px;
+  }
+
+  &__wrap{
+    margin-bottom: 19px;
+  }
+
+  .bonus__item{
+    margin-bottom: 40px;
+  }
+
+}
+
+.single-bonus{
+
+}
+
+@media (min-width: $tablet-portrait) {
+  #single-bonus {
+    padding: 4px 20px 0;
+
+    &__back{
+      margin-bottom: 29px;
+    }
+
+  }
+
+  .single-bonus {
+
+  }
+}
+
+@media (min-width: $desktop) {
+  #single-bonus {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: stretch;
+    padding: 0 calc( 50% - 570px );
+
+    &__back{
+      width: 100%;
+    }
+
+    &__wrap{
+      width: calc( 100% - 289px );
+    }
+
+    &__aside{
+      width: 259px;
+    }
+
+  }
+}
