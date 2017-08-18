@@ -105,6 +105,8 @@
             _show = function( className ){
                 _setPopupContent( className );
 
+                _btnShow
+
                 _scrollConteiner.css( {
                     overflowY: 'hidden',
                     paddingRight: _getScrollWidth()

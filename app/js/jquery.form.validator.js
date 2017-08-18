@@ -41,6 +41,10 @@
 
                 } );
 
+                if ( $( '#comments__rate-input' ).hasClass( 'not-touched' ) ) {
+                    $( '#comments__rate' ).addClass( 'not-valid' );
+                }
+
             },
             _onEvents = function () {
                 _fields.on( {
@@ -116,6 +120,13 @@
             _makeNotValid = function ( field ) {
                 field.addClass( 'not-valid' );
                 field.removeClass( 'valid' );
+
+                if ( $( '#comments__rate-input' ).hasClass( 'not-valid' ) ) {
+
+                    $( '#comments__rate' ).addClass( 'not-valid' );
+
+                }
+
             },
             _makeValid = function ( field ) {
                 field.removeClass( 'not-valid' );

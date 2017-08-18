@@ -8,12 +8,20 @@
 
         new Menu ( $( '#menu' ) );
 
-        if ( $( '.validation-form' ).length ){
-            new FormValidator( $( '.validation-form' ) );
+        if ( $( '#review' ).length ){
+            new ReviewFrame( $( '#review' ) );
         }
 
-        if ( $( '#anchor' ).length == 1 ){
-            new Anchor( $( '#anchor' ) );
+        if ( $( '.validation-form' ).length ){
+            new FormValidator( $( '.validation-form' ) );
+        };
+
+        if ( $( '#comments__rate' ).length ){
+            new Rate( $( '#comments__rate' ) );
+        };
+
+        if ( $( '.anchor' ).length == 1 ){
+            new Anchor( $( '.anchor' ) );
         };
 
         if ( $( '#single-game__info' ).length == 1 ){
@@ -63,6 +71,10 @@
 
         if ( $( '.bonus__item' ).length == 1 ){
             new BonusItem( $( '.bonus__item' ) );
+        };
+
+        if ( $( '.comments_less' ).length == 1 ){
+            new CommentsLess( $( '.comments_less' ) );
         };
 
         $.each( $('.anchor'), function () {
@@ -117,9 +129,8 @@
             _casinosInfo = _obj.find( '.bonus__casinos-img' ),
             _casinosAboutPopup = _obj.find( '.bonus__casinos-popup' ),
             _stickyHead = _obj.find( '.bonus__sticky-head' ),
-            _stickyHeadTop = _stickyHead.offset().top,
+            _stickyHeadTop, _separateCommentPosition,
             _separateComment = $( '#comments' ),
-            _separateCommentPosition = _separateComment.offset().top,
             _window = $( window ),
             _site = $( '#site' );
 
@@ -328,8 +339,15 @@
                             casinoListItem.eq( i ).addClass( 'hidden' );
 
                             setTimeout( function () {
-                                _separateCommentPosition = _separateComment.offset().top,
-                                _stickyHeadTop = _stickyHead.offset().top;
+
+                                if ( _stickyHead.length > 0 ) {
+                                    _stickyHeadTop = _stickyHead.offset().top;
+                                }
+
+                                if ( _separateComment.length > 0 ) {
+                                    _separateCommentPosition = _separateComment.offset().top;
+                                }
+
                             }, 500 );
 
                         }
@@ -510,6 +528,138 @@
                     new FormValidator( curForm );
 
                 }
+
+            };
+
+        _construct()
+    };
+
+    var CommentsLess = function ( obj ) {
+        var _obj = obj,
+            _commentsList = _obj.find( '#comments__list' ),
+            _commentMore = _obj.find( '.comments__more' ),
+            _window = $( window ),
+            _site = $( '#site' );
+
+        var _onEvents = function() {
+
+                _commentMore.on( 'click', function () {
+
+                    var curBtn = $( this ),
+                        curTextContent = curBtn.prev( '.comments__text' );
+
+                    if ( !curTextContent.hasClass( 'visible' ) && _window.width() < 768 ) {
+                        _showAllInfo( curTextContent, curBtn );
+                    } else {
+                        _showLessInfo(  curTextContent, curBtn);
+                    }
+
+                    return false;
+
+                } );
+
+            },
+            _showAllInfo = function ( text, btn ) {
+
+                var curBtn = btn,
+                    curTextContent = text;
+
+                curTextContent.addClass( 'visible' );
+
+                curTextContent.attr( 'data-height',curTextContent.outerHeight() );
+                curTextContent.css( 'height', curTextContent.find( 'div' ).outerHeight() );
+
+                curBtn.html( 'Read Less' );
+
+            },
+            _showLessInfo = function ( text, btn ) {
+
+                var curBtn = btn,
+                    curTextContent = text;
+
+                curTextContent.removeClass( 'visible' );
+                curTextContent.css( 'height', curTextContent.attr( 'data-height' ) );
+
+                curBtn.html( 'Read More' );
+
+            },
+            _minimizeCommentsList = function () {
+
+                _commentsList.each( function () {
+
+                    if ( _window.outerWidth() < 768 ){
+
+                        var curElem = $( this ),
+                            casinoListItem = curElem.find( '.comments__item' ),
+                            itemNumber = casinoListItem.length;
+
+                        curElem.removeClass( 'inactive' );
+
+                        if ( itemNumber > 3 ){
+
+                            curElem.append( '<a href="#" class="comments__show"><span>Show '+ ( itemNumber - 3 ) +' More</span>'+
+                                '<svg viewBox="146 23 12 6"><path d="M7,10l6,6,6-6Z" transform="translate(139 13)"></path></svg>'+
+                                '</a>' );
+
+                            for ( var i = 3; i <= itemNumber; i++ ) {
+
+                                casinoListItem.eq( i ).css( 'height', 0 );
+                                casinoListItem.eq( i ).addClass( 'hidden' );
+
+                            }
+
+                        }
+
+                    } else {
+
+                        var curElem = $( this ),
+                            casinoListItem = curElem.find( '.comments__item' );
+
+                            curElem.perfectScrollbar();
+
+                        casinoListItem.removeClass( 'hidden' );
+
+                    }
+
+                } );
+
+                var casinoShowMore = _commentsList.find( '.comments__show' );
+
+                casinoShowMore.on( 'click', function () {
+
+                    var curElem = $( this ),
+                        parentCasinoList = curElem.parents( '#comments__list' ),
+                        casinoListItem = parentCasinoList.find( '.hidden' );
+
+                    if ( !curElem.hasClass( 'less' ) ){
+
+                        curElem.find( 'span' ).html( 'Show Less' );
+                        curElem.addClass( 'less' );
+                        casinoListItem.removeClass( 'hidden' );
+                        casinoListItem.css( 'height', 'auto' );
+
+                    } else {
+
+                        curElem.find( 'span' ).html( 'Show '+ ( parentCasinoList.find( '.comments__item' ).length - 3 ) +' More' );
+                        curElem.removeClass( 'less' );
+
+                        for ( var i = 3; i <= parentCasinoList.find( '.comments__item' ).length; i++ ) {
+
+                            parentCasinoList.find( '.comments__item' ).eq( i ).css( 'height', 0 );
+                            parentCasinoList.find( '.comments__item' ).eq( i ).addClass( 'hidden' );
+
+                        }
+
+                    }
+
+                    return false;
+
+                } );
+
+            },
+            _construct = function() {
+                _minimizeCommentsList();
+                _onEvents();
 
             };
 
@@ -1251,6 +1401,71 @@
         _construct();
     };
 
+    var Rate = function( obj ) {
+
+        //private properties
+        var _obj = obj,
+            _num = _obj.find( '#comments__rate-num i' ),
+            _item = _obj.find( '.rate__item'),
+            _note = _obj.find( '#comments__rate-success'),
+            _input = _obj.find( '#comments__rate-input'),
+            _itemActive = 'active',
+            _itemTempActive = 'active_temp',
+            _itemTempNonActive = 'rate__item_nonactive-temp';
+
+        //private methods
+        var _initSlider = function() {
+
+                _item.on( {
+                    'mouseover': function() {
+                        var curNum =  $( this ).index();
+
+                        _item.addClass( _itemTempNonActive );
+
+                        $( this ).addClass( _itemTempActive );
+
+                        for ( var i = 0; i < curNum; i++ ){
+                            _item.eq(i).addClass( _itemTempActive )
+                        }
+
+                    },
+                    'mouseout': function() {
+                        _item.removeClass( _itemTempActive );
+                        _item.removeClass( _itemTempNonActive )
+                    },
+                    'click': function() {
+                        _initActive( $( this ) )
+                    }
+                } )
+
+            },
+            _initActive = function( item ) {
+                var curNum =  item.index();
+
+                _item.removeClass( _itemActive );
+
+
+                item.addClass( _itemActive );
+
+                for ( var i = 0; i < curNum; i++ ){
+                    _item.eq(i).addClass( _itemActive )
+                }
+
+                _num.text( curNum + 1 );
+                _note.addClass( 'visible' );
+                _input.val( curNum + 1 );
+
+            },
+            _init = function() {
+                _initSlider();
+            };
+
+        //public properties
+
+        //public methods
+        _init();
+    };
+
     var Revision = function ( obj ) {
         var _self = this,
             _obj = obj,
@@ -1484,6 +1699,89 @@
             },
             _construct = function() {
                 _onEvents();
+            };
+
+        _construct()
+    };
+
+    var ReviewFrame = function ( obj ) {
+        var _obj = obj,
+            _btn = _obj.find( '.review__frame-topic' ),
+            _stickyHead = _obj.find( '#review__sticky-head' ),
+            _stickyHeadTop = _stickyHead.offset().top,
+            _separateComment = $( '#comments' ),
+            _table = _obj.find( '#review__table' ),
+            _rowOpenBtn = _obj.find( '#review__table' ),
+            _separateCommentPosition = _separateComment.offset().top,
+            _window = $( window );
+
+        var _onEvents = function() {
+
+                _btn.on( 'click', function() {
+
+                    var curBtn = $( this ),
+                        curFrame = curBtn.next( '.review__frame-inside' );
+
+                    if ( !curFrame.hasClass( 'hide' ) && _window.outerWidth() < 1200 ) {
+                        _closeFrame( curBtn, curFrame );
+                    } else {
+                        _openFrame( curBtn, curFrame );
+                    }
+
+                    _separateCommentPosition = _separateComment.offset().top;
+
+                } );
+
+                _window.on( 'scroll', function () {
+
+                    if ( _window.outerWidth() < 768 && _window.scrollTop() >= _stickyHeadTop ){
+                        _stickyHead.find( 'div' ).addClass( 'sticky' );
+                    } else{
+                        _stickyHead.find( 'div' ).removeClass( 'sticky' );
+                    }
+
+                    if ( _window.outerWidth() < 768 && _window.scrollTop() >= _separateCommentPosition - 100 ) {
+                        _stickyHead.find( 'a[href="#review__aside"]' ).removeClass( 'active' )
+                        _stickyHead.find( 'a[href="#comments"]' ).addClass( 'active' )
+                    } else {
+                        _stickyHead.find( 'a[href="#review__aside"]' ).addClass( 'active' )
+                        _stickyHead.find( 'a[href="#comments"]' ).removeClass( 'active' )
+                    }
+
+                } );
+
+            },
+            _stickyHeadFunction = function () {
+
+                if ( _window.outerWidth() < 768 && _window.scrollTop() >= _stickyHeadTop ){
+                    _obj.addClass( 'sticky' );
+                }
+            },
+            _closeFrame = function ( btn, frame ) {
+
+                var curBtn = btn,
+                    curFrame = frame;
+
+                curBtn.addClass( 'close' );
+                curFrame.addClass( 'hide' );
+
+            },
+            _openFrame = function ( btn, frame ) {
+
+                var curBtn = btn,
+                    curFrame = frame;
+
+                curBtn.removeClass( 'close' );
+                curFrame.removeClass( 'hide' );
+
+            },
+            _construct = function() {
+                _onEvents();
+
+                if ( _window.outerWidth() < 768 ){
+                    _stickyHeadFunction();
+                }
+
             };
 
         _construct()
