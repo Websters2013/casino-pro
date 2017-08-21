@@ -96,6 +96,7 @@
   }
 
   &__content {
+    width: 100%;
 
     &-captions {
       @include flexbox();
@@ -130,6 +131,7 @@
     }
 
     &-body {
+      width: 100%;
       font-weight: 700;
       font-size: 12px;
       line-height: 15px;
@@ -627,6 +629,16 @@
       &-title{
         margin-bottom: 20px;
         font-size: 24px;
+      }
+
+    }
+
+    &__name{
+      -webkit-transition: color .3s ease;
+      transition: color .3s ease;
+
+      &:hover{
+        color: #FFB612;
       }
 
     }

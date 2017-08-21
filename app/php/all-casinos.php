@@ -108,7 +108,7 @@ $loadedType = $_GET['filter'];
 
     <div>
                                     <span>
-                                        <strong>100% First deposit bonus + 120 FS</strong>
+                                        100% First deposit bonus + 120 FS
                                     </span>
     </div>
 

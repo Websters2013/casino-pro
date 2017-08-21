@@ -49,6 +49,11 @@
   &__result{
     height: calc( 100% - 99px );
     overflow: hidden;
+
+    &-wrap{
+      height: 100%;
+    }
+
   }
 
   &__no-results {
@@ -225,6 +230,11 @@
 @media (min-width: $desktop) {
   #search-bonus {
     height: 431px;
+
+    &__result-wrap{
+      height: 98%;
+    }
+
   }
 
   .search-bonus {
