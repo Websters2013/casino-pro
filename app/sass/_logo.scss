@@ -1,44 +1,21 @@
 #logo {
   display: block;
   width: 120px;
-  margin-top: 1px;
+  margin-top: 6px;
 
   img{
     display: block;
     max-width: 100%;
   }
 
-  .cls-1 {
-    fill: #323232;
-    font-size: 11px;
-    @include lato;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-  }
-
-  .cls-2 {
-    fill: #3a3738;
-  }
-
-  .cls-3 {
-    fill: #ed1c24;
-  }
-
-  .cls-4 {
-    fill: #00a650;
-  }
-
-  .cls-5 {
-    fill: gold;
-  }
-
-  .cls-6 {
-    fill: #242122;
-  }
-
-  .cls-7 {
-    fill: #0066b3;
-  }
+  .st0{enable-background:new;}
+  .st1{fill:#323232;}
+  .st2{fill:#3A3738;}
+  .st3{fill:#ED1C24;}
+  .st4{fill:#00A650;}
+  .st5{fill:#FFD700;}
+  .st6{fill:#242122;}
+  .st7{fill:#0066B3;}
 
 }
 

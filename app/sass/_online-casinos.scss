@@ -279,7 +279,7 @@
     }
 
     &_warning{
-      background-color: #323232;
+      background-color: #323232!important;
 
       svg{
         left: 0;
@@ -507,7 +507,7 @@
       }
 
       &_attention{
-        background-color: #FC2E2E;
+        background-color: #FC2E2E!important;;
 
         span{
           display: inline-block;

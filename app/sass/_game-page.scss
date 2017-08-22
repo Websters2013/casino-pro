@@ -20,11 +20,19 @@
       justify-content: space-between;
       margin: 15px 20px 0;
 
+      &-wrap{
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+
       #main-title{
         position: absolute;
         top: 0;
         right: 0;
         margin-bottom: 30px;
+        order: 3;
       }
 
       #intro__content{

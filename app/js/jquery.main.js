@@ -1101,6 +1101,7 @@
         //private properties
         var _obj = obj,
             _subMenuBtn = _obj.find( '.menu__open-sub-menu' ),
+            _subMenu = _obj.find( '.menu__sub-menu ' ),
             _btnShowMobile = $( '#mobile-menu-btn' ),
             _site = $( '#site' ),
             _body = $( 'body' ),
@@ -1148,6 +1149,12 @@
                         }
 
                         return false;
+                    }
+                );
+
+                _window.on (
+                    'resize', function () {
+                        _subMenu.removeAttr();
                     }
                 );
 
@@ -1518,7 +1525,6 @@
                 } );
 
                 _revisionNoteBtn.on( 'click', function () {
-
                     if ( !_revisionNotePopup.hasClass( 'visible' ) && _window.outerWidth() < 1200 ) {
                         _showNotePopup();
                     } else {
@@ -1798,7 +1804,7 @@
             _searchForm = _obj.find( '#search-bonus__form' ),
             _searchInput = _searchForm.find( 'input' ),
             _btnCancel = _searchForm.find( '#search-bonus__search-cancel' ),
-            _resultWrap = _obj.find( '#search-bonus__result' ),
+            _resultWrap = _obj.find( '#search-bonus__result-wrap' ),
             _noResults = _obj.find( '#search-bonus__no-results' ),
             _request = new XMLHttpRequest();
 
@@ -2250,7 +2256,6 @@
                         }
                     } );
                 }
-
 
                 if ( _window.outerWidth() < 1200  ){
                     _activeNoDemo = true;

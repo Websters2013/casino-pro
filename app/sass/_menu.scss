@@ -7,7 +7,7 @@
   max-width: 320px;
   font-size: 15px;
   background-color: #fff;
-  z-index: 2;
+  z-index: 5;
   overflow-y: auto;
   -webkit-transform: translateX( -100% );
   transform: translateX( -100% );
@@ -75,6 +75,10 @@
     overflow: hidden;
     -webkit-transition: height .3s ease;
     transition: height .3s ease;
+
+    &.visible{
+      height: auto;
+    }
 
     .menu__item{
       padding: 9px 45px 7px;
@@ -183,6 +187,11 @@
 
       &.active{
         cursor: default;
+
+        &:after{
+          top: 10px;
+        }
+
       }
 
     }
@@ -199,6 +208,13 @@
         height: 5px;
         margin-left: 7px;
       }
+
+      &.active:after{
+        top: calc( 50% - 10px);
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+      }
+
     }
 
     &__sub-menu{

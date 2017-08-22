@@ -45,13 +45,6 @@
       z-index: 2;
       -webkit-transform: translate(-50%, -50%);
       transform: translate(-50%, -50%);
-      -webkit-transition: background-color .3s ease;
-      transition: background-color .3s ease;
-
-      &:hover{
-        background-color: #FFB612;
-      }
-
     }
 
     &.play:after{

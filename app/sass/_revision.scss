@@ -378,12 +378,12 @@
 
       }
 
-      &-btn:hover + #revision__note-popup{
-        bottom: calc( 100% + 7px);
-        opacity: 1;
-        visibility: visible;
-      }
+    }
 
+    #revision__note-btn:hover + #revision__note-popup{
+      bottom: calc( 100% + 7px);
+      opacity: 1;
+      visibility: visible;
     }
 
   }

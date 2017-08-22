@@ -3,7 +3,6 @@
   top: 0;
   right: 0;
   width: 100%;
-  max-width: 320px;
   height: 100%;
   background-color: #fff;
   overflow-y: auto;
@@ -220,6 +219,7 @@
 
 @media (min-width: $tablet-portrait) {
   #filter {
+    max-width: 320px;
 
     &-mobile-btn{
       padding-top: 4px;

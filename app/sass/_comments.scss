@@ -292,10 +292,12 @@
   .comments{
 
     &__item{
-      margin: 24px 0 0;
+      margin-bottom: 30px;
+      padding-bottom: 24px;
+      /*margin: 24px 0 0;
       padding: 30px 0 0 0;
       border-top: 1px solid #DCE0DB;
-      border-bottom: none;
+      border-bottom: none;*/
 
       &:first-child{
         margin-top: 0;
@@ -348,7 +350,8 @@
     }
 
     &__list{
-      margin-bottom: 50px;
+      margin-bottom: -10px;
+      //margin-bottom: 50px;
     }
 
     &__form{
@@ -444,6 +447,10 @@
         line-height: 34px;
       }
 
+    }
+
+    &__list {
+      margin-bottom: -4px;
     }
 
     &__form{
