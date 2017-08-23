@@ -83,6 +83,12 @@
 
         } );
 
+        $.each( $('.casino-count'), function () {
+
+            new CasinoCount( $(this) );
+
+        } );
+
         $.each( $('.search-result__wrap'), function () {
 
             new PageSearchResult( $(this) );
@@ -536,6 +542,46 @@
 
                 }
 
+            };
+
+        _construct()
+    };
+
+    var CasinoCount = function ( obj ) {
+        var _obj = obj,
+            _window = $( window );
+
+        var _onEvents = function() {
+
+                _window.on( {
+                    'resize': function() {
+                        _checkScreen();
+                    }
+                } );
+
+            },
+            _addComa = function () {
+
+                _obj.text( _obj.text().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1,') );
+
+            },
+            _removeComa = function () {
+
+                _obj.text( _obj.text().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '') );
+
+            },
+            _checkScreen = function () {
+
+                if ( _window.outerWidth() >= 1200 ){
+                    _addComa();
+                } else {
+                    _removeComa();
+                }
+
+            },
+            _construct = function() {
+                _checkScreen();
+                _onEvents();
             };
 
         _construct()
@@ -1574,6 +1620,8 @@
                     _url = 'php/all-games.php'
                 } else  if ( _obj.hasClass( 'daily-bonuses' ) ){
                     _url = 'php/all-bonus.php'
+                } else  if ( _obj.hasClass( 'new-casinos' ) ){
+                    _url = 'php/new-casinos.php'
                 }
 
                 _request = $.ajax( {
@@ -1629,6 +1677,8 @@
                     _allCasinosWrap = _obj.find( '#games__wrap' );
                 } else  if ( _obj.hasClass( 'daily-bonuses' ) ){
                     _allCasinosWrap = _obj.find( '#bonus' );
+                } else if ( _obj.hasClass( 'new-casinos' ) ){
+                    _allCasinosWrap = _obj.find( '#online-casinos__content-body' );
                 }
 
                 var content = data;
@@ -2291,32 +2341,38 @@
                 }
 
                 if ( _window.outerWidth() < 768  ){
-                    _activeSubMenu = true;
-                    _subMenuSwiper = new Swiper ( _subMenuSwiper, {
-                        autoplay: false,
-                        speed: 500,
-                        effect: 'slide',
-                        slidesPerView: 'auto',
-                        loop: false,
-                        onInit: function () {
-                            _subMenuSwiper[0].swiper.slideTo( _subMenuIten.filter( '.active' ).index() , 200, false );
-                            $( '#main-title span' ).text( _subMenuSwiper.find( '.swiper-wrapper' ).outerWidth() )
-                        },
-                        onSlideChangeStart: function() {
-                            _obj.removeClass( 'start' );
-                            _obj.removeClass( 'end' );
-                        },
-                        onReachBeginning: function() {
-                            setTimeout( function () {
-                                _obj.addClass('start');
-                            }, 300 )
-                        },
-                        onReachEnd: function() {
-                            setTimeout( function () {
-                                _obj.addClass('end');
-                            }, 300 )
-                        }
-                    } );
+
+                    setTimeout( function () {
+
+                        _activeSubMenu = true;
+                        _subMenuSwiper = new Swiper ( _subMenuSwiper, {
+                            autoplay: false,
+                            speed: 500,
+                            effect: 'slide',
+                            slidesPerView: 'auto',
+                            loopAdditionalSlides: 0,
+                            loop: false,
+                            onInit: function () {
+                                _subMenuSwiper[0].swiper.slideTo( _subMenuIten.filter( '.active' ).index() , 200, false );
+                            },
+                            onSlideChangeStart: function() {
+                                _obj.removeClass( 'start' );
+                                _obj.removeClass( 'end' );
+                            },
+                            onReachBeginning: function() {
+                                setTimeout( function () {
+                                    _obj.addClass('start');
+                                }, 300 )
+                            },
+                            onReachEnd: function() {
+                                setTimeout( function () {
+                                    _obj.addClass('end');
+                                }, 300 )
+                            }
+                        } );
+
+                    }, 300 );
+
                 }
 
                 if ( _window.outerWidth() < 1200  ){
@@ -2341,7 +2397,6 @@
 
                         if ( _window.outerWidth() > 768  ){
                             _initSlider();
-
                         }
 
                     }

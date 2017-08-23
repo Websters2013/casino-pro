@@ -960,8 +960,27 @@
 
       &-head{
 
-        & > div:nth-child( 6 ){
-          padding-left: 5%;
+        & > div{
+
+          &:nth-child(1){
+            width: 15.5%;
+          }
+          &:nth-child(2){
+            width: 17%;
+          }
+          &:nth-child(3){
+            width: 14%;
+          }
+          &:nth-child(4){
+            width: 12.5%;
+          }
+          &:nth-child(5){
+            width: 21%;
+          }
+          &:nth-child(6){
+            width: 20%;
+          }
+
         }
 
       }
@@ -1002,17 +1021,39 @@
     &__table{
 
       &-row{
+        flex-wrap: nowrap;
 
         & > div{
           height: 60px;
 
+          &:nth-child(1){
+            width: 15.5%;
+          }
+          &:nth-child(2){
+            width: 17%;
+          }
+          &:nth-child(3){
+            width: 14%;
+          }
+          &:nth-child(4){
+            width: 12.5%;
+          }
+          &:nth-child(5){
+            display: none;
+          }
+          &:nth-child(6){
+            width: 20%;
+          }
           &:nth-child(7){
+            width: 21%;
+            max-width: 180px;
 
             span{
               margin: 5px 0 0 auto;
             }
 
           }
+
 
         }
 

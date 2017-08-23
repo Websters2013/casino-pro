@@ -101,27 +101,31 @@
     -webkit-transition: opacity .3s ease, visibility .3s ease;
     transition: opacity .3s ease, visibility .3s ease;
 
-    &-element {
+    &-bar {
       display: inline-block;
-      width: 2em;
-      height: 2em;
-      pointer-events: none;
-      border: 1px solid #283746;
-      border-radius: 50%;
-      -webkit-animation: 1s loader linear infinite;
-      animation: 1s loader linear infinite;
-      position: relative;
+      width: 4px;
+      height: 18px;
+      animation: loading 1s ease-in-out infinite;
 
-      &:before {
-        content: '';
-        display: block;
-        width: 0;
-        height: 0;
-        position: absolute;
-        top: -.30em;
-        left: 50%;
-        border: .30em solid #45d1de;
-        border-radius: 50%;
+      &:nth-child(1) {
+        background-color: #ED1C24;
+        animation-delay: 0s;
+      }
+      &:nth-child(2) {
+        background-color: #00A650;
+        animation-delay: 0.09s;
+      }
+      &:nth-child(3) {
+        background-color: #FFD700;
+        animation-delay: .18s;
+      }
+      &:nth-child(4) {
+        background-color: #242122;
+        animation-delay: .27s;
+      }
+      &:nth-child(5) {
+        background-color: #0066B3;
+        animation-delay: .36s;
       }
 
     }
@@ -158,6 +162,39 @@
     span{
       color: #029C3E;
       font-size: 12px;
+    }
+
+  }
+
+  &__preload {
+
+    &-bar {
+      display: inline-block;
+      width: 4px;
+      height: 18px;
+      animation: loading 1s ease-in-out infinite;
+
+      &:nth-child(1) {
+        background-color: #ED1C24;
+        animation-delay: 0s;
+      }
+      &:nth-child(2) {
+        background-color: #00A650;
+        animation-delay: 0.09s;
+      }
+      &:nth-child(3) {
+        background-color: #FFD700;
+        animation-delay: .18s;
+      }
+      &:nth-child(4) {
+        background-color: #242122;
+        animation-delay: .27s;
+      }
+      &:nth-child(5) {
+        background-color: #0066B3;
+        animation-delay: .36s;
+      }
+
     }
 
   }
@@ -248,5 +285,17 @@
 
     }
 
+  }
+}
+
+@keyframes loading {
+  0% {
+    transform: scale(1);
+  }
+  20% {
+    transform: scale(1, 2.2);
+  }
+  40% {
+    transform: scale(1);
   }
 }
