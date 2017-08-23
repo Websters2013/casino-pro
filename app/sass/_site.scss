@@ -52,7 +52,7 @@
     margin-bottom: 15px;
     border-bottom: 1px solid #DCE0DB;
     background-color: #F8F8F8;
-    z-index: 2;
+    z-index: 3;
 
     &-layout{
       display: flex;
@@ -254,6 +254,7 @@
 
     &__header{
       box-shadow: 0 3px 9px rgba(0,0,0,.1);
+      z-index: 5;
 
       &-layout{
         height: 70px;

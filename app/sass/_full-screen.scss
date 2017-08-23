@@ -13,7 +13,12 @@
 
     #logo{
       width: 100%;
-      margin-bottom: 27px;
+      margin-bottom: 38px;
+
+      svg{
+        width: 152px;
+      }
+
     }
 
   }
@@ -21,6 +26,8 @@
   &__game{
     position: relative;
     width: calc( 100% - 200px );
+    height: 100vh;
+    overflow: hidden;
 
     img{
       display: block;

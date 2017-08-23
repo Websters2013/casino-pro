@@ -115,5 +115,13 @@
 
     }
 
+    &_warning:hover{
+      background-color: #323232;
+    }
+
+    &_attention:hover{
+      background-color: #FC2E2E;
+    }
+
   }
 }

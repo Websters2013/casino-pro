@@ -89,8 +89,10 @@
 
     }
 
-    p{
+    &-text{
+      height: 60px;
       margin-bottom: 15px;
+      overflow: hidden;
     }
 
   }
@@ -138,9 +140,13 @@
       color: #777A75;
 
       li {
+        display: -ms-grid;
         display: grid;
-        grid-template-areas:  "info score zar link"
+        -ms-grid-template-areas:  "info score zar link"
                               "bonus score zar link";
+        grid-template-areas:  "info score zar link"
+        "bonus score zar link";
+        -ms-grid-template-columns: 1fr 15% 20% 9%;
         grid-template-columns: 1fr 15% 20% 9%;
         padding: 8px 0 10px;
         border-bottom: 1px solid #DCE0DB;
@@ -150,9 +156,11 @@
 
         > div {
           &:nth-child(1) {
+            -ms-grid-area: info;
             grid-area: info;
           }
           &:nth-child(2) {
+            -ms-grid-area: score;
             grid-area: score;
             display: flex;
             justify-content: center;
@@ -163,6 +171,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            -ms-grid-area: zar;
             grid-area: zar;
 
             svg{
@@ -172,12 +181,14 @@
             }
 
             time{
-              width: 75px;
+              width: 52px;
               margin-left: 9px;
+              white-space: normal;
             }
 
           }
           &:nth-child(4) {
+            -ms-grid-area: bonus;
             grid-area: bonus;
 
             span{
@@ -197,6 +208,7 @@
 
           }
           &:nth-child(5) {
+            -ms-grid-area: link;
             grid-area: link;
             display: flex;
             justify-content: center;
@@ -377,7 +389,7 @@
           }
           &:nth-child(3) {
             width: 9%;
-            padding-right: 3px;
+            padding-right: 22px;
           }
           &:nth-child(4) {
             display: block;
@@ -411,6 +423,12 @@
 
               svg{
                 left: -6px;
+              }
+
+              time {
+                width: 75px;
+                margin-left: -4px;
+                font-size: 12px;
               }
 
             }
@@ -610,6 +628,7 @@
               time{
                 width: auto;
                 margin-left: 7px;
+                font-size: 14px;
               }
 
             }
@@ -629,6 +648,10 @@
       &-title{
         margin-bottom: 20px;
         font-size: 24px;
+      }
+
+      &-text{
+        height: 64px;
       }
 
     }

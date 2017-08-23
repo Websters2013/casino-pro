@@ -8,6 +8,11 @@
     max-width: 100%;
   }
 
+  svg{
+    width: 120px;
+    height: 30px;
+  }
+
   .st0{enable-background:new;}
   .st1{fill:#323232;}
   .st2{fill:#3A3738;}
@@ -22,5 +27,11 @@
 @media (min-width: $desktop) {
   #logo {
     width: 174px;
+
+    svg{
+      width: 174px;
+      height: 43px;
+    }
+
   }
 }

@@ -100,6 +100,21 @@
 
   }
 
+  &__expired{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #DE3831;
+
+    svg{
+      width: 12px;
+      height: 12px;
+      margin-right: 3px;
+      fill: #DE3831;
+    }
+
+  }
+
   &__expires{
     position: absolute;
     top: 1px;
@@ -195,11 +210,11 @@
         padding: 0 14px 0 18px;
 
         &_attention{
-          background-color: #FC2E2E;
+          background-color: #FC2E2E!important;
         }
 
         &_warning{
-          background-color: #323232;
+          background-color: #323232!important;;
         }
 
         span{
@@ -757,6 +772,19 @@
 #bonus{
   margin-bottom: 20px;
   padding-top: 3px;
+
+  &__intro{
+    @include flexbox();
+    @include flex-direction(column);
+    @include justify-content();
+    @include align-items(flex-start);
+    @include flex-wrap(wrap);
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 10px 5px;
+  }
+
 }
 
 @media (min-width: $tablet-portrait) {
@@ -814,6 +842,10 @@
     }
 
     &__exclusice{
+      margin-left: 21px;
+    }
+
+    &__expired{
       margin-left: 21px;
     }
 
@@ -1116,6 +1148,13 @@
   #bonus{
     margin-bottom: 30px;
     padding-top: 0;
+
+    &__intro{
+      flex-flow: row nowrap;
+      justify-content: space-between;
+      padding: 15px 20px 18px;
+    }
+
   }
 
 }
@@ -1359,6 +1398,20 @@
 
   #bonus{
     padding-top: 13px;
+
+    &__intro{
+      padding: 24px calc( 50% - 569px ) 27px;
+
+      #intro__content{
+        padding-top: 4px;
+      }
+
+      #intro__text{
+        height: 45px;
+      }
+
+    }
+
   }
 
 }

@@ -100,8 +100,15 @@
                 _obj.on( {
                     click: function() {
 
+                        var curBtn = $( this ),
+                            curMargin = curBtn.data( 'margin' );
+
+                        if ( curMargin == undefined ) {
+                            curMargin = 15
+                        }
+
                         _body.animate( {
-                            scrollTop: $( $.attr(this, 'href') ).offset().top - 50
+                            scrollTop: $( curBtn.attr( 'href' ) ).offset().top - curMargin
                         }, 600);
 
                         return false;
@@ -739,6 +746,7 @@
             _btnShowMore = _form.find( '.filter__more' ),
             _filterFrame = _obj.find( '.filter__frame' ),
             _site = $( '#site' ),
+            _html = $( 'html' ),
             _window = $( window );
 
         var _onEvents = function() {
@@ -852,6 +860,8 @@
             },
             _showMobileFilter = function () {
 
+                _html.css( 'overflow-y', 'hidden' );
+
                 _obj.addClass( 'show' );
                 _site.addClass( 'hide-for-filter' );
 
@@ -860,6 +870,8 @@
 
                 _obj.removeClass( 'show' );
                 _site.removeClass( 'hide-for-filter' );
+
+                _html.removeAttr( 'style' );
 
             },
             _showFrame = function ( elem ) {
@@ -1105,6 +1117,7 @@
             _btnShowMobile = $( '#mobile-menu-btn' ),
             _site = $( '#site' ),
             _body = $( 'body' ),
+            _html = $( 'html' ),
             _window = $( window );
 
         //private methods
@@ -1129,8 +1142,21 @@
 
                         if ( !_obj.hasClass( 'show' ) ) {
                             _showMenuOnMobile();
+
+                            if ( _subMenuBtn.filter( '.active' ).length > 0 && _window.width() <= 1200 ){
+                                var curBtn = _subMenuBtn.filter( '.active' );
+                                _showSubMenu( curBtn );
+                            }
+
+
                         } else {
                             _hideMenuOnMobile();
+
+                            if ( !_subMenuBtn.filter( '.open' ).hasClass( 'active' ) && _window.width() <= 1200 ){
+                                var curBtn = _subMenuBtn.filter( '.open' );
+                                _hideSubMenu( curBtn );
+                            }
+
                         }
 
                         return false;
@@ -1142,7 +1168,7 @@
 
                         var curBtn = $( this );
 
-                        if ( !curBtn.hasClass( 'active' ) && _window.width() <= 1200 ){
+                        if ( !curBtn.hasClass( 'open' ) && _window.width() <= 1200 ){
                             _showSubMenu( curBtn );
                         } else if ( _window.width() <= 1200 ) {
                             _hideSubMenu( curBtn );
@@ -1165,7 +1191,7 @@
                     curSubMenu = curBtn.next( '.menu__sub-menu' ),
                     curSubMenuHeight = curSubMenu.find( 'ul' ).outerHeight();
 
-                curBtn.addClass( 'active' );
+                curBtn.addClass( 'open' );
                 curSubMenu.addClass( 'visible' );
 
                 if ( _window.width() <= 1200 ){
@@ -1179,7 +1205,7 @@
                     curSubMenu = curBtn.next( '.menu__sub-menu' ),
                     curSubMenuHeight = curSubMenu.find( 'ul' ).outerHeight();
 
-                curBtn.removeClass( 'active' );
+                curBtn.removeClass( 'open' );
                 curSubMenu.removeClass( 'visible' );
 
                 if ( _window.width() <= 1200 ){
@@ -1190,7 +1216,7 @@
             _showMenuOnMobile = function () {
 
                 if ( _window.width() < 1200 ){
-                    _body.css( 'overflow-y', 'hidden' );
+                    _html.css( 'overflow-y', 'hidden' );
                 }
 
                 _site.addClass( 'hide' );
@@ -1201,7 +1227,7 @@
             _hideMenuOnMobile = function () {
 
                 if ( _window.width() < 1200 ){
-                    _body.css( 'overflow-y', 'auto' );
+                    _html.removeAttr( 'style' );
                 }
 
                 _site.removeClass( 'hide' );
@@ -1286,7 +1312,7 @@
                 _window.on (
                     'resize', function () {
 
-                        _content.removeAttr( 'style' );
+                        // _content.removeAttr( 'style' );
 
                     }
                 );
@@ -1720,8 +1746,7 @@
             _stickyHead = _obj.find( '#review__sticky-head' ),
             _stickyHeadTop = _stickyHead.offset().top,
             _separateComment = $( '#comments' ),
-            _table = _obj.find( '#review__table' ),
-            _rowOpenBtn = _obj.find( '#review__table' ),
+            _rowOpenBtn = _obj.find( '.review__table-open' ),
             _separateCommentPosition = _separateComment.offset().top,
             _window = $( window );
 
@@ -1759,6 +1784,37 @@
                     }
 
                 } );
+
+                _rowOpenBtn.on( 'click', function() {
+
+                    var curBtn = $( this ),
+                        curFrame = curBtn.parents( '.review__table-row' );
+
+                    if ( !curFrame.hasClass( 'open' ) && _window.outerWidth() < 768 ) {
+                        _openRow( curBtn, curFrame );
+                    } else {
+                        _closeRow( curBtn, curFrame );
+                    }
+
+                    return false;
+
+                } );
+
+            },
+            _openRow = function ( btn, frame ) {
+
+                var curBtn = btn,
+                    curFrame = frame;
+
+                curFrame.addClass( 'open' );
+
+            },
+            _closeRow = function ( btn, frame ) {
+
+                var curBtn = btn,
+                    curFrame = frame;
+
+                curFrame.removeClass( 'open' );
 
             },
             _stickyHeadFunction = function () {
@@ -2018,7 +2074,7 @@
             _checkShow = function () {
 
                 if ( _searchForm.hasClass( 'show' ) ){
-                    _showPanel();
+                    _showPanel( 0 );
 
                     var popup = _obj.find( '#search__popup' );
 
@@ -2101,7 +2157,7 @@
                 }
 
             },
-            _showPanel = function () {
+            _showPanel = function ( onEvent ) {
 
                 _searchForm.addClass( 'show' );
 
@@ -2112,9 +2168,13 @@
                     } );
                 }
 
-                setTimeout( function () {
-                    _searchInput.focus();
-                }, 300 )
+                if ( onEvent != 0 ){
+
+                    setTimeout( function () {
+                        _searchInput.focus();
+                    }, 300 )
+
+                }
 
             },
             _hidePanel = function () {
@@ -2237,8 +2297,10 @@
                         speed: 500,
                         effect: 'slide',
                         slidesPerView: 'auto',
+                        loop: false,
                         onInit: function () {
                             _subMenuSwiper[0].swiper.slideTo( _subMenuIten.filter( '.active' ).index() , 200, false );
+                            $( '#main-title span' ).text( _subMenuSwiper.find( '.swiper-wrapper' ).outerWidth() )
                         },
                         onSlideChangeStart: function() {
                             _obj.removeClass( 'start' );

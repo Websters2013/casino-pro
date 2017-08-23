@@ -697,14 +697,9 @@ $loadedType = $_GET['filter'];
                                             Mar 27, 2017
                                         </time>
 
-                                        <div class="bonus__count">
+                                        <div class="bonus__expired">
                                             <svg viewBox="384 48 16 16"><path d="M10,2a8,8,0,1,0,4.8,14.4V14.224A6.4,6.4,0,1,1,15.928,7.6h1.7A7.979,7.979,0,0,0,10,2M9.2,6v4.8l4.2,2.52.6-.984L10.4,10.2V6H9.2m7.2,3.2v5.6H18V9.2H16.4m0,7.2V18H18V16.4Z" transform="translate(382 46)"/></svg>
-                                            28 Days Left
-                                        </div>
-
-                                        <div class="bonus__exclusice">
-                                            <svg viewBox="400 16 16 16"><path d="M13.384,14.8,10,12.76,6.616,14.8l.9-3.848L4.528,8.368l3.936-.336L10,4.4l1.536,3.624,3.936.336-2.984,2.584.9,3.856M10,2a8,8,0,1,0,8,8A8.008,8.008,0,0,0,10,2Z" transform="translate(398 14)"/></svg>
-                                            EXCLUSIVE
+                                            EXPIRED
                                         </div>
 
                                     </div>

@@ -164,6 +164,23 @@
 
 }
 
+
+@media (min-width: $tablet-landscape) {
+
+  #daily-bonuses {
+
+    &__intro{
+
+      #intro__text{
+        height: 300px;
+      }
+
+    }
+
+  }
+
+}
+
 @media (min-width: $desktop) {
   #daily-bonuses {
     flex-wrap: nowrap;
