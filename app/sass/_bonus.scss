@@ -156,7 +156,8 @@
     align-items: stretch;
     margin: 0 15px 10px;
 
-    a{
+    &-like,
+    &-dislike{
       display: flex;
       justify-content: center;
       align-items: center;
@@ -170,23 +171,41 @@
       text-align: center;
       overflow: hidden;
 
-      &:first-child{
-        border-color: #029C3E;
-        color: #029C3E;
+      svg{
+        width: 11px;
+        height: 12px;
+        margin: 0 5px;
+        fill: #DE3831;
+      }
+
+      &.illumination{
+        color: #fff;
+        background-color: #DE3831;
 
         svg{
-          fill: #029C3E;
+          fill: #fff
         }
 
       }
 
     }
 
-    svg{
-      width: 11px;
-      height: 12px;
-      margin: 0 5px;
-      fill: #DE3831;
+    &-like{
+      border-color: #029C3E;
+      color: #029C3E;
+
+      &.illumination {
+        background-color: #029C3E;
+      }
+
+      svg{
+        fill: #029C3E;
+      }
+
+    }
+
+    &.unattractive{
+      pointer-events: none;
     }
 
   }
@@ -989,7 +1008,8 @@
     &__marks{
       margin: 0 0 3px;
 
-      a{
+      &-like,
+      &-dislike{
         width: 48.5%;
         height: 40px;
         font-size: 13px;
@@ -1210,7 +1230,8 @@
 
     &__marks{
 
-      a{
+      &-like,
+      &-dislike{
         width: 49%;
         font-size: 14px;
         -webkit-transition: background-color .3s ease, color .3s ease;
@@ -1234,10 +1255,10 @@
 
         }
 
-        + a:hover{
-          background-color: #DE3831;
-        }
+      }
 
+      &-dislike:hover{
+        background-color: #DE3831;
       }
 
     }

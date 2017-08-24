@@ -95,6 +95,12 @@
 
         } );
 
+        $.each( $('.bonus__marks'), function () {
+
+            new MarkVoit( $(this) );
+
+        } );
+
     } );
 
     var Anchor = function ( obj ) {
@@ -1154,6 +1160,76 @@
         _construct()
     };
 
+    var MarkVoit = function ( obj ) {
+        var _obj = obj,
+            _likeBtn = _obj.find( '.bonus__marks-like' ),
+            _dislikeBtn = _obj.find( '.bonus__marks-dislike' ),
+            _request = new XMLHttpRequest();
+
+        var _onEvents = function() {
+
+                _likeBtn.on( {
+                    click: function() {
+
+                        var curBtn = $( this ),
+                            curBoxId = curBtn.parents( '.bonus__item' ).data( 'id-bonus-box' );
+
+                        _ajaxRequest( 'like', curBoxId, curBtn );
+
+                        return false;
+
+                    }
+                } );
+
+                _dislikeBtn.on( {
+                    click: function() {
+
+                        var curBtn = $( this ),
+                            curBoxId = curBtn.parents( '.bonus__item' ).data( 'id-bonus-box' );
+
+                        _ajaxRequest( 'dislike', curBoxId, curBtn );
+
+                        return false;
+
+                    }
+                } );
+
+            },
+            _ajaxRequest = function ( mark, boxId, btn ) {
+
+                var curBtn = btn,
+                    curMark = mark,
+                    curBoxId = boxId;
+
+                _request = $.ajax( {
+                    url: 'php/voit-form.php',
+                    data: {
+                        mark: curMark,
+                        data_id_bonus_box: curBoxId
+                    },
+                    dataType: 'html',
+                    type: 'GET',
+                    success: function ( data ) {
+
+                        _obj.addClass( 'unattractive' );
+                        curBtn.addClass( 'illumination' );
+
+                    },
+                    error: function ( XMLHttpRequest ) {
+                        if ( XMLHttpRequest.statusText != "abort" ) {
+                            console.log( 'err' );
+                        }
+                    }
+                } );
+
+            },
+            _construct = function() {
+                _onEvents();
+            };
+
+        _construct()
+    };
+
     var Menu = function( obj ) {
 
         //private properties
@@ -1687,6 +1763,12 @@
                     _allCasinosWrap.html( content );
                 } else {
                     _allCasinosWrap.append( content );
+                }
+
+                if ( _obj.hasClass( 'daily-bonuses' ) ) {
+                    $.each( $('.bonus__marks' ), function () {
+                        new MarkVoit( $(this) );
+                    } );
                 }
 
                 _page = _page + 1;
