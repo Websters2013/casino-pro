@@ -416,31 +416,13 @@
     &__screen{
       margin-bottom: 28px;
 
-      &:after{
-        opacity: 0;
-        visibility: hidden;
-        -webkit-transition: opacity .3s ease, visibility .3s ease;
-        transition: opacity .3s ease, visibility .3s ease;
-      }
-
       span{
-        opacity: 0;
-        visibility: hidden;
-        background-color: #FFB612;
-        -webkit-transition: opacity .3s ease, visibility .3s ease;
-        transition: opacity .3s ease, visibility .3s ease;
-      }
+        background-color: #029C3E;
+        -webkit-transition: background-color .3s ease;
+        transition: background-color .3s ease;
 
-      &:hover{
-
-        &:after{
-          opacity: 1;
-          visibility: visible;
-        }
-
-        span{
-          opacity: 1;
-          visibility: visible;
+        &:hover{
+          background-color: #FFB612;
         }
 
       }

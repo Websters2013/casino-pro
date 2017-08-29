@@ -1,6 +1,11 @@
 @import "variables";
 
 #not-found {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: inherit;
   padding: 50px 0;
   font-size: 15px;
   line-height: 22px;
@@ -44,6 +49,11 @@
   &__pic {
     max-width: 201px;
     margin: 0 auto 14px;
+
+    img{
+      width: 201px;
+    }
+
   }
   &__layout {
     position: relative;
@@ -58,6 +68,11 @@
     line-height: 34px;
     font-weight: 400;
     color: #323232;
+
+    b{
+      font-weight: 600;
+    }
+
   }
 
 }
@@ -78,6 +93,11 @@
     &__pic {
       max-width: 419px;
       margin: 0 auto 41px;
+
+      img{
+        width: 419px;
+      }
+
     }
 
     &__title {
@@ -93,13 +113,17 @@
 @media (min-width: $desktop) {
 
   #not-found {
-    padding: 157px 0 0;
     font-size: 21px;
     line-height: 25px;
 
     &__pic {
       max-width: 746px;
       margin: 0 auto 74px;
+
+      img{
+        width: 746px;
+      }
+
     }
 
     &__title {

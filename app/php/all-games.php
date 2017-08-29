@@ -18,7 +18,7 @@ $loadedType = $_GET['filter'];
 
                             <div class="games__img">
                                 <img src="pic/screenshot-002.png" alt="img"/>
-                            <div class="games__btn">PLAY FOR FUN</div>
+                            <div class="games__btn">LEARN MORE</div>
                             <div class="games__demo">NO DEMO</div>
                             </div>
 

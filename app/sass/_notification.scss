@@ -8,6 +8,7 @@
   text-align: center;
   -webkit-transition: opacity .3s ease, visibility .3s ease;
   transition: opacity .3s ease, visibility .3s ease;
+  z-index: 2;
 
   &__close{
     position: absolute;

@@ -102,6 +102,7 @@
         &:checked + span{
           color: #029C3E;
           background-color: #f8f8f8;
+          cursor: text;
         }
 
       }
@@ -142,11 +143,10 @@
       z-index: 3;
 
       label{
-        -webkit-transition: color .3s ease;
-        transition: color .3s ease;
 
-        &:hover{
+        &:hover span{
           color: #029C3E;
+          background-color: #f8f8f8;
         }
 
       }

@@ -256,6 +256,46 @@
 
   }
 
+  &__banking{
+
+    .review__frame-inside dd span:after{
+      content: ',';
+      margin-right: 5px;
+    }
+
+  }
+
+  &__note{
+    margin: 0 10px 15px;
+    border: 2px solid #DE3831;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 20px;
+    color: #323232;
+
+    & > div:first-child{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 7px 0 10px;
+      background-color: #DE3831;
+      color: #fff;
+      font-size: 20px;
+    }
+
+    svg{
+      width: 20px;
+      height: 20px;
+      margin-right: 5px;
+      fill: #fff;
+    }
+
+    &-content{
+      padding: 9px 13px;
+    }
+
+  }
+
 }
 
 .review {
@@ -483,6 +523,12 @@
         right: 169px;
         width: 166px;
         padding: 0;
+
+        &.hide{
+          opacity: 0;
+          visibility: hidden;
+        }
+
       }
 
       &-frame{
@@ -568,6 +614,11 @@
 
         dd span{
           display: block;
+
+          &:after{
+            display: none;
+          }
+
         }
 
       }
@@ -599,6 +650,7 @@
 
     &__table{
       padding-bottom: 23px;
+      border-bottom: none;
 
       .review__frame-topic{
         border-bottom: none;
@@ -718,6 +770,33 @@
 
     }
 
+    &__note{
+      display: flex;
+      justify-content: space-between;
+      align-items: stretch;
+      margin: 15px 20px 15px;
+
+      & > div:first-child{
+        width: 163px;
+        font-size: 25px;
+
+        svg{
+          width: 21px;
+          height: 21px;
+          margin-right: 10px;
+        }
+
+      }
+
+      &-content{
+        width: calc( 100% - 163px );
+        padding: 12px 40px 17px;
+        font-size: 15px;
+        line-height: 22px;
+      }
+
+    }
+
   }
 
   .review {
@@ -752,6 +831,7 @@
     &__table {
 
       &-row {
+        justify-content: flex-start;
         height: auto;
         color: #777A75;
         font-size: 14px;
@@ -990,6 +1070,27 @@
         font-size: 24px;
         line-height: 29px;
         margin-bottom: 17px;
+      }
+
+    }
+
+    &__note{
+      margin: 5px 0 45px;
+
+      & > div:first-child {
+        width: 320px;
+        padding: 13px 44px 17px;
+        font-size: 30px;
+
+        svg{
+          width: 30px;
+          height: 30px;
+        }
+
+      }
+
+      &-content {
+        width: calc(100% - 320px);
       }
 
     }

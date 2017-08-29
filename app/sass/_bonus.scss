@@ -229,11 +229,11 @@
         padding: 0 14px 0 18px;
 
         &_attention{
-          background-color: #FC2E2E!important;
+          background-color: #FC2E2E;
         }
 
         &_warning{
-          background-color: #323232!important;;
+          background-color: #323232;
         }
 
         span{
@@ -1294,8 +1294,20 @@
 
       }
 
-      .btn:hover{
-        background-color: #FFB612;
+      .btn{
+
+        &:hover{
+          background-color: #FFB612;
+        }
+
+        &_warning:hover{
+          background-color: #000;
+        }
+
+        &_attention:hover{
+          background-color: #E11E16;
+        }
+
       }
 
     }
@@ -1378,10 +1390,10 @@
         }
 
         &:hover{
-          color: #FFB612;
+          color: #029C3E;
 
           svg{
-            fill: #FFB612;
+            fill: #029C3E;
           }
 
         }

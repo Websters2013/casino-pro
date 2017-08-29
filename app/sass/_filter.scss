@@ -7,8 +7,8 @@
   background-color: #fff;
   overflow-y: auto;
   z-index: 4;
-  -webkit-transform: translateX( 100% );
-  transform: translateX( 100% );
+  -webkit-transform: translateX( -100% );
+  transform: translateX( -100% );
   -webkit-transition: transform .3s ease;
   transition: transform .3s ease;
 
@@ -146,7 +146,6 @@
 
     dd{
       margin-bottom: 8px;
-      padding-top: 15px;
       overflow: hidden;
       transition: height .3s ease;
     }
@@ -155,9 +154,12 @@
       display: flex;
       justify-content: flex-start;
       align-items: center;
+      margin-bottom: 15px;
       font-size: 14px;
       text-transform: uppercase;
       color: #323232;
+      -webkit-transition: margin-bottom .3s ease;
+      transition: margin-bottom .3s ease;
 
       svg{
         display: inline-block;
@@ -171,6 +173,7 @@
       }
 
       &.close{
+        margin-bottom: 0;
 
         svg{
           -webkit-transform: rotate(180deg);
@@ -220,6 +223,8 @@
 @media (min-width: $tablet-portrait) {
   #filter {
     max-width: 320px;
+    -webkit-transform: translateX( 100% );
+    transform: translateX( 100% );
 
     &-mobile-btn{
       padding-top: 4px;
@@ -310,13 +315,17 @@
 
       dd{
         margin-bottom: 1px;
-        padding-top: 10px;
       }
 
-      &-topic svg{
-        width: 12px;
-        height: 6px;
-        margin-right: 10px;
+      &-topic{
+        margin-bottom: 10px;
+
+        svg{
+          width: 12px;
+          height: 6px;
+          margin-right: 10px;
+        }
+
       }
 
       &:last-child{

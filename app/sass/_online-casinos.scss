@@ -169,6 +169,7 @@
               width: 52px;
               margin-left: 9px;
               white-space: normal;
+              font-weight: 400;
             }
 
           }
@@ -294,7 +295,7 @@
     }
 
     &_warning{
-      background-color: #323232!important;
+      background-color: #323232;
 
       svg{
         left: 0;
@@ -329,9 +330,10 @@
     align-items: center;
     margin-bottom: 8px;
 
-    img{
+    img, svg{
       display: block;
-      max-width: 83px;
+      width: 81px;
+      height: 13px;
       margin-right: 10px;
     }
 
@@ -391,8 +393,8 @@
             width: 6%;
           }
           &:nth-child(3) {
-            width: 9%;
-            padding-right: 22px;
+            width: 8.5%;
+            margin-right: .5%;
           }
           &:nth-child(4) {
             display: block;
@@ -462,6 +464,12 @@
     &__items {
       margin-bottom: 40px;
       padding-top: 29px;
+
+      &_new .online-casinos__content-captions > div:nth-child(3){
+        width: 9%;
+        padding-right: 22px;
+      }
+
     }
 
     &__pic {
@@ -500,6 +508,7 @@
       width: 80px;
       height: 30px;
       border-radius: 15px;
+      letter-spacing: .05em;
 
       span{
         display: block;
@@ -528,7 +537,7 @@
       }
 
       &_attention{
-        background-color: #FC2E2E!important;;
+        background-color: #FC2E2E;
 
         span{
           display: inline-block;
@@ -594,6 +603,10 @@
 
       &-text{
         height: 64px;
+      }
+
+      .btn:hover{
+        background-color: #FFB612;
       }
 
     }
@@ -752,6 +765,14 @@
 
       &:hover{
         background-color: #FFB612;
+      }
+
+      &_warning:hover{
+        background-color: #000;
+      }
+
+      &_attention:hover{
+        background-color: #E11E16;
       }
 
     }

@@ -78,6 +78,10 @@
 @media (min-width: $tablet-portrait) {
   .btn {
 
+    &_1{
+      letter-spacing: .05em;
+    }
+
     &_3{
       padding: 1px 23px 0;
       height: 40px;
@@ -93,9 +97,27 @@
   .btn {
     transition: background 0.3s ease-in-out, color 0.3s ease-in-out, border 0.3s ease-in-out;
 
+    svg{
+      -webkit-transition: fill .3s ease;
+      transition: fill .3s ease;
+    }
+
     &:hover {
       color: #fff;
       background: #027532;
+
+      svg{
+        fill: #fff;
+      }
+
+    }
+
+    &_1{
+
+      &:hover {
+        background-color: #FFB612;
+      }
+
     }
 
     &_3{
@@ -116,11 +138,11 @@
     }
 
     &_warning:hover{
-      background-color: #323232;
+      background-color: #000;
     }
 
     &_attention:hover{
-      background-color: #FC2E2E;
+      background-color: #E11E16;
     }
 
   }

@@ -1,8 +1,7 @@
 #menu {
-  position: fixed;
+  position: absolute;
   top: 50px;
   left: 0;
-  bottom: 0;
   width: 100%;
   max-width: 320px;
   font-size: 15px;
@@ -103,6 +102,12 @@
 }
 
 @media (min-width: $tablet-portrait) {
+
+  #menu{
+    position: fixed;
+    bottom: 0;
+  }
+
   .menu {
 
     &__item{
@@ -172,13 +177,22 @@
           padding: 25px 20px 12px;
         }
 
+        &:first-child{
+          display: none;
+        }
+
       }
 
       li{
         position: relative;
 
-        &:first-child{
-          display: none;
+        ul li{
+          border-bottom: 1px solid #DCE0DB;
+
+          &:last-child{
+            border-bottom: none;
+          }
+
         }
 
       }

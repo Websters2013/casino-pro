@@ -47,6 +47,7 @@
       @include lato;
       font-size: 14px;
       background-color: #E0E0E0;
+      box-shadow: none;
       border: 1px solid #E0E0E0;
       border-radius: 5px;
     }
@@ -181,32 +182,6 @@
     z-index: 99;
     -webkit-transition: opacity .3s ease, visibility .3s ease;
     transition: opacity .3s ease, visibility .3s ease;
-
-    &-element {
-      display: inline-block;
-      width: 2em;
-      height: 2em;
-      pointer-events: none;
-      border: 1px solid #283746;
-      border-radius: 50%;
-      -webkit-animation: 1s loader linear infinite;
-      animation: 1s loader linear infinite;
-      position: relative;
-
-      &:before {
-        content: '';
-        display: block;
-        width: 0;
-        height: 0;
-        position: absolute;
-        top: -.30em;
-        left: 50%;
-        border: .30em solid #45d1de;
-        border-radius: 50%;
-      }
-
-    }
-
   }
 
   &__popup.load #search__preload{
@@ -268,6 +243,40 @@
 
     &-wrap{
       line-height: 15px;
+    }
+
+  }
+
+  &__preload {
+
+    &-bar {
+      display: inline-block;
+      width: 4px;
+      height: 18px;
+      margin: 0 2px;
+      animation: loading 1s ease-in-out infinite;
+
+      &:nth-child(1) {
+        background-color: #ED1C24;
+        animation-delay: 0s;
+      }
+      &:nth-child(2) {
+        background-color: #00A650;
+        animation-delay: 0.09s;
+      }
+      &:nth-child(3) {
+        background-color: #FFD700;
+        animation-delay: .18s;
+      }
+      &:nth-child(4) {
+        background-color: #242122;
+        animation-delay: .27s;
+      }
+      &:nth-child(5) {
+        background-color: #0066B3;
+        animation-delay: .36s;
+      }
+
     }
 
   }
@@ -345,7 +354,7 @@
 
     &__btn-find {
       top: 17px;
-      left: 0;
+      left: 20px;
       width: 45px;
     }
 
@@ -371,10 +380,10 @@
     }
 
     &__form{
-      width: 915px!important;
+      width: 935px!important;
       right: -2px;
       left: auto!important;
-      padding: 15px 0 14px;
+      padding: 15px 0 14px 20px;
       border-bottom: 1px solid #DCE0DB;
 
       input{

@@ -8,6 +8,8 @@
 
         new Menu ( $( '#menu' ) );
 
+        new Header ( $( '#site__header' ) );
+
         if ( $( '#review' ).length ){
             new ReviewFrame( $( '#review' ) );
         }
@@ -151,7 +153,8 @@
             _stickyHeadTop, _separateCommentPosition,
             _separateComment = $( '#comments' ),
             _window = $( window ),
-            _site = $( '#site' );
+            _site = $( '#site' ),
+            _body = $( 'html, body' );
 
         var _onEvents = function() {
 
@@ -275,7 +278,6 @@
                         curElem.removeClass( 'inactive' );
 
                         if ( itemNumber > 3 ){
-
                             curElem.append( '<a href="#" class="bonus__comments-show"><span>Show '+ ( itemNumber - 3 ) +' More</span>'+
                                 '<svg viewBox="146 23 12 6"><path d="M7,10l6,6,6-6Z" transform="translate(139 13)"></path></svg>'+
                                 '</a>' );
@@ -319,7 +321,8 @@
 
                     } else {
 
-                        curElem.find( 'span' ).html( 'Show '+ ( parentCasinoList.find( '.bonus__casinos-item' ).length - 3 ) +' More' );
+                        console.log( parentCasinoList.find( '.bonus__comments-item' ).length )
+                        curElem.find( 'span' ).html( 'Show '+ ( parentCasinoList.find( '.bonus__comments-item' ).length - 3 ) +' More' );
                         curElem.removeClass( 'less' );
 
                         for ( var i = 3; i <= parentCasinoList.find( '.bonus__comments-item' ).length; i++ ) {
@@ -527,6 +530,10 @@
                 curTextContent.css( 'height', curTextContent.attr( 'data-height' ) );
 
                 curBtn.html( 'Read More' );
+
+                _body.animate( {
+                    scrollTop: curTextContent.offset().top - 10
+                }, 600);
 
             },
             _construct = function() {
@@ -785,6 +792,107 @@
         };
 
         _construct()
+    };
+
+    var Header = function ( obj ) {
+        var _obj = obj,
+            _lastPos,
+            _site = $( '#site' ),
+            _window = $( window );
+
+        var _onEvents = function() {
+
+                _obj.on( {
+                    click: function() {
+
+                    }
+                } );
+
+                _window.on( {
+                    'DOMMouseScroll': function ( e ) {
+                        var delta = e.originalEvent.detail;
+                        if ( delta ) {
+                            var direction = ( delta > 0 ) ? 1 : -1;
+                            _checkScroll( direction );
+                        }
+                    },
+                    'mousewheel': function ( e ) {
+                        var delta = e.originalEvent.wheelDelta;
+                        if ( delta ) {
+                            var direction = ( delta > 0 ) ? -1 : 1;
+                            _checkScroll( direction );
+                        }
+                    },
+                    'touchmove': function ( e ) {
+                        var currentPos = e.originalEvent.touches[0].clientY;
+                        if ( currentPos > _lastPos ) {
+                            _checkScroll( -1 );
+                        } else if ( currentPos < _lastPos ) {
+                            _checkScroll( 1 );
+                        }
+                        _lastPos = currentPos;
+                    },
+                    'keydown': function ( e ) {
+                        switch( e.which ) {
+
+                            case 32:
+                                _checkScroll( 1 );
+                                break;
+                            case 33:
+                                _checkScroll( -1 );
+                                break;
+                            case 34 :
+                                _checkScroll( 1 );
+                                break;
+                            case 35 :
+                                _checkScroll( 1 );
+                                break;
+                            case 36 :
+                                _checkScroll( -1 );
+                                break;
+                            case 38:
+                                _checkScroll( -1 );
+                                break;
+                            case 40:
+                                _checkScroll( 1 );
+                                break;
+
+                            default:
+                                return;
+                        }
+                    }
+                } )
+
+            },
+            _checkScroll = function( direction ){
+
+                if ( $( '#menu' ).hasClass( 'show' ) || $( '#filter' ).hasClass( 'show' ) ) {
+                    return false;
+                }
+
+                if( direction > 0 && !_obj.hasClass( 'site__header_hidden' ) ) {
+                    _obj.addClass( 'site__header_hidden' );
+                } else if( direction < 0 && _obj.hasClass( 'site__header_hidden' ) ) {
+                    _obj.removeClass( 'site__header_hidden' );
+                }
+            },
+            _heightSpace = function () {
+
+                if ( _obj.outerHeight() > 51 && _window.outerWidth() < 1200 ){
+                    _site.addClass( 'site_big-header' )
+                } else if ( _obj.outerHeight() > 71 && _window.outerWidth() >= 1200 ) {
+                    _site.addClass( 'site_big-header' )
+                }
+
+
+            },
+            _construct = function() {
+                _onEvents();
+                _heightSpace();
+            };
+
+        _construct();
+
     };
 
     var Filter = function ( obj ) {
@@ -1238,9 +1346,9 @@
             _subMenu = _obj.find( '.menu__sub-menu ' ),
             _btnShowMobile = $( '#mobile-menu-btn' ),
             _site = $( '#site' ),
-            _body = $( 'body' ),
             _html = $( 'html' ),
-            _window = $( window );
+            _window = $( window ),
+            _activeHeader = new Header( $( '#site__header' ) );
 
         //private methods
         var _onEvent = function() {
@@ -1337,6 +1445,10 @@
             },
             _showMenuOnMobile = function () {
 
+                if ( _window.width() < 768 ){
+                    _obj.css( 'height', _window.outerHeight() - 50 );
+                }
+
                 if ( _window.width() < 1200 ){
                     _html.css( 'overflow-y', 'hidden' );
                 }
@@ -1345,8 +1457,14 @@
                 _obj.addClass( 'show' );
                 _btnShowMobile.addClass( 'close' );
 
+                _activeHeader.active = false;
+
             },
             _hideMenuOnMobile = function () {
+
+                if ( _window.width() < 768 ){
+                    _obj.removeAttr( 'style' );
+                }
 
                 if ( _window.width() < 1200 ){
                     _html.removeAttr( 'style' );
@@ -1412,7 +1530,8 @@
             _content = _obj.find( '#intro__text' ),
             _btnMore = _obj.find( '#intro__more' ),
             _window = $( window ),
-            _contentHeight;
+            _contentHeight,
+            _body = $( 'html, body' );
 
         //private methods
         var _onEvent = function() {
@@ -1457,6 +1576,14 @@
                 _content.css( 'height', _contentHeight );
 
                 _btnMore.html( 'Read More' );
+
+                if ( _window.outerWidth() < 1200 ){
+
+                    _body.animate( {
+                        scrollTop: _obj.offset().top - 10
+                    }, 600);
+
+                }
 
             },
             _construct = function() {
@@ -1876,6 +2003,7 @@
         var _obj = obj,
             _btn = _obj.find( '.review__frame-topic' ),
             _stickyHead = _obj.find( '#review__sticky-head' ),
+            _previewImg = _obj.find( '#review__aside-img' ),
             _stickyHeadTop = _stickyHead.offset().top,
             _separateComment = $( '#comments' ),
             _rowOpenBtn = _obj.find( '.review__table-open' ),
@@ -1963,6 +2091,11 @@
                 curBtn.addClass( 'close' );
                 curFrame.addClass( 'hide' );
 
+                if ( curFrame.hasClass( 'review__frame_first' ) && _window.outerWidth() >= 768 ){
+                    console.log( curFrame )
+                    _previewImg.addClass( 'hide' );
+                }
+
             },
             _openFrame = function ( btn, frame ) {
 
@@ -1971,6 +2104,10 @@
 
                 curBtn.removeClass( 'close' );
                 curFrame.removeClass( 'hide' );
+
+                if ( curFrame.hasClass( 'review__frame_first' ) ){
+                    _previewImg.removeClass( 'hide' );
+                }
 
             },
             _construct = function() {
@@ -1994,7 +2131,8 @@
             _btnCancel = _searchForm.find( '#search-bonus__search-cancel' ),
             _resultWrap = _obj.find( '#search-bonus__result-wrap' ),
             _noResults = _obj.find( '#search-bonus__no-results' ),
-            _request = new XMLHttpRequest();
+            _request = new XMLHttpRequest(),
+            _window = $( window );
 
         //private methods
         var _onEvent = function() {
@@ -2066,7 +2204,21 @@
                 _resultWrap.empty();
 
                 var arr = data.items,
+                    number;
+
+                if ( _window.outerWidth() < 768 ){
+
+                    number = 3;
+
+                } else if ( _window.outerWidth() < 1200 ){
+
+                    number = 5;
+
+                } else {
+
                     number = arr.length;
+
+                }
 
                 for ( var i = 0; i < number; i++ ){
 
@@ -2149,6 +2301,7 @@
                 _btnShowMobile.on (
                     'click', function () {
                         _showPanel();
+                        return false;
                     }
                 );
 
@@ -2342,7 +2495,7 @@
                 } else {
 
                     searchPopup.empty();
-                    searchPopup.append( '<div id="search__preload"><div id="search__preload-element"></div></div>' );
+                    searchPopup.append( '<div id="search__preload"><div class="search-bonus__preload-bar"></div><div class="search-bonus__preload-bar"></div><div class="search-bonus__preload-bar"></div><div class="search-bonus__preload-bar"></div><div class="search-bonus__preload-bar"></div></div>' );
                     searchPopup.prepend( arr );
 
                 }
