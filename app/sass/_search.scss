@@ -33,7 +33,7 @@
     width: 0;
     visibility: hidden;
     opacity: 0;
-    padding: 7px 10px;
+    padding: 7px 10px 8px;
     overflow: hidden;
     background-color: #F8F8F8;
     -webkit-transition: all .3s ease;
@@ -138,7 +138,7 @@
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
     opacity: 0;
     visibility: hidden;
-    z-index: 3;
+    z-index: 5;
     -webkit-transition: opacity .3s ease, visibility .3s ease;
     transition: opacity .3s ease, visibility .3s ease;
 
@@ -383,7 +383,7 @@
       width: 935px!important;
       right: -2px;
       left: auto!important;
-      padding: 15px 0 14px 20px;
+      padding: 15px 0 15px 20px;
       border-bottom: 1px solid #DCE0DB;
 
       input{

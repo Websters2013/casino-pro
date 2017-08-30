@@ -212,6 +212,21 @@
       width: 257px;
       margin-right: 21px;
       line-height: 20px;
+
+      &:hover{
+
+        h3{
+          color: #FFB612;
+        }
+
+        .games__img:after,
+        .games__btn{
+          opacity: 1;
+          visibility: visible;
+        }
+
+      }
+
     }
 
   }

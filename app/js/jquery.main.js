@@ -107,7 +107,8 @@
 
     var Anchor = function ( obj ) {
         var _obj = obj,
-            _body = $( 'html, body' );
+            _body = $( 'html, body' ),
+            _window = $( window );
 
         var _onEvents = function() {
 
@@ -117,8 +118,10 @@
                         var curBtn = $( this ),
                             curMargin = curBtn.data( 'margin' );
 
-                        if ( curMargin == undefined ) {
-                            curMargin = 15
+                        if ( curMargin == undefined && _window.outerWidth() < 1200 ) {
+                            curMargin = 60
+                        } else if ( curMargin == undefined && _window.outerWidth() >= 1200 ) {
+                            curMargin = 80
                         }
 
                         _body.animate( {
@@ -481,11 +484,11 @@
 
                 curPopup.addClass( 'show' );
 
-                curPopup.css( 'top', curBtn.offset().top - 14 - curPopup.outerHeight() )
+                curPopup.css( 'top', curBtn.offset().top - 5 - curPopup.outerHeight() )
 
                 if ( _window.outerWidth() >= 1200 ){
 
-                    curPopup.css( 'left', curBtn.offset().left - 16 )
+                    curPopup.css( 'left', curBtn.offset().left - 25 )
 
                 }
 
@@ -796,6 +799,7 @@
 
     var Header = function ( obj ) {
         var _obj = obj,
+            _self = this,
             _lastPos,
             _site = $( '#site' ),
             _window = $( window );
@@ -866,15 +870,22 @@
             },
             _checkScroll = function( direction ){
 
-                if ( $( '#menu' ).hasClass( 'show' ) || $( '#filter' ).hasClass( 'show' ) ) {
+                if ( $( '#menu' ).hasClass( 'show' ) || $( '#filter' ).hasClass( 'show' ) || _site.outerHeight() <= _window.outerHeight() + 50 ) {
                     return false;
                 }
 
                 if( direction > 0 && !_obj.hasClass( 'site__header_hidden' ) ) {
-                    _obj.addClass( 'site__header_hidden' );
+                    _hideHeader();
                 } else if( direction < 0 && _obj.hasClass( 'site__header_hidden' ) ) {
-                    _obj.removeClass( 'site__header_hidden' );
+                    _showHeader();
                 }
+            },
+            _showHeader = function () {
+                _obj.removeClass( 'site__header_hidden' );
+            },
+            _hideHeader = function () {
+                _obj.addClass( 'site__header_hidden' );
+                $( '#search' )[0].obj.close();
             },
             _heightSpace = function () {
 
@@ -889,7 +900,12 @@
             _construct = function() {
                 _onEvents();
                 _heightSpace();
+                _obj[0].obj = _self;
             };
+
+        _self.showHeader = function () {
+            _showHeader();
+        };
 
         _construct();
 
@@ -1348,7 +1364,10 @@
             _site = $( '#site' ),
             _html = $( 'html' ),
             _window = $( window ),
-            _activeHeader = new Header( $( '#site__header' ) );
+            _swipeMenuLeft = false,
+            _openMenu = false,
+            _activeHeader = new Header( $( '#site__header' ) ),
+            _headerHammer;
 
         //private methods
         var _onEvent = function() {
@@ -1414,6 +1433,18 @@
                     }
                 );
 
+                _headerHammer.on( 'panend', function( e ){
+                    if(e.pointerType == 'touch') {
+                        _moveMenu( e.deltaX, e.pointers[0].pageX, e.type );
+                    }
+                } );
+
+                _headerHammer.on( 'panleft', function( e ){
+                    if(e.pointerType == 'touch') {
+                        _moveMenu( e.deltaX, e.pointers[0].pageX, e.type );
+                    }
+                } );
+
             },
             _showSubMenu = function ( btn ) {
 
@@ -1459,6 +1490,8 @@
 
                 _activeHeader.active = false;
 
+                _openMenu = true;
+
             },
             _hideMenuOnMobile = function () {
 
@@ -1474,8 +1507,23 @@
                 _obj.removeClass( 'show' );
                 _btnShowMobile.removeClass( 'close' );
 
+                _openMenu = false;
+
+            },
+            _moveMenu = function( touchPosX, deltaX, type ) {
+
+                if ( type == 'panleft' && _openMenu && touchPosX < -20 ){
+                    _hideMenuOnMobile();
+                    $( '.menu__item' ).text( touchPosX )
+                }
+
+            },
+            _initHammer = function(){
+                _headerHammer = new Hammer.Manager( $( '#menu' )[0] );
+                _headerHammer.add( new Hammer.Pan( { direction: Hammer.DIRECTION_ALL, threshold: 0 } ) );
             },
             _construct = function() {
+                _initHammer();
                 _onEvent();
             };
 
@@ -1542,7 +1590,7 @@
                         if ( !_content.hasClass( 'visible' ) ) {
                             _showAllContent();
                         } else {
-                            _showLessContent();
+                            _showLessContent( 1 );
                         }
 
                         return false;
@@ -1553,7 +1601,8 @@
                 _window.on (
                     'resize', function () {
 
-                        // _content.removeAttr( 'style' );
+                        _showLessContent( 0 );
+                        _content.removeAttr( 'style' );
 
                     }
                 );
@@ -1569,7 +1618,7 @@
                 _btnMore.html( 'Read Less' );
 
             },
-            _showLessContent = function () {
+            _showLessContent = function ( event ) {
 
                 _content.removeClass( 'visible' );
 
@@ -1577,13 +1626,15 @@
 
                 _btnMore.html( 'Read More' );
 
-                if ( _window.outerWidth() < 1200 ){
+                if ( _window.outerWidth() < 1200 && event > 0 ){
 
                     _body.animate( {
-                        scrollTop: _obj.offset().top - 10
+                        scrollTop: _obj.offset().top - 92
                     }, 600);
 
                 }
+
+                $( '#site__header' )[0].obj.showHeader();
 
             },
             _construct = function() {
@@ -2267,6 +2318,7 @@
 
         //private properties
         var _obj = obj,
+            _self = this,
             _btnShowMobile = _obj.find( '#search__btn-open' ),
             _searchForm = _obj.find( '#search__form' ),
             _searchInput = _searchForm.find( 'input' ),
@@ -2472,6 +2524,8 @@
                 }
 
                 _searchForm.removeClass( 'show' );
+                _searchUpdate.removeClass( 'show' );
+
 
                 _hidePopup();
 
@@ -2521,11 +2575,16 @@
             _construct = function() {
                 _checkShow();
                 _onEvent();
+                _obj[0].obj = _self;
             };
 
         //public properties
 
         //public methods
+        _self.close = function () {
+            _hidePanel();
+            _searchForm[0].reset();
+        };
 
         _construct();
     };

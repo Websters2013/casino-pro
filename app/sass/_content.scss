@@ -183,7 +183,7 @@
 @media (min-width: $tablet-portrait) {
 
   #content {
-    padding: 31px 20px 84px;
+    padding: 14px 20px 84px;
     line-height: 20px;
 
     &__wrap{
@@ -263,6 +263,10 @@
       margin: 47px 0;
     }
 
+    #main-title span{
+      padding: 0 30px;
+    }
+
   }
 
   .content {
@@ -284,7 +288,7 @@
 @media (min-width: $desktop) {
 
   #content {
-    padding: 31px calc( 50% - 569px ) 45px;
+    padding: 36px calc( 50% - 569px ) 45px;
     font-size: 15px;
     line-height: 22px;
 

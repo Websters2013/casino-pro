@@ -19,10 +19,6 @@
     text-align: center;
   }
 
-  &:active {
-    background: #02c54f;
-  }
-
   &_1 {
     background-color: #029C3E;
   }
@@ -113,6 +109,14 @@
     }
 
     &_1{
+
+      &:hover {
+        background-color: #FFB612;
+      }
+
+    }
+
+    &_2{
 
       &:hover {
         background-color: #FFB612;

@@ -338,7 +338,6 @@
         width: 180px;
         height: 40px;
         margin: 9px auto 0;
-        padding-top: 4px;
         border: 2px solid #029C3E;
         border-radius: 50px;
         color: #029C3E;
@@ -1059,6 +1058,8 @@
       }
 
       &-popup{
+        width: 270px;
+        padding: 14.5px 44px 21px;
         right: 30px;
       }
 
