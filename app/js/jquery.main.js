@@ -60,11 +60,8 @@
         };
 
         if ( $( '#filter' ).length == 1 ){
-            new Filter( $( '#filter' ) );
-        };
-
-        if ( $( '#filter' ).length == 1 ){
             new DataCollection( $( '#filter' ) );
+            new Filter( $( '#filter' ) );
         };
 
         if ( $( '#revision' ).length == 1 ){
@@ -181,7 +178,7 @@
 
                 _site.on( 'click', function ( e ) {
 
-                        if ( _casinosAboutPopup.hasClass( 'show' ) && $( e.target ).closest( _casinosAboutPopup ).length == 0 ){
+                        if ( _casinosAboutPopup.hasClass( 'show' ) && $( e.target ).closest( _casinosAboutPopup.filter( '.show' ) ).length == 0 ){
                             _closePopup();
                         }
 
@@ -478,6 +475,8 @@
 
             },
             _openPopup = function ( btn, popup ) {
+
+                _casinosAboutPopup.removeClass( 'show' )
 
                 var curBtn = btn,
                     curPopup = popup;
@@ -1364,7 +1363,6 @@
             _site = $( '#site' ),
             _html = $( 'html' ),
             _window = $( window ),
-            _swipeMenuLeft = false,
             _openMenu = false,
             _activeHeader = new Header( $( '#site__header' ) ),
             _headerHammer;
@@ -1476,12 +1474,13 @@
             },
             _showMenuOnMobile = function () {
 
-                if ( _window.width() < 768 ){
-                    _obj.css( 'height', _window.outerHeight() - 50 );
-                }
-
                 if ( _window.width() < 1200 ){
                     _html.css( 'overflow-y', 'hidden' );
+
+                    if ( _window.width() < 768 ){
+                        _obj.css( 'height', _window.outerHeight() - 50 );
+                    }
+
                 }
 
                 _site.addClass( 'hide' );
@@ -1495,12 +1494,14 @@
             },
             _hideMenuOnMobile = function () {
 
-                if ( _window.width() < 768 ){
-                    _obj.removeAttr( 'style' );
-                }
 
                 if ( _window.width() < 1200 ){
                     _html.removeAttr( 'style' );
+
+                    if ( _window.width() < 768 ){
+                        _obj.removeAttr( 'style' );
+                    }
+
                 }
 
                 _site.removeClass( 'hide' );
@@ -1514,7 +1515,6 @@
 
                 if ( type == 'panleft' && _openMenu && touchPosX < -20 ){
                     _hideMenuOnMobile();
-                    $( '.menu__item' ).text( touchPosX )
                 }
 
             },
