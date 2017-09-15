@@ -4,101 +4,160 @@
 
     $( function(){
 
+        var pageTemplate = $( '#site__content' ).data( 'page-template' );
+
         new SearchPanel ( $( '#search' ) );
-
         new Menu ( $( '#menu' ) );
-
         new Header ( $( '#site__header' ) );
 
-        if ( $( '#review' ).length ){
-            new ReviewFrame( $( '#review' ) );
-        }
-
-        if ( $( '.validation-form' ).length ){
-            new FormValidator( $( '.validation-form' ) );
-        };
-
-        if ( $( '#comments__rate' ).length ){
-            new Rate( $( '#comments__rate' ) );
-        };
-
-        if ( $( '.anchor' ).length == 1 ){
-            new Anchor( $( '.anchor' ) );
-        };
-
-        if ( $( '#single-game__info' ).length == 1 ){
-            new Sliders( $( '#single-game__info' ) );
-        };
-
-        if ( $( '#no-demo' ).length == 1 ){
-            new Sliders( $( '#no-demo' ) );
-            new NoDemoOpen( $( '#no-demo' ) );
-        };
-
-        if ( $( '#sub-menu' ).length == 1 ){
-            new Sliders( $( '#sub-menu' ) );
-        };
-
-        if ( $( '#revision__note' ).length == 1 ){
-            new RevisionNote( $( '#revision__note' ) );
-        };
-
-        if ( $( '#notification' ).length == 1 ){
+        if ( pageTemplate == 'all-casinos' ){
             new Notification( $( '#notification' ) );
-        };
-
-        if ( $( '#intro__content' ).length == 1 ){
             new PageInfoContent( $( '#intro__content' ) );
-        };
-
-        if ( $( '#search-bonus' ).length == 1 ){
-            new SearchBonus( $( '#search-bonus' ) );
-        };
-
-        if ( $( '#sort' ).length == 1 ){
             new SortPopup( $( '#sort' ) );
-        };
-
-        if ( $( '#filter' ).length == 1 ){
             new DataCollection( $( '#filter' ) );
             new Filter( $( '#filter' ) );
-        };
-
-        if ( $( '#revision' ).length == 1 ){
             new Revision( $( '#revision' ) );
-        };
 
-        if ( $( '.bonus__item' ).length == 1 ){
-            new BonusItem( $( '.bonus__item' ) );
-        };
+            $.each( $('.anchor'), function () {
+                new Anchor( $(this) );
+            } );
 
-        if ( $( '.comments_less' ).length == 1 ){
+            $.each( $('.casino-count'), function () {
+                new CasinoCount( $(this) );
+            } );
+
+        }
+        else if ( pageTemplate == 'bonus-by-casino' ){
+            new Sliders( $( '#sub-menu' ) );
+            new RevisionNote( $( '#revision__note' ) );
+            new PageInfoContent( $( '#intro__content' ) );
+            new SortPopup( $( '#sort' ) );
+            new DataCollection( $( '#filter' ) );
+            new Filter( $( '#filter' ) );
+            new Revision( $( '#revision' ) );
+        }
+        else if ( pageTemplate == 'contact-page' ){
+            new FormValidator( $( '.validation-form' ) );
+        }
+        else if ( pageTemplate == 'daily-bonuses' ){
+            new Sliders( $( '#sub-menu' ) );
+            new PageInfoContent( $( '#intro__content' ) );
+            new SearchBonus( $( '#search-bonus' ) );
+            new SortPopup( $( '#sort' ) );
+            new DataCollection( $( '#filter' ) );
+            new Filter( $( '#filter' ) );
+            new Revision( $( '#revision' ) );
+        }
+        else if ( pageTemplate == 'games-page' ){
+            new RevisionNote( $( '#revision__note' ) );
+            new PageInfoContent( $( '#intro__content' ) );
+            new SortPopup( $( '#sort' ) );
+            new DataCollection( $( '#filter' ) );
+            new Filter( $( '#filter' ) );
+            new Revision( $( '#revision' ) );
+
+            $.each( $('.anchor'), function () {
+                new Anchor( $(this) );
+            } );
+
+        }
+        else if ( pageTemplate == 'index' ){
+            new PageInfoContent( $( '#intro__content' ) );
+            new SearchBonus( $( '#search-bonus' ) );
+
+            $.each( $('.casino-count'), function () {
+                new CasinoCount( $(this) );
+            } );
+
+        }
+        else if ( pageTemplate == 'new-casinos' ){
+            new PageInfoContent( $( '#intro__content' ) );
+            new SortPopup( $( '#sort' ) );
+            new DataCollection( $( '#filter' ) );
+            new Filter( $( '#filter' ) );
+            new Revision( $( '#revision' ) );
+
+            $.each( $('.anchor'), function () {
+
+                new Anchor( $(this) );
+
+            } );
+
+            $.each( $('.casino-count'), function () {
+
+                new CasinoCount( $(this) );
+
+            } );
+
+        }
+        else if ( pageTemplate == 'reviews-page' ){
+            new ReviewFrame( $( '#review' ) );
+            new FormValidator( $( '.validation-form' ) );
+            new Rate( $( '#comments__rate' ) );
             new CommentsLess( $( '.comments_less' ) );
-        };
 
-        $.each( $('.anchor'), function () {
+            $.each( $('.anchor'), function () {
 
-            new Anchor( $(this) );
+                new Anchor( $(this) );
 
-        } );
+            } );
 
-        $.each( $('.casino-count'), function () {
+        }
+        else if ( pageTemplate == 'search-result' ){
 
-            new CasinoCount( $(this) );
+            $.each( $('.search-result__wrap'), function () {
 
-        } );
+                new PageSearchResult( $(this) );
 
-        $.each( $('.search-result__wrap'), function () {
+            } );
 
-            new PageSearchResult( $(this) );
+        }
+        else if ( pageTemplate == 'single-bonus' ){
+            new FormValidator( $( '.validation-form' ) );
+            new Sliders( $( '#sub-menu' ) );
+            new BonusItem( $( '.bonus__item' ) );
 
-        } );
+            $.each( $('.anchor'), function () {
 
-        $.each( $('.bonus__marks'), function () {
+                new Anchor( $(this) );
 
-            new MarkVoit( $(this) );
+            } );
 
-        } );
+            $.each( $('.bonus__marks'), function () {
+
+                new MarkVote( $(this) );
+
+            } );
+
+        }
+        else if ( pageTemplate == 'single-game' ){
+            new Sliders( $( '#single-game__info' ) );
+        }
+        else if ( pageTemplate == 'single-game-no-demo' ){
+            new Sliders( $( '#single-game__info' ) );
+            new Sliders( $( '#no-demo' ) );
+            new NoDemoOpen( $( '#no-demo' ) );
+        }
+        else if ( pageTemplate == 'software' ){
+            new PageInfoContent( $( '#intro__content' ) );
+            new SortPopup( $( '#sort' ) );
+            new DataCollection( $( '#filter' ) );
+            new Filter( $( '#filter' ) );
+            new Revision( $( '#revision' ) );
+
+            $.each( $('.anchor'), function () {
+
+                new Anchor( $(this) );
+
+            } );
+
+            $.each( $('.casino-count'), function () {
+
+                new CasinoCount( $(this) );
+
+            } );
+
+        }
 
     } );
 
@@ -1283,34 +1342,21 @@
         _construct()
     };
 
-    var MarkVoit = function ( obj ) {
+    var MarkVote = function ( obj ) {
         var _obj = obj,
-            _likeBtn = _obj.find( '.bonus__marks-like' ),
-            _dislikeBtn = _obj.find( '.bonus__marks-dislike' ),
+            _voteBtn = _obj.find( 'a' ),
             _request = new XMLHttpRequest();
 
         var _onEvents = function() {
 
-                _likeBtn.on( {
+                _voteBtn.on( {
                     click: function() {
 
                         var curBtn = $( this ),
+                            action = curBtn.attr('class').split( '-' )[1],
                             curBoxId = curBtn.parents( '.bonus__item' ).data( 'id-bonus-box' );
 
-                        _ajaxRequest( 'like', curBoxId, curBtn );
-
-                        return false;
-
-                    }
-                } );
-
-                _dislikeBtn.on( {
-                    click: function() {
-
-                        var curBtn = $( this ),
-                            curBoxId = curBtn.parents( '.bonus__item' ).data( 'id-bonus-box' );
-
-                        _ajaxRequest( 'dislike', curBoxId, curBtn );
+                        _ajaxRequest( action, curBoxId, curBtn );
 
                         return false;
 
@@ -1461,8 +1507,7 @@
             _hideSubMenu = function ( btn ) {
 
                 var curBtn = btn,
-                    curSubMenu = curBtn.next( '.menu__sub-menu' ),
-                    curSubMenuHeight = curSubMenu.find( 'ul' ).outerHeight();
+                    curSubMenu = curBtn.next( '.menu__sub-menu' );
 
                 curBtn.removeClass( 'open' );
                 curSubMenu.removeClass( 'visible' );
@@ -1815,14 +1860,13 @@
             _allCasinosBody = _obj.find( '#revision__body' ),
             _allBtnMoreWrap = _allCasinosBody.find( '#revision__btn-wrap' ),
             _result = _resultframe.find( 'b' ),
-            _noResult = _obj.find( '#revision__no-result' ),
-            _reset = _noResult.find( '#revision__reset' ),
+            _allCasinosWrap = _obj.find( '.add-section' ),
             _btnLoadMore = _obj.find( '#revision__load' ),
             _revisionNote = _obj.find( '#revision__note' ),
             _revisionNoteBtn = _revisionNote.find( '#revision__note-btn' ),
             _revisionNotePopup = _revisionNote.find( '#revision__note-popup' ),
             _window = $( window ),
-            _url, _allCasinosWrap,
+            _url,
             _site = $( '#site' ),
             _request = new XMLHttpRequest();
 
@@ -1840,13 +1884,6 @@
 
                 _btnLoadMore.on( 'click', function () {
                     _ajaxRequest();
-                    return false;
-                } );
-
-                _reset.on( 'click', function () {
-                    _form[0].reset();
-                    _page = 0;
-                    _ajaxRequest( _page );
                     return false;
                 } );
 
@@ -1907,33 +1944,28 @@
                     leftPage = data.page;
 
                 _showResults( allResult );
-
-                _noResult.removeClass( 'show' );
-                _allCasinosBody.removeClass( 'hide' );
-
-                if ( content == '' || content == undefined ) {
-                    _noResult.addClass( 'show' );
-                    _allCasinosBody.addClass( 'hide' );
-                } else {
-                    _addNewItems( content );
-                }
+                _addNewItems( content );
 
                 if ( leftPage <= 0 ){
                     _allBtnMoreWrap.addClass( 'hide' );
                 }
 
+                if ( _obj.find( '#revision__no-result' ).length > 0 ) {
+
+                    var _noResult = _obj.find( '#revision__no-result' ),
+                        _reset = _noResult.find( '#revision__reset' );
+
+                    _reset.on( 'click', function () {
+                        _form[0].reset();
+                        _page = 0;
+                        _ajaxRequest( _page );
+                        return false;
+                    } );
+
+                }
+
             },
             _addNewItems = function ( data ) {
-
-                if ( _obj.hasClass( 'all-casinos' ) ){
-                    _allCasinosWrap = _obj.find( '#online-casinos__content-body' );
-                } else  if ( _obj.hasClass( 'all-games' ) ){
-                    _allCasinosWrap = _obj.find( '#games__wrap' );
-                } else  if ( _obj.hasClass( 'daily-bonuses' ) ){
-                    _allCasinosWrap = _obj.find( '#bonus' );
-                } else if ( _obj.hasClass( 'new-casinos' ) ){
-                    _allCasinosWrap = _obj.find( '#online-casinos__content-body' );
-                }
 
                 var content = data;
 
@@ -1945,7 +1977,7 @@
 
                 if ( _obj.hasClass( 'daily-bonuses' ) ) {
                     $.each( $('.bonus__marks' ), function () {
-                        new MarkVoit( $(this) );
+                        new MarkVote( $(this) );
                     } );
                 }
 
@@ -2532,21 +2564,20 @@
             },
             _loadData = function ( data ) {
 
+                var arr = data;
+
                 if ( _loadNewContent ){
 
                     _obj.append( '<div id="search__popup" class="load"><div id="search__preload"><div id="search__preload-element"></div></div></div>' )
 
-                }
-
-                var searchPopup = _obj.find( '#search__popup' ),
-                    arr = data;
-
-                if ( _loadNewContent ){
+                    var searchPopup = _obj.find( '#search__popup' );
 
                     searchPopup.prepend( arr );
                     _loadNewContent = false;
 
                 } else {
+
+                    var searchPopup = _obj.find( '#search__popup' );
 
                     searchPopup.empty();
                     searchPopup.append( '<div id="search__preload"><div class="search-bonus__preload-bar"></div><div class="search-bonus__preload-bar"></div><div class="search-bonus__preload-bar"></div><div class="search-bonus__preload-bar"></div><div class="search-bonus__preload-bar"></div></div>' );
@@ -2699,9 +2730,9 @@
             },
             _destroySlider = function() {
 
-                if ( _window.outerWidth() >= 768 && _activeSubMenu  ) {
-                    _activeSubMenu = false;
-                    _subMenu[ 0 ].swiper.destroy( false, true );
+                if ( _window.outerWidth() >= 768 && _singleGame  ) {
+                    _singleGame = false;
+                    _singleGameSwiper[ 0 ].swiper.destroy( false, true );
                 }
 
                 if ( _window.outerWidth() >= 768 && _activeSubMenu  ) {
@@ -2711,7 +2742,7 @@
 
                 if ( _window.outerWidth() >= 1200 && _activeNoDemo  ) {
                     _activeNoDemo = false;
-                    _noDemo[0].swiper.destroy(false, true);
+                    _noDemoSwiper[0].swiper.destroy(false, true);
                 }
 
             },
