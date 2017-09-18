@@ -454,9 +454,9 @@ $loadedType = $_GET['filter'];
                                             <a href="#">GO TO REVIEW PAGE</a>
                                         </div>
                                         
-                                        <div class="bonus__casinos-item inactive" data-casino="001">
+                                        <div class="bonus__casinos-item inactive">
 
-                                                <button class="bonus__casinos-img">
+                                                <button class="bonus__casinos-img" data-casino="001">
                                                     <img src="pic/logo-011.png" alt="img"/>
                                                 </button>
 
@@ -464,9 +464,9 @@ $loadedType = $_GET['filter'];
 
                                             </div>
 
-                                            <div class="bonus__casinos-item inactive" data-casino="001">
+                                            <div class="bonus__casinos-item inactive">
 
-                                                <button class="bonus__casinos-img">
+                                                <button class="bonus__casinos-img" data-casino="001">
                                                     <img src="pic/logo-013.png" alt="img"/>
                                                 </button>
 
@@ -477,9 +477,9 @@ $loadedType = $_GET['filter'];
 
                                             </div>
 
-                                            <div class="bonus__casinos-item inactive" data-casino="001">
+                                            <div class="bonus__casinos-item inactive">
 
-                                                <button class="bonus__casinos-img">
+                                                <button class="bonus__casinos-img" data-casino="001">
                                                     <img src="pic/logo-018.png" alt="img"/>
                                                 </button>
 
@@ -754,9 +754,9 @@ $loadedType = $_GET['filter'];
 
                                             </div>
 
-                                            <div class="bonus__casinos-item inactive" data-casino="001">
+                                            <div class="bonus__casinos-item inactive">
 
-                                                <button class="bonus__casinos-img">
+                                                <button class="bonus__casinos-img" data-casino="001">
                                                     <img src="pic/logo-013.png" alt="img"/>
                                                 </button>
 
@@ -764,18 +764,18 @@ $loadedType = $_GET['filter'];
 
                                             </div>
 
-                                            <div class="bonus__casinos-item inactive" data-casino="002">
+                                            <div class="bonus__casinos-item inactive">
 
-                                                <button class="bonus__casinos-img">
+                                                <button class="bonus__casinos-img" data-casino="002">
                                                     <img src="pic/logo-018.png" alt="img"/>
                                                 </button>
 
                                                 <a href="" class="btn btn_1"><span>Play</span></a>
 
                                             </div>
-                                            <div class="bonus__casinos-item inactive" data-casino="002">
+                                            <div class="bonus__casinos-item inactive">
 
-                                                <button class="bonus__casinos-img">
+                                                <button class="bonus__casinos-img" data-casino="002">
                                                     <img src="pic/logo-011.png" alt="img"/>
                                                 </button>
 
@@ -783,9 +783,9 @@ $loadedType = $_GET['filter'];
 
                                             </div>
 
-                                            <div class="bonus__casinos-item inactive" data-casino="002">
+                                            <div class="bonus__casinos-item inactive">
 
-                                                <button class="bonus__casinos-img">
+                                                <button class="bonus__casinos-img" data-casino="002">
                                                     <img src="pic/logo-013.png" alt="img"/>
                                                 </button>
 
@@ -793,9 +793,9 @@ $loadedType = $_GET['filter'];
 
                                             </div>
 
-                                            <div class="bonus__casinos-item inactive" data-casino="002">
+                                            <div class="bonus__casinos-item inactive">
 
-                                                <button class="bonus__casinos-img">
+                                                <button class="bonus__casinos-img" data-casino="002">
                                                     <img src="pic/logo-018.png" alt="img"/>
                                                 </button>
 

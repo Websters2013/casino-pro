@@ -307,6 +307,8 @@
                         var curBtn = $( this ),
                             curPopup = _obj.find( '.bonus__casinos-popup' ).filter( '[data-casino='+ curBtn.attr( 'data-casino' ) +']' );
 
+                        console.log( curPopup )
+
                         if ( !curPopup.hasClass( 'show' ) ){
                             _openPopup( curBtn, curPopup );
                         } else{
